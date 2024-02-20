@@ -1,22 +1,28 @@
 <div class="relative">
-    <div *ngIf="!searchToggled" class="justify-between items-center flex ">
-        <div class="justify-start items-center gap-3 flex">
-        <div class="text-center text-green-500 text-3xl font-extrabold font-serif leading-normal tracking-widest">BIDAYA</div>
-        <div class="w-7 h-7 ">
-            <mat-icon>expand_more</mat-icon></div>
-        </div>
-        <div class="w-7 h-7 hover:text-green-500">
-            <mat-icon>search</mat-icon>
+    <div  class="justify-between items-center flex h-8">
+        <div class="justify-start items-center flex">
+            <span class="text-center text-green-500 text-3xl font-extrabold font-serif leading-normal tracking-widest">
+                BIDAYA
+            </span>
+            <div class="w-7 h-7 flex justify-center items-center ">
+                <mat-icon>expand_more</mat-icon></div>
+            </div>
+        <div>
+            <label class="w-7 h-7 hover:text-green-500 flex justify-center items-center" (click)="toggleSearch()" for="search">
+                <mat-icon>search</mat-icon>
+            </label>
         </div>
     </div>
-    <div *ngIf="searchToggled" class="absolute w-full flex items-center justify-between bg-white gap-4">
-        <div class="w-7 h-7">
-            <mat-icon>search</mat-icon>
+    <div *ngIf="searchToggled" class="absolute w-full justify-between items-center flex bg-white gap-4 h-8 top-0 right-0 bottom-0">
+        <div class="justify-start items-center gap-3 flex">
+            <div class="w-7 h-7 flex justify-center items-center">
+                <mat-icon>search</mat-icon>
+            </div>
+            <div class="w-full h-full " >
+                <input type="text" placeholder="Search..." class="border-none appearance-none outline-none w-full h-full placeholder:font-serif" id="search">
+            </div>
         </div>
-        <div class="w-full h-full">
-            <input type="text" placeholder="Search..." class="border-none appearance-none outline-none w-full h-full">
-        </div>
-        <div class="w-7 h-7 hover:text-green-500">
+        <div class="w-7 h-7 hover:text-green-500 flex justify-center items-center" (click)="toggleSearch()">
             <mat-icon>close</mat-icon>
         </div>
     </div>
