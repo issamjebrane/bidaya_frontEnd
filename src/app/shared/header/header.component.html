@@ -1,19 +1,23 @@
-<div class="relative">
-    <div  class="justify-between items-center flex h-8">
-        <div class="justify-start items-center flex">
-            <span class="text-center text-green-500 text-3xl font-extrabold font-serif leading-normal tracking-widest">
+<div class="relative flex items-center justify-center ">
+    <div  class="justify-center items-center flex w-full">
+        <div class=" items-center flex lg:justify-between w-full justify-start">
+            <span class="text-center text-green-500 font-bold text-base font-serif leading-normal tracking-widest">
                 BIDAYA
             </span>
-            <div class="w-7 h-7 flex justify-center items-center ">
-                <mat-icon>expand_more</mat-icon></div>
+            <app-nav-menu class="lg:block hidden"/>
+            <div class="lg:flex items-center justify-center gap-3 hidden">
+                <button class="text-green-500 px-3 py-2 rounded-sm">Sign In</button>
+                <button class="bg-green-500 px-3 py-2 rounded-sm text-white">Sign Up</button>
             </div>
-        <div>
-            <label class="w-7 h-7 hover:text-green-500 flex justify-center items-center" (click)="toggleSearch()" for="search">
-                <mat-icon>search</mat-icon>
-            </label>
+            <div class="w-7 h-7 lg:hidden flex justify-center items-center ">
+                <mat-icon>expand_more</mat-icon>
+            </div>
         </div>
+        <label class="w-7 h-7 hover:text-green-500 flex justify-center items-center lg:hidden" (click)="toggleSearch()" for="search">
+            <mat-icon>search</mat-icon>
+        </label>
     </div>
-    <div *ngIf="searchToggled" class="absolute w-full justify-between items-center flex bg-white gap-4 h-8 top-0 right-0 bottom-0">
+    <div *ngIf="searchToggled" class="absolute w-full justify-between items-center flex bg-white gap-4 h-8 lg:hidden">
         <div class="justify-start items-center gap-3 flex">
             <div class="w-7 h-7 flex justify-center items-center">
                 <mat-icon>search</mat-icon>

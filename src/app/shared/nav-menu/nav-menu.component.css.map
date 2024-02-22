@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,KAAK,CAAC;EACF,MAAM,EAAE,eAAe;EACvB,cAAc,EAAE,GAAG;CAIkB;;AANzC,AAII,KAJC,AAIA,MAAM,CAAC;EACJ,KAAK,EAAE,OAAO;EACd,mBAAmB,EAAE,OAAO;CAAG",
+    "sources": [
+        "nav-menu.component.sass"
+    ],
+    "names": [],
+    "file": "nav-menu.component.css"
+}

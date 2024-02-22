@@ -1,0 +1,26 @@
+<div>
+    <div>
+        <span>
+            Projects in progress
+        </span>
+        <div>
+            <button>
+                ""
+            </button>
+            <button>
+                ""
+            </button>
+        </div>
+    </div>
+    <div>
+        <div *ngFor="let card of cards">
+            <div>
+                <img [src]="card.image" alt="">
+            </div>
+            <h4>{{card.type}}</h4>
+            <span>{{card.title}}</span>
+            <span>{{card.raisedFunds}}</span>
+            <span>{{card.durationDays}}</span>
+        </div>
+    </div>
+</div>
