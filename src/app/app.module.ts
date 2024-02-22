@@ -9,13 +9,18 @@ import { PagesLayoutComponent } from './layouts/pages-layout/pages-layout.compon
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
+import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
+import { CardsContainerComponent } from './shared/cards-container/cards-container.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     PagesLayoutComponent,
-    HomeComponent
+    HomeComponent,
+    NavMenuComponent,
+    CardsContainerComponent
   ],
   imports: [
     MatIconModule,

@@ -1,0 +1,10 @@
+.link {
+  border: 2px solid white;
+  padding-bottom: 4px;
+}
+
+.link:hover {
+  color: #22c55e;
+  border-bottom-color: #22c55e;
+}
+/*# sourceMappingURL=nav-menu.component.css.map */
