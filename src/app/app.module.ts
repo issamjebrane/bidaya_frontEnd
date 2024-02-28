@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { CardsContainerComponent } from './shared/cards-container/cards-container.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CardsContainerComponent } from './shared/cards-container/cards-containe
     CardsContainerComponent
   ],
   imports: [
+    MatProgressBarModule,
     MatIconModule,
     BrowserModule,
     CommonModule,

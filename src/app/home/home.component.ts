@@ -23,12 +23,25 @@ export class HomeComponent {
 
   cards:Card[] = [
     {
+      image:'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      title:'MSV Monitor : New Gaming Experience',
+      raisedFunds:50240.699,
+      durationDays:30,
+      type:'MSV'
+    },
+    {
       image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       title:'Jakob & Rryan Movies pack',
       raisedFunds:10442.699,
       durationDays:30,
       type:'You-Cinema'
-     }
-
+    }
+    ,{
+      image:'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      title:'Green Fund : Sustain Earth Now',
+      raisedFunds:50240.699,
+      durationDays:30,
+      type:'Wearth'
+    }
   ]
 }

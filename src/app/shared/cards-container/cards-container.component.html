@@ -1,26 +1,35 @@
-<div>
-    <div>
-        <span>
+<div class="lg:p-14 flex flex-col justify-center items-stretch gap-14 bg-slate-100">
+    <div class="flex items-center justify-between w-[700px]">
+        <span class="text-slate-900 text-3xl font-bold font-sans">
             Projects in progress
         </span>
-        <div>
-            <button>
-                ""
-            </button>
-            <button>
-                ""
-            </button>
+        <div class="flex items-center justify-center gap-3.5">
+            <div class="w-8 h-8 bg-[#263238] bg-opacity-20 flex justify-center items-center rounded-full text-white cursor-not-allowed">
+                <mat-icon class="w-4 h-4">keyboard_arrow_left</mat-icon>
+            </div>
+            <div class="w-8 h-8 bg-[#263238] flex justify-center items-center rounded-full text-white cursor-pointer">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </div>
         </div>
     </div>
-    <div>
-        <div *ngFor="let card of cards">
-            <div>
+    <div class="grid grid-cols-3 gap-8 font-serif">
+        <div *ngFor="let card of cards" class="flex flex-col">
+            <div class="rounded-lg overflow-hidden">
                 <img [src]="card.image" alt="">
             </div>
-            <h4>{{card.type}}</h4>
-            <span>{{card.title}}</span>
-            <span>{{card.raisedFunds}}</span>
-            <span>{{card.durationDays}}</span>
+            <h5 class="text-neutral-500 text-xs">{{card.type}}</h5>
+            <span class="text-gray-800 text-md font-bold">{{card.title}}</span>
+            <mat-progress-bar mode="determinate" value="40" class="audio-progress-bar"></mat-progress-bar>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-800 text-xs">{{card.raisedFunds}} dh</span>
+                <span class="text-gray-800 text-xs">{{card.durationDays}}</span>
+            </div>
         </div>
     </div>
+    <button class="flex items-center justify-center font-serif bg-green-500 px-3 py-2 rounded-sm text-white gap-3 self-center ">
+        <span class="text-xs">
+            Browse All 
+        </span>
+        <mat-icon>arrow_right_alt</mat-icon>
+    </button>
 </div>
