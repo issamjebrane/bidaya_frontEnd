@@ -1,6 +1,6 @@
-<div class="bg-container h-[861px] lg:px-14 flex flex-col ">
+<div class="bg-container h-[861px] lg:px-36 flex flex-col mb-20 ">
     <app-header class="justify-self-start flex-grow-[1]"/>
-    <div class=" lg:flex lg:px-14  gap-20 justify-between items-center flex-grow-[2]">
+    <div class=" lg:flex 2xl:px-36  gap-20 justify-between items-center flex-grow-[2]">
         <div class="flex justify-center gap-14 items-center flex-col lg:items-start self-start">
             <div class="flex flex-col gap-4 lg:text-justify text-center">
                 <span class=" text-gray-800 font-bold font-sans text-3xl lg:text-5x  whitespace-nowrap">
@@ -10,7 +10,7 @@
                     Empower projects, support creators, and be part of the morrocan community that brings dreams to life.
                 </span>
             </div>
-            <div class="flex gap-3 justify-center items-center font-serif lg:px-0">
+            <div class="flex gap-3.5 justify-center items-center font-serif lg:px-0">
                 <button class="w-56 h-14 flex items-center justify-center font-serif bg-green-500 px-3 py-2 border border-green-500 rounded-sm text-white gap-2 ">
                     <span class="text-base">
                         Explore compaigns 
@@ -47,5 +47,109 @@
         </div>
     </div>
 </div>
-
 <app-cards-container [cards]="cards"/>
+<div class="px-36 bg-slate-100">
+    <div class="2xl:px-36 mb-20 py-20 flex justify-between items-center gap-28 px-0 ">
+        <div class="justify-center items-start gap-8 flex flex-col">
+              <div class=" top-0  justify-center items-center gap-2 flex">
+                <div class="border border-green-700 w-24"></div>
+                  <div class="text-green-700 text-2xl font-medium font-serif">About Us</div>
+              </div>
+              <div class="  flex-col justify-start items-start gap-2 inline-flex">
+                <div class=" flex-col justify-start items-start gap-2 flex">
+                  <div class="leading-loose">
+                    <span class="text-gray-800 text-4xl font-bold font-sans">BIDAYA</span>
+                    <span class="text-neutral-800 text-4xl font-bold font-sans"> : A Journey into the Crowdfunding Excellence</span></div>
+                  <div class=" text-stone-500 text-xl font-normal font-serif ">Dive into the World of [Your Platform Name], Where Creativity Meets Support. Our Introduction Video Unveils the Magic Behind Crowdfunding, Showcasing Diverse Projects, Backer Rewards, and the Unparalleled Experience Awaiting You!</div>
+                </div>
+              </div>
+              <button class="w-56 h-14 flex items-center justify-center font-serif bg-green-500 px-3 py-2 border border-green-500 rounded-sm text-white gap-2 ">
+                <span class="text-base">
+                    Learn More 
+                </span>
+                <mat-icon>arrow_right_alt</mat-icon>
+            </button>
+        </div>
+        <img class=" rounded-2xl shadow-md" src="../../assets/aboutUs.svg" />
+    </div>
+</div>
+<div class=" flex-col justify-start items-center gap-12 inline-flex px-36 mb-20">
+    <div class="flex-col justify-start items-center gap-16 flex 2xl:px-36">
+      <div class="flex-col justify-start items-center gap-2.5 flex">
+        <h1 class="h1 header">Here’s how it works</h1>
+        <h5 class=" h5 header">Crowdfunding Simplified: Navigate the Journey with Our Step-by-Step Guide</h5>
+      </div>
+      <div class="justify-center items-center gap-14 flex">
+        <div class="pl-1 pr-0.5 justify-center items-center flex flex-col gap-9">
+            <div>
+                <img src="../../assets/steps1.svg" alt="">
+            </div>
+          <div class="self-stretch flex-col justify-start items-center gap-3 inline-flex">
+            <div class="flex-col justify-center items-center gap-2 flex">
+              <h3 class=" header h3">Create Your Project:</h3>
+              <div class=" text-center text-neutral-500 text-lg font-normal font-segoe leading-7">Transform your idea into reality. Start by creating your project, setting goals, and personalizing your campaign page</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-col justify-center items-center gap-9 flex">
+            <div>
+                <img src="../../assets/step2.svg" alt="">
+            </div>
+          <div class="flex-col justify-center items-center gap-2 flex">
+            <h3 class="header h3">Connect with Backers</h3>
+            <div class=" text-center text-neutral-500 text-lg font-normal font-segoe leading-7">"Connect with a global community of like-minded backers. Engage, gather feedback, and forge meaningful connections to boost your project."</div>
+          </div>
+        </div>
+        <div class="pl-1.5 pr-2 flex-col justify-end items-center gap-9 inline-flex">
+            <div>
+                <img src="../../assets/step3.svg" alt="">
+            </div>
+          <div class="self-stretch flex-col justify-center items-center gap-1.5 inline-flex">
+            <h3 class="header h3">Fulfill Your Vision</h3>
+            <div class=" text-center text-neutral-500 text-lg font-normal font-segoe leading-7">"Bring your ideas to life, share updates with backers, and be a key part of a success story that makes a lasting impact."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="w-36 h-14 flex items-center justify-center font-serif bg-green-500 px-3 py-2 border border-green-500 rounded-sm text-white gap-2 ">
+        <span class="text-base">
+            Start Now
+        </span>
+        <mat-icon>arrow_right_alt</mat-icon>
+    </button>
+  </div>
+<div class="px-36 bg-slate-100 flex flex-col">
+    <div class="flex justify-between items-center gap-2">
+        <div class="flex flex-col gap-2">
+            <div class=" top-0  justify-start items-center gap-2 flex">
+                <div class="border border-green-700 w-24"></div>
+                  <div class="text-green-700 text-2xl font-medium font-serif">Testimonials</div>
+            </div>
+            <h1 class="header h1">
+                What Our Beloved Users Say About Us
+            </h1>
+        </div>
+        <div class="flex items-center justify-center gap-3.5">
+            <div class="w-8 h-8 bg-[#263238] bg-opacity-20 flex justify-center items-center rounded-full text-white cursor-not-allowed">
+                <mat-icon class="w-4 h-4">keyboard_arrow_left</mat-icon>
+            </div>
+            <div class="w-8 h-8 bg-[#263238] flex justify-center items-center rounded-full text-white cursor-pointer">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </div>
+        </div>
+    </div>
+    <div class="flex ">
+        <div *ngFor="let userComment of userComments" >
+            <div>
+                <img src="../../assets/doubleQuotation.svg" alt="">
+            </div>
+            <div class=" text-center text-neutral-500 text-lg font-normal font-segoe leading-7">{{userComment.comment}}</div>
+            <div>
+                <div>
+                    <img [src]="'../..'+userComment.image" alt="">
+                </div>
+            </div>
+            <div></div>
+        </div>
+    </div>
+</div>

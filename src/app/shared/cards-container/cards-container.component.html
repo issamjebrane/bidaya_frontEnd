@@ -1,5 +1,5 @@
-<div class="lg:p-14 flex flex-col justify-center items-stretch gap-14 bg-slate-100">
-    <div class="flex items-center justify-between w-[700px]">
+<div class="p-14 flex flex-col justify-center items-stretch gap-14 2xl:px-36 mb-20">
+    <div class="flex items-center justify-between px-36">
         <span class="text-slate-900 text-3xl font-bold font-sans">
             Projects in progress
         </span>
@@ -12,22 +12,26 @@
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-3 gap-8 font-serif">
-        <div *ngFor="let card of cards" class="flex flex-col">
-            <div class="rounded-lg overflow-hidden">
+    <div class="grid grid-cols-3 gap-8 font-serif gap-y-14 px-36">
+        <div *ngFor="let card of cards" class="flex flex-col gap-5">
+            <div class="flex flex-col gap-2">
+                <div class="rounded-lg overflow-hidden">
                 <img [src]="card.image" alt="">
+                </div>
+                <h5 class="text-neutral-500 text-base" style="margin:0">{{card.type}}</h5>
+                <span class="text-gray-800 text-xl font-bold">{{card.title}}</span>               
             </div>
-            <h5 class="text-neutral-500 text-xs">{{card.type}}</h5>
-            <span class="text-gray-800 text-md font-bold">{{card.title}}</span>
-            <mat-progress-bar mode="determinate" value="40" class="audio-progress-bar"></mat-progress-bar>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-800 text-xs">{{card.raisedFunds}} dh</span>
-                <span class="text-gray-800 text-xs">{{card.durationDays}}</span>
+            <div class="flex flex-col gap-2.5">
+                <mat-progress-bar mode="determinate" [value]="getPercentage(card.careatedAt,card.durationDays)" class="audio-progress-bar"></mat-progress-bar>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-800 text-xs">{{card.raisedFunds}} dh</span>
+                    <span class="text-gray-800 text-xs">{{card.durationDays}}</span>
+                </div>
             </div>
         </div>
     </div>
-    <button class="flex items-center justify-center font-serif bg-green-500 px-3 py-2 rounded-sm text-white gap-3 self-center ">
-        <span class="text-xs">
+    <button class="flex items-center justify-center font-serif bg-green-500  h-14 px-8 py-4 rounded-sm text-white gap-3 self-center ">
+        <span class="text-base">
             Browse All 
         </span>
         <mat-icon>arrow_right_alt</mat-icon>

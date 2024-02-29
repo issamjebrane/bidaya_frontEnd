@@ -8,6 +8,8 @@ module.exports = {
     fontFamily: {
       'sans': ['Open Sans', 'sans-serif'],
       'serif': ['Lato', 'serif'],
+      'inter':["Inter","sans-serif"],
+      'segoe' : ["Segoe Ui","sans-serif"]
     },
   },
   plugins: [],
