@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,22 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
 
   searchToggled:boolean = false ;
+  menuToggled:boolean = false;
+  path:string='home'
 
-   constructor(){}
+   constructor(private route: ActivatedRoute){}
+
+   ngOnInit(){
+    this.route.url.subscribe(segments=>{
+       path: segments[0].path
+    })
+   }
   
   toggleSearch(){
-    this.searchToggled = !this.searchToggled
+    this.searchToggled = !this.searchToggled;
+  }
+
+  toggleMenu(){
+    this.menuToggled = !this.menuToggled;
   }
 }

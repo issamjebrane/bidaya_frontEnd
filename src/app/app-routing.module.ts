@@ -9,6 +9,11 @@ const routes: Routes = [
     path:"",
     children:[
       {
+        path:'',
+        redirectTo:'home',
+        pathMatch:'full'
+      },
+      {
         component:HomeComponent,
         path:'home'
       }

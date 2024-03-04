@@ -1,4 +1,4 @@
-<div class="bg-container h-[861px] lg:px-36 flex flex-col mb-20 ">
+<div class="bg-container h-[861px] lg:px-36 flex flex-col relative  ">
     <app-header class="justify-self-start flex-grow-[1]"/>
     <div class=" lg:flex 2xl:px-36  gap-20 justify-between items-center flex-grow-[2]">
         <div class="flex justify-center gap-14 items-center flex-col lg:items-start self-start">
@@ -25,36 +25,30 @@
                 </button>
             </div>
         </div>
-<<<<<<< HEAD
         <div class="lg:flex flex-col hidden relative h-full w-full justify-evenly  ">
-            <div class="self-start left-20 relative flex-shrink">
+            <div class="self-start 2xl:left-20 lg:left-[-30px] relative flex-shrink">
                 <img src="../../assets/stat.svg" alt="" class="w-full h-full">
-=======
-        <div class="lg:flex flex-col hidden relative h-full w-full justify-center flex-grow ">
-            <div class="self-start left-20 relative">
-                <img src="../../assets/stat.svg" alt="">
->>>>>>> 6c2fc1336c2f1c98d93cc6d33198ab5cdf0f6ab2
             </div>
-            <div class=" bg-white bg-opacity-80 rounded-2xl backdrop-blur-lg flex items-center justify-center px-7 py-3 gap-6 self-end">
+            <div class=" bg-white bg-opacity-80 rounded-2xl backdrop-blur-lg flex items-center justify-center px-8 py-3 gap-6 self-end lg:right:[-30px]">
                 <div >
                     <img src="../../assets/fund.svg" alt="" class="w-full h-full">
                 </div>
                 <div class="flex flex-col items-start justify-center gap-1">
-                    <span class="text-zinc-600 text-2xl font-bold font-serif">+2500 Baker</span>
-                    <span class="text-gray-600 text-xl font-semibold font-serif">Funding You</span>
+                    <span class="text-zinc-600 text-xl font-bold font-serif">+2500 Baker</span>
+                    <span class="text-gray-600 text-lg font-semibold font-serif">Funding You</span>
                 </div>
             </div>
             <div class=" bg-white bg-opacity-80 rounded-2xl backdrop-blur-lg flex items-center justify-center px-7 py-3 gap-6 self-start">
                 <div >
                     <img src="../../assets/reward.svg" alt="" class="w-full h-full">
                 </div>
-                    <span class="text-zinc-600 lg:text-base xl:text-2xl font-bold font-serif">Reward Crowdfunding</span>
+                    <span class="text-zinc-600 lg:text-base xl:text-xl font-bold font-serif">Reward Crowdfunding</span>
             </div>
         </div>
     </div>
 </div>
 <app-cards-container [cards]="cards"/>
-<div class="px-36 bg-slate-100">
+<div class="bg-slate-100">
     <div class="2xl:px-36 mb-20 py-20 flex justify-between items-center gap-28 px-0 ">
         <div class="justify-center items-start gap-8 flex flex-col">
               <div class=" top-0  justify-center items-center gap-2 flex">
@@ -124,9 +118,9 @@
         <mat-icon>arrow_right_alt</mat-icon>
     </button>
   </div>
-<div class="px-36 bg-slate-100 flex flex-col gap-8 py-20">
+<div class="px-14 bg-slate-100 flex flex-col gap-8 py-20">
     <div class="flex justify-between items-center gap-2 2xl:px-36">
-        <div class="flex flex-col gap-2 flex-shrink items-start justify-center flex-[1]">
+        <div class="flex flex-col gap-2 items-start justify-center flex-[2]">
             <div class=" justify-start items-center gap-2 flex flex-grow-0">
                 <div class="border border-green-700 w-24"></div>
                   <div class="text-green-700 text-2xl font-medium font-serif">Testimonials</div>
@@ -135,7 +129,7 @@
                 What Our Beloved Users Say About Us
             </h1>
         </div>
-        <div class="flex items-center justify-end gap-3.5 flex-[2]">
+        <div class="flex items-center justify-end gap-3.5 flex-[3]">
             <div class="w-8 h-8 bg-[#263238] bg-opacity-20 flex justify-center items-center rounded-full text-white cursor-not-allowed">
                 <mat-icon class="w-4 h-4">keyboard_arrow_left</mat-icon>
             </div>
@@ -144,32 +138,114 @@
             </div>
         </div>
     </div>
-    <div class="flex 2xl:px-36 overflow-hidden gap-5">
+    <div class="flex 2xl:px-36 gap-5 w-screen">
         <div *ngFor="let userComment of userComments" class="bg-white rounded-2xl shadow px-10 py-8 gap-7">
-            <div class="flex flex-col gap-7">
+            <div class="flex flex-col gap-7 w-96">
                 <div class="flex flex-col items-start justify-center gap-5">
                     <div>
                         <img src="../../assets/doubleQuotation.svg" alt="">
                     </div>
                     <p class=" text-neutral-500 text-lg font-normal font-serif leading-7">{{userComment.comment}}</p>
                 </div>
-                <div class="flex justify-start gap-5 items-center">
-                    <div>
-                        <img [src]="'../..'+userComment.image" alt="">
+                <div class="flex flex-col gap-3 justify-center items-start">
+                    <div class="flex justify-start gap-5 items-center">
+                        <div>
+                            <img [src]="'../..'+userComment.image" alt="">
+                        </div>
+                        <div class="flex flex-col justify-center items-start">
+                            <span class="user-name">
+                                    {{userComment.name}}
+                            </span>
+                            <h6 class="user-duty" style="margin: 0;">
+                                    {{userComment.duty}}
+                            </h6>
+                        </div>
                     </div>
-                    <div >
-                        <span class="user-name">
-                                {{userComment.name}}
-                        </span>
-                        <h6 class="user-duty">
-                                {{userComment.duty}}
-                        </h6>
+                    <div class="star-rating">
+                        <mat-icon *ngFor="let star of stars(userComment.rating)">star</mat-icon>
+                        <mat-icon *ngIf="userComment.rating % 1 !== 0">star_half</mat-icon>
                     </div>
                 </div>
             </div>
-            <div>
+        </div>
+    </div>
+</div>
 
+<div class="flex flex-col items-center justify-center mb-20 px-36 py-20 gap-12">
+    <h1 class="header h1">Most Frequently Asked Questions (FAQ)</h1>
+    <div class="flex justify-between items-center gap-16">
+            <img src="../../assets/qa.svg" alt="" class="rounded-2xl shadow-md">
+        <div class="flex flex-col gap-5">
+            <div>
+                <div class="flex items-center justify-between">
+                    <h5  style="color: #333333; font-size: 20px; font-family: Lato; font-weight: 600; margin:0;">
+                        How do I promote my campaign?
+                    </h5>
+                    <img src="../../assets/minus.svg" alt="" class="cursor-pointer">
+                </div>
+                <p class="text-neutral-600 text-base font-normal font-serif">
+                    Offer tips and guidance on how campaigners can effectively market and promote 
+                    their projects to maximize visibility.
+                </p>
             </div>
+            <div>
+                <div class="flex items-center justify-between">
+                    <h5  style="color: #333333; font-size: 20px; font-family: Lato; font-weight: 600;margin:0;">
+                        How do I start a campaign?
+                    </h5>            
+                    <mat-icon class="cursor-pointer">add</mat-icon>
+                </div>
+            </div>
+            <div>
+                <div class="flex items-center justify-between">
+                    <h5  style="color: #333333; font-size: 20px; font-family: Lato; font-weight: 600;margin:0;">
+                        What types of projects are allowed on BIDAYA ?
+                    </h5>
+                    <mat-icon class="cursor-pointer">add</mat-icon>
+                </div>
+            </div>
+            <div>
+                <div class="flex items-center justify-between">
+                    <h5  style="color: #333333; font-size: 20px; font-family: Lato; font-weight: 600;margin:0;">
+                        What payment methods are accepted on BIDAYA ?
+                    </h5>  
+                    <mat-icon class="cursor-pointer">add</mat-icon>
+                </div>
+            </div>
+            <div>
+                <div class="flex items-center justify-between">
+                    <h5  style="color: #333333; font-size: 20px; font-family: Lato; font-weight: 600;margin:0;">
+                        Can I contact BIDAYA for help with my campaign?
+                    </h5>       
+                    <mat-icon class="cursor-pointer">add</mat-icon> 
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" bg-slate-100">
+    <div class="2xl:px-36 mb-20 py-20 flex justify-between items-center gap-28 px-0 ">
+        <img class=" rounded-2xl shadow-md" src="../../assets/subscribe.svg" />
+        <div class="justify-center items-start gap-4 flex flex-col">
+              <div class=" top-0  justify-center items-center gap-2 flex">
+                <div class="border border-green-700 w-24"></div>
+                  <div class="text-green-700 text-2xl font-medium font-serif">Subscribe Now</div>
+              </div>
+              <div class="  flex-col justify-start items-start gap-10 inline-flex">
+                <div class=" flex-col justify-start items-start gap-3 flex">
+                  <div class="leading-loose">
+                    <span class="text-gray-800 text-4xl font-bold font-sans w-10">Subscribe To Our
+                        Newsletter
+                    </span>
+                    <div class=" text-stone-500 text-base font-normal font-serif ">Subscribe Today for a Front-Row Seat to Latest News and Special Offers</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between py-2.5 px-4 bg-white rounded-lg self-stretch">
+                <input type="email" placeholder="Email Address" class="input">
+                <button class=" px-6 py-2  font-serif bg-green-500 rounded-sm text-white text-base text-center font-semibold ">
+                        Subscribe 
+                </button>
+              </div>
         </div>
     </div>
 </div>

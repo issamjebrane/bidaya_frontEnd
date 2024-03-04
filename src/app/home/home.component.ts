@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export interface Card {
   projectId?: number,
@@ -18,7 +18,7 @@ export interface UserComments {
   image:string,
   rating:number,
   duty:string,
-  comment:string
+  comment:string,
 }
 
 @Component({
@@ -28,7 +28,7 @@ export interface UserComments {
 })
 
 export class HomeComponent {
-
+  
   cards:Card[] = [
     {
       image:'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -80,4 +80,9 @@ export class HomeComponent {
       comment:'Thanks to BIDAYA, keep up the good work! I would like to say thank you to all your staff and all the bakers behind it.'
     }
   ]
+
+   stars(rating:number):number[] {
+    return Array(Math.floor(rating)).fill(0);
+  }
+
 }

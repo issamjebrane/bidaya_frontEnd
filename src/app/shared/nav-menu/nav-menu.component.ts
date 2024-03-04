@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-nav-menu',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './nav-menu.component.sass'
 })
 export class NavMenuComponent {
-
+  @Input() path?:string
+  @Input() menuToggled:boolean = false
 }

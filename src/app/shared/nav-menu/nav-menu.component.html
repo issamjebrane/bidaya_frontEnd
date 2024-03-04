@@ -1,14 +1,14 @@
-<div class="flex items-center justify-center gap-9">
-        <a routerLink="/home" class="link">
+<div class="flex items-center justify-center gap-9" [ngClass]="{'menuToggled' : menuToggled}">
+        <a routerLink="/home" class="link" [ngClass]="{'selectedLink' : path === 'home'}">
             Home
         </a>
-        <a href="" class="link">
+        <a href="" class="link" [ngClass]="{'selectedLink' : path === 'discover'}">
             Discover
         </a>
-        <a href="" class="link">
+        <a href="" class="link" [ngClass]="{'selectedLink' : path === 'aboutUs'}">
             About Us
         </a>
-        <a href="" class="link">
+        <a href="" class="link" [ngClass]="{'selectedLink' : path === 'compaign'}">
             Start a compaign
         </a>
 </div>

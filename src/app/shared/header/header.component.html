@@ -1,15 +1,15 @@
-<div class="relative flex items-center justify-center  py-8">
+<div class=" flex items-center justify-center lg:m-0 lg:py-8 mt-4 mx-8">
     <div  class="justify-center items-center flex w-full">
         <div class=" items-center flex lg:justify-between w-full justify-start">
-            <span class="text-center text-green-500 font-bold text-base font-serif leading-normal tracking-widest">
+            <span class="text-center text-green-500 font-bold text-xl font-serif leading-normal tracking-widest">
                 BIDAYA
             </span>
-            <app-nav-menu class="lg:block hidden"/>
+            <app-nav-menu class="lg:block hidden" [path]="path"/>
             <div class="lg:flex items-center justify-center gap-3 hidden">
-                <button class="text-green-500 w-32 h-14 px-9 py-4 rounded-sm text-base">Sign In</button>
-                <button class="bg-green-500 w-32 h-14 px-9 py-4 rounded-sm text-white text-base">Sign Up</button>
+                <button class="text-green-500 w-24 h-12  rounded-sm text-base hover:text-white">Sign In</button>
+                <button class="bg-green-500 w-24 h-12 border-green-500 border-2 transition ease duration-300  rounded-sm text-white text-base hover:bg-transparent hover:text-green-500">Sign Up</button>
             </div>
-            <div class="w-7 h-7 lg:hidden flex justify-center items-center ">
+            <div class="w-7 h-7 lg:hidden flex justify-center items-center " (click)="toggleMenu()">
                 <mat-icon>expand_more</mat-icon>
             </div>
         </div>
@@ -17,7 +17,7 @@
             <mat-icon>search</mat-icon>
         </label>
     </div>
-    <div *ngIf="searchToggled" class="absolute w-full justify-between items-center flex bg-white gap-4 h-8 lg:hidden">
+    <div *ngIf="searchToggled" class="absolute w-full justify-between items-center flex bg-white gap-4 h-10 p-8 lg:hidden">
         <div class="justify-start items-center gap-3 flex">
             <div class="w-7 h-7 flex justify-center items-center">
                 <mat-icon>search</mat-icon>
@@ -29,5 +29,8 @@
         <div class="w-7 h-7 hover:text-green-500 flex justify-center items-center" (click)="toggleSearch()">
             <mat-icon>close</mat-icon>
         </div>
+    </div>
+    <div class="absolute top-[62px]" *ngIf="menuToggled">
+        <app-nav-menu [menuToggled]="menuToggled" />
     </div>
 </div>
