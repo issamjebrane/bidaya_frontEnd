@@ -1,23 +1,23 @@
-<div class="bg-container h-[861px] lg:px-36 flex flex-col relative  ">
-    <app-header class="justify-self-start flex-grow-[1]"/>
-    <div class=" lg:flex 2xl:px-36  gap-20 justify-between items-center flex-grow-[2]">
-        <div class="flex justify-center gap-14 items-center flex-col lg:items-start self-start">
-            <div class="flex flex-col gap-4 items-start">
-                <span class=" text-gray-800 font-bold font-sans text-3xl lg:text-5xl" >
+<div class=" bg-container lg:h-[861px] lg:px-36 flex flex-col relative gap-20 mb-20 lg:mb-0">
+    <app-header class="justify-self-start lg:flex-grow-[1]"/>
+    <div class=" lg:flex   gap-20 justify-between items-center flex-grow-[2]">
+        <div class="flex justify-center gap-10 lg:gap-14 items-center flex-col lg:items-start self-start">
+            <div class="flex flex-col gap-4 lg:items-start justify-center items-center">
+                <span class=" text-gray-800 font-bold font-sans text-3xl lg:text-5xl text-center lg:text-start" >
                     Join the Revolution of Innovation
                 </span>
-                <span class=" text-gray-800 font normal text-lg font-serif">
+                <span class=" text-gray-800 font-normal text-base lg:text-lg font-serif text-center lg:text-start">
                     Empower projects, support creators, and be part of the morrocan community that brings dreams to life.
                 </span>
             </div>
-            <div class="flex gap-3.5 justify-center items-center font-serif lg:px-0">
-                <button class="w-56 h-14 flex items-center justify-center font-serif bg-green-500 px-3 py-2 border border-green-500 rounded-sm text-white gap-2 ">
+            <div class="flex gap-3.5 flex-col lg:flex-row justify-center items-center font-serif lg:px-0">
+                <button class="w-56 h-14 flex items-center justify-center font-serif bg-green-500 lg:px-3 lg:py-2 border border-green-500 rounded-sm text-white gap-2 ">
                     <span class="text-base">
                         Explore compaigns 
                     </span>
                     <mat-icon>arrow_right_alt</mat-icon>
                 </button>
-                <button class=" w-56 h-14 flex items-center justify-center font-bold text-green-500 px-3 py-2 rounded-sm gap-3 border-green-500 border ">
+                <button class=" w-56 h-14 flex items-center justify-center font-bold text-green-500 lg:px-3 lg:py-2 rounded-sm gap-3 border-green-500 border ">
                     <span class="text-base">
                         Start a compain
                     </span>
@@ -49,18 +49,19 @@
 </div>
 <app-cards-container [cards]="cards"/>
 <div class="bg-slate-100">
-    <div class="2xl:px-36 mb-20 py-20 flex justify-between items-center gap-28 px-0 ">
-        <div class="justify-center items-start gap-8 flex flex-col">
+    <div class="2xl:px-36 mb-20 py-20 flex lg:flex-row flex-col justify-between items-center gap-10 lg:gap-28 px-5 ">
+        <div class="justify-center items-center lg:items-start gap-8 flex flex-col">
               <div class=" top-0  justify-center items-center gap-2 flex">
                 <div class="border border-green-700 w-24"></div>
-                  <div class="text-green-700 text-2xl font-medium font-serif">About Us</div>
+                <div class="text-green-700 text-2xl font-medium font-serif">About Us</div>
+                <div class="border border-green-700 w-24 lg:hidden"></div>
               </div>
-              <div class="  flex-col justify-start items-start gap-2 inline-flex">
+              <div class="flex-col justify-start items-start gap-2 inline-flex text-center lg:text-start">
                 <div class=" flex-col justify-start items-start gap-2 flex">
                   <div class="leading-loose">
-                    <span class="text-gray-800 text-4xl font-bold font-sans">BIDAYA</span>
-                    <span class="text-neutral-800 text-4xl font-bold font-sans"> : A Journey into the Crowdfunding Excellence</span></div>
-                  <div class=" text-stone-500 text-xl font-normal font-serif ">Dive into the World of [Your Platform Name], Where Creativity Meets Support. Our Introduction Video Unveils the Magic Behind Crowdfunding, Showcasing Diverse Projects, Backer Rewards, and the Unparalleled Experience Awaiting You!</div>
+                    <span class="text-gray-800 text-2xl lg:text-4xl font-bold font-sans">BIDAYA</span>
+                    <span class="text-neutral-800 text-2xl lg:text-4xl font-bold font-sans"> : A Journey into the Crowdfunding Excellence</span></div>
+                  <div class=" text-stone-500 text-base lg:text-xl font-normal font-serif ">Dive into the World of [Your Platform Name], Where Creativity Meets Support. Our Introduction Video Unveils the Magic Behind Crowdfunding, Showcasing Diverse Projects, Backer Rewards, and the Unparalleled Experience Awaiting You!</div>
                 </div>
               </div>
               <button class="w-56 h-14 flex items-center justify-center font-serif bg-green-500 px-3 py-2 border border-green-500 rounded-sm text-white gap-2 ">

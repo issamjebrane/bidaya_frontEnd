@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output,EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,5 +8,12 @@ import { Component, Input } from '@angular/core';
 })
 export class NavMenuComponent {
   @Input() path?:string
-  @Input() menuToggled:boolean = false
+  @Input() menuToggled:Boolean = false
+  @Input() searchToggled:Boolean = false
+  // @ts-ignore
+  @Output toggleSearch = new EventEmitter<Boolean>();
+
+  toggle(){
+    this.toggleSearch.emit(!this.toggleSearch)
+  }
 }

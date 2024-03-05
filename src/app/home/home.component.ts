@@ -78,6 +78,13 @@ export class HomeComponent {
       image:'/assets/user3.svg',
       rating:5,
       comment:'Thanks to BIDAYA, keep up the good work! I would like to say thank you to all your staff and all the bakers behind it.'
+    },
+    {
+      name:'Basma Loukil',
+      duty:'Community Manager',
+      image:'/assets/user3.svg',
+      rating:5,
+      comment:'Thanks to BIDAYA, keep up the good work! I would like to say thank you to all your staff and all the bakers behind it.'
     }
   ]
 

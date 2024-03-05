@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,12 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent {
 
-  searchToggled:boolean = false ;
-  menuToggled:boolean = false;
+  searchToggled:Boolean = false ;
+  menuToggled:Boolean = false;
   path:string='home'
 
    constructor(private route: ActivatedRoute){}
-
+  
    ngOnInit(){
     this.route.url.subscribe(segments=>{
        path: segments[0].path
@@ -21,6 +21,9 @@ export class HeaderComponent {
    }
   
   toggleSearch(){
+    this.searchToggled = !this.searchToggled;
+  }
+  onToggleSearch(newValue : Boolean){
     this.searchToggled = !this.searchToggled;
   }
 

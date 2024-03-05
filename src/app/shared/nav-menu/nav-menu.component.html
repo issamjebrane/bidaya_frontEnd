@@ -11,5 +11,8 @@
         <a href="" class="link" [ngClass]="{'selectedLink' : path === 'compaign'}">
             Start a compaign
         </a>
+        <label class="w-7 h-7 hover:text-green-500 lg:flex justify-center items-center hidden justify-self-start" (click)="toggle()" for="search">
+            <mat-icon>search</mat-icon>
+        </label>
 </div>
 
