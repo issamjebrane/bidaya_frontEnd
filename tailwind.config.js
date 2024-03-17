@@ -9,7 +9,8 @@ module.exports = {
       'sans': ['Open Sans', 'sans-serif'],
       'serif': ['Lato', 'serif'],
       'inter':["Inter","sans-serif"],
-      'segoe' : ["Segoe Ui","sans-serif"]
+      'segoe' : ["Segoe Ui","sans-serif"],
+      'outfit':["Outfit","sans-serif"]
     },
   },
   plugins: [],

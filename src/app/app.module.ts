@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import {MatIconModule} from '@angular/material/icon'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { PagesLayoutComponent } from './layouts/pages-layout/pages-layout.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { CardsContainerComponent } from './shared/cards-container/cards-container.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { AuthRoutingModule } from './auth/auth-routing.module';
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -28,11 +29,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatIconModule,
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    AuthModule,
+    AppRoutingModule,
+    AuthRoutingModule,
   ],
   providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
+
   ],
   bootstrap: [AppComponent]
 })
