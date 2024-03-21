@@ -13,6 +13,7 @@ import { CardsContainerComponent } from './shared/cards-container/cards-containe
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import {AuthModule} from "./auth/auth.module";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {AuthModule} from "./auth/auth.module";
     CardsContainerComponent
   ],
   imports: [
+    HttpClientModule,
     MatProgressBarModule,
     MatIconModule,
     BrowserModule,
