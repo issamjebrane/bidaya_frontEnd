@@ -1,36 +1,45 @@
-<div class="bg-gray-800 h-screen w-screen flex lg:flex-row flex-col items-center justify-between gap-1 font-outfit overflow-x-hidden">
-    <div class="lg:flex-1 flex items-center justify-center  p-12">
+<div class=" h-full  w-full flex lg:flex-row flex-col justify-between items-stretch gap-1 font-outfit overflow-x-hidden text-[15px]">
+    <div class="lg:flex-[2] flex items-center justify-center py-12 bg-gray-800">
         <img src="./assets/ILLUSTRATION.svg" alt="" class="">
     </div>
-    <div class="bg-white h-screen flex-1 w-full lg:w-auto lg:rounded-tl-3xl lg:rounded-bl-3xl flex flex-col items-center justify-start gap-16 lg:px-20 py-10 order-2">
+    <div class="bg-white flex-[3] w-full lg:w-auto flex flex-col items-center justify-start gap-16 lg:px-20 py-10 order-2">
         <div class=" w-full hidden lg:block">
             <img src="./assets/logo.svg" alt="logo">
         </div>
-        <div class="flex flex-col gap-3 lg:gap-12 p-12 lg:p-0">
-            <p style=" color: #263238; font-size: 40px; font-weight: 700;">
+        <div class="flex flex-col gap-3 lg:gap-6 p-12 lg:p-0">
+            <p style=" color: #263238; font-size: 30px; font-weight: 700;">
                 Create Account
-            </p>
-            <form [formGroup]="registerGroupForm"  class="flex flex-col gap-4">
+            </p>    
+            <form [formGroup]="registerGroupForm"  class="flex flex-col gap-4" (submit)="register()">
                 <div class="flex gap-4 lg:gap-11 lg:flex-row flex-col justify-center items-center">
                     <div class="flex flex-col items-start justify-start w-full">
-                        <label for="firstName"> First Name:</label>
-                        <input type="text" id="firstName"   class="self-stretch border-2 border-black rounded-none outline-none py-1 pl-5 placeholder:text-neutral-500 placeholder:font-outfit placeholder:font-medium">
+                        <label for="firstName" class="text-[15px]"> First Name:</label>
+                        <input type="text" id="firstName"   class="self-stretch border border-neutral-500 rounded outline-black py-2 pl-5 placeholder:text-neutral-500 placeholder:font-outfit placeholder:font-medium" formControlName="firstName">
                     </div>
                     <div class="flex flex-col items-start justify-start w-full">
-                        <label for="LastName">Last Name:</label>
-                        <input type="text" id="LastName"   class="self-stretch border-2 border-black rounded-none outline-none py-1 pl-5 placeholder:text-neutral-500 placeholder:font-outfit placeholder:font-medium">
+                        <label for="LastName" class="text-[15px]">Last Name:</label>
+                        <input type="text" id="LastName"   class="self-stretch border border-neutral-500 rounded outline-black py-2 pl-5 placeholder:text-neutral-500 placeholder:font-outfit placeholder:font-medium" formControlName="lastName">
                     </div>
                 </div>
                 <div class="flex flex-col items-start justify-start w-full">
-                    <label for="Email">Email:</label>
-                    <input type="Email" id="Email"   class="self-stretch border-2 border-black rounded-none outline-none py-1 pl-5 placeholder:text-neutral-500 placeholder:font-outfit placeholder:font-medium">
+                    <label for="Email" class="text-[15px]">Email:</label>
+                    <input type="Email" id="Email"   class="self-stretch border border-neutral-500 rounded outline-black py-2 pl-5 placeholder:text-neutral-500 placeholder:font-outfit placeholder:font-medium" formControlName="email">
+                    <span *ngIf="registerGroupForm.get('email')?.errors?.['required'] && registerGroupForm.get('email')?.touched && registerGroupForm.get('email')?.dirty" class="text-red-500">the email field is required</span>
+                    <span class="text-red-500" *ngIf="error">{{error}}</span>
                 </div>
                 <div class="flex flex-col items-start justify-start w-full">
-                    <label for="Password">Password:</label>
-                    <input type="Password" id="Password"   class="self-stretch border-2 border-black rounded-none outline-none py-1 pl-5 placeholder:text-neutral-500 placeholder:font-outfit placeholder:font-medium">
+                    <label for="Password" class="text-[15px]">Password:</label>
+                    <input type="Password" id="Password"   class="self-stretch border border-neutral-500 rounded outline-black py-2 pl-5 placeholder:text-neutral-500 placeholder:font-outfit placeholder:font-medium" formControlName="password">
+                    <span *ngIf="registerGroupForm.get('password')?.errors?.['pattern']" class="text-red-500 text-sm">Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.
+                    </span>
                 </div>
-                <button [disabled]="!registerGroupForm.valid" class="self-stretch cursor-pointer py-2 text-center bg-green-500 text-white border-green-500 border-2 transition ease duration-300 hover:bg-transparent hover:text-green-500">
-                    Create Account
+                <button  [disabled]="!registerGroupForm.valid" class="self-stretch rounded cursor-pointer py-2 text-center bg-green-500 text-white border-green-500 border  transition ease duration-300 hover:bg-transparent hover:text-green-500 focus:text-green-500 focus:bg-transparent">
+                    <span *ngIf="!buttonCLicked">
+                        Create Account
+                    </span>
+                    <span *ngIf="buttonCLicked" class="flex items-center justify-center">
+                        <mat-icon>hourglass_empty</mat-icon> Working on it ...
+                    </span>
                 </button>
                 <div>
                     <span class="font-light">
@@ -41,24 +50,24 @@
                      </a>
                 </div>
                 <div class="flex items-center justify-stretch self-stretch gap-6">
-                    <div class="h-[1.5px] bg-zinc-300 w-24 flex-1"></div>
+                    <div class="py-[0.7px] bg-zinc-300 w-24 flex-1"></div>
                     <div class="text-base font-medium ">Or</div>
-                    <div class="h-[1.5px] bg-zinc-300 w-24 flex-1"></div>
+                    <div class="py-[0.7px] bg-zinc-300 w-24 flex-1"></div>
                 </div>
-                <div class="flex justify-center lg:flex-row flex-col gap-2 text-xs lg:gap-14 items-center flex-nowrap">
-                    <div class="border-2 border-black w-full px-3 flex-1 flex items-center py-2  justify-center h-10 gap-5 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+                <!-- <div class="flex justify-center lg:flex-row flex-col gap-2 text-xs lg:gap-14 items-center flex-nowrap">
+                    <div class="border bg-[#ECECEC] rounded-lg w-full px-3 flex-1 flex items-center py-2 justify-center h-10 gap-5 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
                         <img src="./assets/facebook_icon.svg" alt="">
                         <p  style="margin: 0;flex: 0 0 auto;" >
-                            Sign Up with Facebook
+                            Facebook
                         </p>
-                    </div>
-                    <div class="border-2 border-black w-full flex-1 px-3 flex items-center py-2  justify-center h-10 gap-5 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+                    </div> -->
+                    <div class="border bg-[#ECECEC] font-medium rounded w-full px-3 flex-1 flex items-center py-2 justify-center h-10 gap-3 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
                         <img src="./assets/google.svg" alt="">
                         <p  style="margin: 0;flex: 0 0 auto;" >
-                            Sign Up with Google
+                            Sign up with Google
                         </p>
                     </div>
-                </div>
+                <!-- </div> -->
             </form>
         </div>
     </div>

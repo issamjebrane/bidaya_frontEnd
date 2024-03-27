@@ -4,8 +4,8 @@
                 <img src="./assets/logo.svg" alt="">
             <app-nav-menu class="lg:block hidden" [path]="path" (toggleSearch)="onToggleSearch($event)" [searchToggled]="searchToggled"/>
             <div class="lg:flex items-center justify-center gap-3 hidden">
-                <button routerLink="/authentification/login" class="text-green-500 w-32 h-14  rounded-sm text-base hover:text-white">Sign In</button>
-                <button routerLink="/authentification/register" class="bg-green-500 w-32 h-14 border-green-500 border-2 transition ease duration-300  rounded-sm text-white text-base hover:bg-transparent hover:text-green-500">Sign Up</button>
+                <button routerLink="/authentification/login" class="text-green-500 w-32 h-14  text-base hover:text-white">Sign In</button>
+                <button routerLink="/authentification/register" class="bg-green-500 w-32 h-14  transition ease duration-300  text-white text-base hover:bg-green-700">Sign Up</button>
             </div>
             <div class="w-7 h-7 lg:hidden flex justify-center items-center " (click)="toggleMenu()">
                 <mat-icon>expand_more</mat-icon>

@@ -15,4 +15,8 @@ export class AuthService {
   login(user:User):Observable<User>{
     return this.http.post<User>(`${environment.API}/users/login`,user);
   }
+
+  register(user:User):Observable<User>{
+    return this.http.post<User>(`${environment.API}/users/register`,user);
+  }
 }

@@ -17,7 +17,6 @@ export class LoginComponent {
       email: new FormControl("",Validators.compose([
         Validators.required,
         Validators.email,
-        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')
       ])),
       password:new FormControl("",Validators.required)
     })
@@ -35,9 +34,18 @@ export class LoginComponent {
       password:this.loginGroupForm.value.password
     }
     this.authservice.login(user).subscribe({
-      next: value => console.log(value), // Handle next value
-      error: error => this.error = error.error, // Handle errors
-      complete: () => console.log('Observable completed') // Handle completion
+      next: value => {
+        console.log(value);
+        this.error=undefined;
+        this.router.navigate(['/home'])
+      },
+      error: error => {
+        if(error.error === "Invalid email or password"){
+          this.error = error.error
+        }else{
+          alert('system error please try again later')
+        }
+      }
     });
   }
 }
