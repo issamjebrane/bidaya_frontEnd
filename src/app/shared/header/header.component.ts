@@ -16,7 +16,7 @@ export class HeaderComponent {
   
    ngOnInit(){
     this.route.url.subscribe(segments=>{
-       path: segments[0].path
+       path: segments[0]?.path
     })
    }
   

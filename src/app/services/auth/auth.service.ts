@@ -17,6 +17,7 @@ export class AuthService {
   }
 
   register(user:User):Observable<User>{
-    return this.http.post<User>(`${environment.API}/users/register`,user);
+    const lowecasedUser:User = {...user,email:user.email.toLowerCase(),firstName:user.firstName?.toLowerCase(),lastName:user.lastName?.toLowerCase()}
+    return this.http.post<User>(`${environment.API}/users/register`,lowecasedUser);
   }
 }

@@ -14,6 +14,8 @@ export class ResgiterComponent {
   registerGroupForm!:FormGroup
   buttonCLicked:boolean = false;
   error?:string
+  inputType:string = 'password';
+
   ngOnInit(): void {
     this.registerGroupForm=new FormGroup({
       firstName: new FormControl("",Validators.required),
@@ -39,17 +41,28 @@ export class ResgiterComponent {
     const user :User = this.registerGroupForm.value;
     this.authService.register(user).subscribe({
       next: value => {
-        console.log(value);
         this.error=undefined;
+        setTimeout(()=>{
+          this.buttonCLicked = false;
+          //@ts-ignore
+          localStorage.setItem('id',value.id?.toString())
+          this.router.navigate(['/home'])
+        },2000)
       },
       error: error => {
         if(error.error === "Email Already Exists"){
-          this.error = error.error
+          setTimeout(()=>{
+            this.buttonCLicked = false;
+            this.error = error.error
+          },2000)
         }else{
           alert('system error please try again later')
+          this.buttonCLicked=false;
         }
-        this.buttonCLicked=false;
       }
     })
+  }
+  toggleType(){
+    this.inputType = this.inputType === 'text' ? 'password' : 'text';
   }
 }

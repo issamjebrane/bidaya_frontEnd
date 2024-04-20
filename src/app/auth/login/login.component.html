@@ -1,9 +1,9 @@
 <div class="bg-gray-800 h-full w-full flex lg:flex-row flex-col items-stretch justify-between gap-1 font-outfit">
-    <div class="bg-white  flex-1 w-full lg:w-auto flex flex-col items-center justify-start gap-16 lg:px-20 py-10 lg:order-none order-2">
-        <div class=" w-full hidden lg:block cursor-pointer" routerLink="/home">
-            <img src="./assets/logo.svg" alt="logo">
+    <div class="bg-white  flex-1 w-full lg:w-auto flex flex-col items-center justify-start gap-16 lg:px-20 xl:px-44 py-10 lg:order-none order-2">
+        <div class=" w-full hidden lg:block ">
+            <img src="./assets/logo.svg" alt="logo" class="cursor-pointer" routerLink="/home" >
         </div>
-        <div class="flex flex-col gap-3 lg:gap-6 p-12 lg:p-0 lg:px-12 self-stretch ">
+        <div class="flex flex-col gap-3 lg:gap-6 p-12 lg:p-0 self-stretch ">
             <p style=" color: #263238;  font-weight: 700;" class="text-2xl lg:text-[30px]">
                 Welcome Back
             </p>
@@ -15,7 +15,7 @@
                             Facebook
                         </p>
                     </div> -->
-                    <div class="border bg-[#ECECEC] font-medium rounded-lg w-full px-3 flex-1 flex items-center py-2 justify-center h-10 gap-3 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+                    <div class="border bg-[#F5F7FA] border-transparent font-normal rounded-lg w-full px-3 flex-1 flex items-center py-2 justify-center h-10 gap-3 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
                         <img src="./assets/google.svg" alt="">
                         <p  style="margin: 0;flex: 0 0 auto;" >
                             Sign up with Google
@@ -54,7 +54,7 @@
                     <span class="font-light">
                         Don’t have an account yet ?
                     </span>
-                    <a class="text-green-500 cursor-pointer font-medium" (click)="goToRegister()">
+                    <a class="text-sky-500 cursor-pointer font-medium" (click)="goToRegister()">
                         Register
                     </a>
                 </div>
