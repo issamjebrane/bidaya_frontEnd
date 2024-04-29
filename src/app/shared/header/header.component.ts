@@ -6,20 +6,21 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.sass'
 })
+
 export class HeaderComponent {
 
   searchToggled:Boolean = false ;
   menuToggled:Boolean = false;
   path:string='home'
-
+  overFlow:boolean = false;
    constructor(private route: ActivatedRoute){}
-  
+
    ngOnInit(){
     this.route.url.subscribe(segments=>{
        path: segments[0]?.path
     })
    }
-  
+
   toggleSearch(){
     this.searchToggled = !this.searchToggled;
   }
@@ -27,7 +28,9 @@ export class HeaderComponent {
     this.searchToggled = !this.searchToggled;
   }
 
-  toggleMenu(){
+  onToggleMenu(newValue : Boolean){
     this.menuToggled = !this.menuToggled;
+    this.overFlow = !this.overFlow;
+    document.body.style.overflow = (this.overFlow ? 'hidden' : 'unset');
   }
 }

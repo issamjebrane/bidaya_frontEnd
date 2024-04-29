@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatIconModule} from '@angular/material/icon'
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     PagesLayoutComponent,
     HomeComponent,
     NavMenuComponent,
-    CardsContainerComponent
+    CardsContainerComponent,
   ],
   imports: [
     HttpClientModule,
@@ -38,6 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+
 })
 export class AppModule { }

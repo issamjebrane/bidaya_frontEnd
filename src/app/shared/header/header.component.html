@@ -1,34 +1,36 @@
-<header class=" flex items-center justify-center font-outfit lg:m-3 lg:mx-36 lg:py-3 mt-4 mx-8">
+<header class=" flex items-center justify-center font-outfit lg:m-3 lg:mx-36 lg:py-3 mt-4 mx-8 ">
     <div  class="justify-center items-center flex w-full">
-        <div class=" items-center flex lg:justify-between w-full justify-start">
-                <img src="./assets/logo.svg" alt="">
-            <app-nav-menu class="lg:block hidden" [path]="path" (toggleSearch)="onToggleSearch($event)" [searchToggled]="searchToggled"/>
-            <div class="lg:flex items-center justify-center gap-3 hidden">
-                <button routerLink="/authentification/login" class="text-green-500 w-32 h-14  text-base hover:text-white">Sign In</button>
-                <button routerLink="/authentification/register" class="bg-green-500 w-32 h-14  transition ease duration-300  text-white text-base hover:bg-green-700">Sign Up</button>
-            </div>
-            <div class="w-7 h-7 lg:hidden flex justify-center items-center " (click)="toggleMenu()">
-                <mat-icon>expand_more</mat-icon>
+        <div class=" items-center flex justify-between w-full ">
+          <img src="./assets/menu_icon.svg"  alt="" (click)="onToggleMenu(false)" class="w-7 h-7 lg:hidden">
+          <img src="./assets/logo.svg" alt="">
+          <img src="assets/user.svg" alt="" class="lg:hidden">
+          <app-nav-menu class="lg:block hidden" [path]="path" (toggleSearch)="onToggleSearch($event)" [searchToggled]="searchToggled"/>
+          <div class="lg:flex items-center justify-center gap-3 hidden">
+              <button routerLink="/authentification/login" class="text-green-500 w-32 h-14 rounded-lg transition ease duration-300 hover:border-green-500 border-2 border-transparent text-base">Sign In</button>
+              <button routerLink="/authentification/register" class="bg-green-500 w-32 h-14 rounded-lg transition ease duration-300  text-white text-base hover:bg-green-700">Sign Up</button>
             </div>
         </div>
-        <label class="w-7 h-7 hover:text-green-500 flex justify-center items-center lg:hidden" (click)="toggleSearch()" for="search">
-            <mat-icon>search</mat-icon>
-        </label>
+        <div>
+
+        </div>
+<!--        <label class="w-7 h-7 hover:text-green-500 flex justify-center items-center lg:hidden" (click)="toggleSearch()" for="search">-->
+<!--            <mat-icon>search</mat-icon>-->
+<!--        </label>-->
     </div>
-    <div *ngIf="searchToggled" class="absolute w-full justify-between items-center flex bg-white gap-4 p-8 lg:px-36 ">
-        <div class="justify-start items-center gap-3 flex">
-            <div class="w-7 h-7 flex justify-center items-center">
-                <mat-icon>search</mat-icon>
-            </div>
-            <div class="w-full h-full " >
-                <input type="text" placeholder="Search..." class="border-none appearance-none outline-none w-full h-full placeholder:font-serif" id="search">
-            </div>
-        </div>
+  <div *ngIf="searchToggled" class="absolute w-full justify-between items-center flex bg-white gap-4 p-8 lg:px-36 ">
+    <div class="justify-start items-center gap-3 flex">
+      <div class="w-7 h-7 flex justify-center items-center">
+        <mat-icon>search</mat-icon>
+      </div>
+      <div class="w-full h-full " >
+        <input type="text" placeholder="Search..." class="border-none appearance-none outline-none w-full h-full placeholder:font-serif" id="search">
+      </div>
+    </div>
         <div class="w-7 h-7 hover:text-green-500 flex justify-center items-center" (click)="toggleSearch()">
             <mat-icon>close</mat-icon>
         </div>
-    </div>
-    <div class="absolute top-[50px] z-50" *ngIf="menuToggled">
-        <app-nav-menu [menuToggled]="menuToggled" />
+  </div>
+  <div class="lg:hidden" *ngIf="menuToggled">
+      <app-nav-menu [menuToggled]="menuToggled" (toggleMenu)="onToggleMenu($event)"/>
     </div>
 </header>

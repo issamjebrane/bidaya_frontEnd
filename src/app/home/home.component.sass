@@ -6,7 +6,6 @@
     font-weight: 700
     color: #181818
     letter-spacing: unset
-    margin:0
     line-height: normal
 
 .h3
@@ -37,15 +36,16 @@
     font-family: "Outfit", sans-serif
     font-weight: 400
 
-.star-rating 
-  font-size: 2em 
+.star-rating
+  font-size: 2em
   color: #ffc107
 
 
 
-@media (min-width: 1024px) 
+@media (min-width: 1024px)
     .bg-container
-        background: url('/assets/BG.svg') 
-        background-size: cover
-        background-position: bottom
+        background: url('/assets/hero.svg'),url('/assets/BG.svg')
+        background-size: 70vh, cover
+        background-position: bottom right 20%, center
         background-repeat: no-repeat
+        height: calc(100vh - 104px)

@@ -1,38 +1,60 @@
+<div class="mx-8">
+  <div class="flex items-center justify-between lg:px-36">
+    <div class="lg:flex  items-center justify-center gap-3.5 ">
+      <div class="w-8 h-8 bg-[#263238] bg-opacity-20 flex justify-center items-center rounded-full text-white cursor-not-allowed">
+        <mat-icon class="w-4 h-4">keyboard_arrow_left</mat-icon>
+      </div>
+      <div class="w-8 h-8 bg-[#263238] flex justify-center items-center rounded-full text-white cursor-pointer">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </div>
+    </div>
+  </div>
+  <swiper-container
+    loop="true"
+    slides-per-view="auto"
+    speed="500"
+    space-between="30"
+  >
+    <swiper-slide *ngFor="let card of cards"  loading="lazy" class=" ">
+      <div class="flex flex-col gap-2">
+        <div class="">
+          <img [src]="card.image" alt="" class=" rounded-lg object-cover w-full h-full">
+        </div>
+        <h5 class="text-neutral-500 text-xs font-normal" style="margin:0">{{card.type}}</h5>
+        <span class="text-gray-800 text-base font-semibold">{{card.title}}</span>
+      </div>
+      <div class="flex flex-col gap-2.5">
+        <mat-progress-bar mode="determinate" [value]="getPercentage(card.careatedAt,card.durationDays)" class="audio-progress-bar"></mat-progress-bar>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-800 text-base font-bold">{{card.raisedFunds}} dh</span>
+          <span class="text-neutral-500 text-xs font-normal">{{card.durationDays}}</span>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</div>
 <div class="lg:py-14 pb-0 flex flex-col justify-center items-stretch gap-14 mb-20 px-5 lg:px-0">
-    <div class="flex items-center justify-between lg:px-36">
-        <span class="text-slate-900 text-3xl font-bold font-sans">
-            Projects in progress
-        </span>
-        <div class="flex items-center justify-center gap-3.5">
-            <div class="w-8 h-8 bg-[#263238] bg-opacity-20 flex justify-center items-center rounded-full text-white cursor-not-allowed">
-                <mat-icon class="w-4 h-4">keyboard_arrow_left</mat-icon>
-            </div>
-            <div class="w-8 h-8 bg-[#263238] flex justify-center items-center rounded-full text-white cursor-pointer">
-                <mat-icon>keyboard_arrow_right</mat-icon>
-            </div>
-        </div>
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 font-serif gap-y-14 lg:px-36 ">
-        <div *ngFor="let card of cards" class="flex flex-col gap-5">
-            <div class="flex flex-col gap-2">
-                <div class=" overflow-hidden">
-                <img [src]="card.image" alt="">
-                </div>
-                <h5 class="text-neutral-500 text-base" style="margin:0">{{card.type}}</h5>
-                <span class="text-gray-800 text-xl font-bold">{{card.title}}</span>               
-            </div>
-            <div class="flex flex-col gap-2.5">
-                <mat-progress-bar mode="determinate" [value]="getPercentage(card.careatedAt,card.durationDays)" class="audio-progress-bar"></mat-progress-bar>
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-800 text-xs">{{card.raisedFunds}} dh</span>
-                    <span class="text-gray-800 text-xs">{{card.durationDays}}</span>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 font-serif gap-y-14 lg:px-36 ">-->
+<!--        <div *ngFor="let card of cards" class="flex flex-col gap-5">-->
+<!--            <div class="flex flex-col gap-2">-->
+<!--                <div class=" overflow-hidden">-->
+<!--                <img [src]="card.image" alt="">-->
+<!--                </div>-->
+<!--                <h5 class="text-neutral-500 text-base" style="margin:0">{{card.type}}</h5>-->
+<!--                <span class="text-gray-800 text-xl font-bold">{{card.title}}</span>-->
+<!--            </div>-->
+<!--            <div class="flex flex-col gap-2.5">-->
+<!--                <mat-progress-bar mode="determinate" [value]="getPercentage(card.careatedAt,card.durationDays)" class="audio-progress-bar"></mat-progress-bar>-->
+<!--                <div class="flex justify-between items-center">-->
+<!--                    <span class="text-gray-800 text-xs">{{card.raisedFunds}} dh</span>-->
+<!--                    <span class="text-gray-800 text-xs">{{card.durationDays}}</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <button class="w-56 flex rounded-lg items-center justify-center font-serif bg-green-500  h-14 px-8 py-4  text-white gap-3 self-center ">
         <span class="text-base">
-            Browse All 
+            Browse All
         </span>
         <mat-icon>arrow_right_alt</mat-icon>
     </button>

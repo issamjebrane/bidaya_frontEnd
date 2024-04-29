@@ -12,8 +12,13 @@ export class NavMenuComponent {
   @Input() searchToggled:Boolean = false
   // @ts-ignore
   @Output toggleSearch = new EventEmitter<Boolean>();
-
+  // @ts-ignore
+  @Output toggleMenu = new EventEmitter<Boolean>();
   toggle(){
     this.toggleSearch.emit(!this.toggleSearch)
+  }
+  toggleMenu2(){
+    this.toggleMenu.emit(!this.toggleSearch)
+
   }
 }
