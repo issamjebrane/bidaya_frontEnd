@@ -10,6 +10,7 @@ export class NavMenuComponent {
   @Input() path?:string
   @Input() menuToggled:Boolean = false
   @Input() searchToggled:Boolean = false
+  @Input() overFlow:Boolean = false;
   // @ts-ignore
   @Output toggleSearch = new EventEmitter<Boolean>();
   // @ts-ignore
@@ -19,6 +20,7 @@ export class NavMenuComponent {
   }
   toggleMenu2(){
     this.toggleMenu.emit(!this.toggleSearch)
-
+    this.overFlow = !this.overFlow;
+    document.body.style.overflow = (this.overFlow ? 'hidden' : 'unset');
   }
 }

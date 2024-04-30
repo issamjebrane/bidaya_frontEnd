@@ -26,6 +26,7 @@ export class HeaderComponent {
   }
   onToggleSearch(newValue : Boolean){
     this.searchToggled = !this.searchToggled;
+
   }
 
   onToggleMenu(newValue : Boolean){
