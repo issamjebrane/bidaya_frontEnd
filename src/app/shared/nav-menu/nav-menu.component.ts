@@ -1,26 +1,25 @@
-import { Component, Input, Output,EventEmitter } from '@angular/core';
-
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
-  styleUrl: './nav-menu.component.sass'
+  styleUrls: ['./nav-menu.component.sass'] // Use styleUrls instead of styleUrl
 })
 export class NavMenuComponent {
-  @Input() path?:string
-  @Input() menuToggled:Boolean = false
-  @Input() searchToggled:Boolean = false
-  @Input() overFlow:Boolean = false;
-  // @ts-ignore
-  @Output toggleSearch = new EventEmitter<Boolean>();
-  // @ts-ignore
-  @Output toggleMenu = new EventEmitter<Boolean>();
-  toggle(){
-    this.toggleSearch.emit(!this.toggleSearch)
+  @Input() path?: String;
+  @Input() menuToggled: Boolean = false;
+  @Input() searchToggled: Boolean = false;
+  overFlow: Boolean = false; // Initialize overflow to false
+  @Output() toggleSearch = new EventEmitter<boolean>();
+  @Output() toggleMenu = new EventEmitter<boolean>();
+
+  toggle() {
+    this.toggleSearch.emit(!this.searchToggled); // Emit the opposite of searchToggled
   }
-  toggleMenu2(){
-    this.toggleMenu.emit(!this.toggleSearch)
-    this.overFlow = !this.overFlow;
-    document.body.style.overflow = (this.overFlow ? 'hidden' : 'unset');
+
+  toggleMenu2() {
+    this.toggleMenu.emit(!this.menuToggled); // Emit the opposite of menuToggled
+    this.overFlow = !this.menuToggled; // Toggle overflow based on menuToggled state
+    document.body.style.overflow = this.overFlow ? 'hidden' : ''; // Set overflow style
   }
 }

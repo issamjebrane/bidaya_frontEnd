@@ -21,7 +21,6 @@ export class CardsContainerComponent {
   //dont forget the date you passsing are outdated you need to change them
   getPercentage(createdAt:Date,duration:number){
     const daysLeft = this.getDaysLeft(createdAt,duration);
-    console.log(daysLeft);
     return daysLeft*(100/duration)
   }
 }

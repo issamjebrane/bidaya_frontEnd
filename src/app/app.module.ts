@@ -7,7 +7,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { PagesLayoutComponent } from './layouts/pages-layout/pages-layout.component';
 import { HomeComponent } from './home/home.component';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { CardsContainerComponent } from './shared/cards-container/cards-container.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -34,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthModule,
     AppRoutingModule,
     AuthRoutingModule,
+    NgOptimizedImage,
   ],
   providers: [
 
