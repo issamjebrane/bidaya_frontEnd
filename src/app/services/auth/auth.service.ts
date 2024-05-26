@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(user:User):Observable<User>{
-    return this.http.post<User>(`${environment.API}/users/login`,user);
+    return this.http.post<User>(`${environment.API}/api/v1/auth/authenticate`,user);
   }
 
   register(user:User):Observable<User>{
