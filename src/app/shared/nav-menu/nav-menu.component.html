@@ -10,16 +10,17 @@
     <a href="" class="link" [ngClass]="{'selectedLink' : path === 'aboutUs'}">
       About Us
     </a>
-    <a href="" class="link" [ngClass]="{'selectedLink' : path === 'compaign'}">
-      Start a compaign
+    <a routerLink="/start-a-campaign" class="link" [ngClass]="{'selectedLink' : path === 'start-a-campaign'}">
+      Start a campaign
     </a>
-    <a routerLink="/authentification/login" class="link lg:hidden" [ngClass]="{'selectedLink' : path === 'login'}">
+    <a routerLink="/authentication/login" class="link lg:hidden" [ngClass]="{'selectedLink' : path === 'login'}">
       Sign in
     </a>
-    <a routerLink="/authentification/register" class="link  lg:hidden" [ngClass]="{'selectedLink' : path === 'register'}">
+    <a routerLink="/authentication/register" class="link  lg:hidden" [ngClass]="{'selectedLink' : path === 'register'}">
       Sign up
     </a>
-    <label class="w-7 h-7 hover:text-green-500 lg:flex justify-center items-center hidden justify-self-start" (click)="toggle()" for="search">
+    <label class="w-7 h-7 hover:text-green-500 lg:flex justify-center items-center hidden justify-self-start"
+           [ngClass]="{'hide' : path === 'start-a-campaign'}" (click)="toggle()" for="search">
       <mat-icon>search</mat-icon>
     </label>
   </div>

@@ -1,4 +1,4 @@
-<header class=" flex  items-center justify-center font-outfit lg:m-3 lg:mx-36 lg:py-3 my-4 mx-8 ">
+<header class=" flex  items-center justify-center font-outfit  lg:m-0 lg:mx-36 lg:py-3 my-4 mx-8 ">
     <div  class="justify-center items-center flex w-full">
         <div class=" items-center flex justify-between w-full ">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="onToggleMenu(false)" class="w-7 h-7 lg:hidden">
@@ -12,10 +12,16 @@
           </svg>
           <img src="assets/user.svg" alt="" class="lg:hidden">
           <app-nav-menu class="lg:block hidden" [path]="path" (toggleSearch)="onToggleSearch($event)" [searchToggled]="searchToggled"/>
-          <div class="lg:flex items-center justify-center gap-3 hidden">
-              <button routerLink="/authentification/login" class="text-green-500 w-32 h-14 rounded-lg transition ease duration-300 hover:border-green-500 border-2 border-transparent text-base">Sign In</button>
-              <button routerLink="/authentification/register" class="bg-green-500 w-32 h-14 rounded-lg transition ease duration-300  text-white text-base hover:bg-green-700">Sign Up</button>
+          <div *ngIf="isLoggedIn()" class="cursor-pointer">
+            <div class="w-10 h-10 rounded-full bg-white overflow-hidden">
+              <img src="assets/hero.svg" class="w-full h-full object-cover object-center">
+
             </div>
+          </div>
+          <div *ngIf="!isLoggedIn()" class="lg:flex items-center justify-center gap-3 hidden">
+              <button routerLink="/authentication/login" class="text-green-500 w-32 h-14 rounded-lg transition ease duration-300 hover:border-green-500 border-2 border-transparent text-base">Sign In</button>
+              <button routerLink="/authentication/register" class="bg-green-500 w-32 h-14 rounded-lg transition ease duration-300  text-white text-base hover:bg-green-700">Sign Up</button>
+          </div>
         </div>
         <div>
 

@@ -1,5 +1,6 @@
 import { Component  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,11 @@ export class HeaderComponent {
   menuToggled:Boolean = false;
   path:string='home'
   overFlow:boolean = false;
-   constructor(private route: ActivatedRoute){}
+   constructor(private route: ActivatedRoute,private authService: AuthService){}
 
    ngOnInit(){
     this.route.url.subscribe(segments=>{
-       path: segments[0]?.path
+       this.path = segments[0]?.path
     })
    }
 
@@ -29,9 +30,13 @@ export class HeaderComponent {
 
   }
 
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
   onToggleMenu(newValue : Boolean){
     this.menuToggled = !this.menuToggled;
     this.overFlow = !this.overFlow;
-    document.body.style.overflow = (this.overFlow ? 'hidden' : 'unset');
+    // document.body.style.overflow = (this.overFlow ? 'hidden' : 'unset');
   }
 }

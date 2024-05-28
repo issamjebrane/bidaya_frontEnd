@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-nav-menu',
@@ -16,6 +17,8 @@ export class NavMenuComponent {
   toggle() {
     this.toggleSearch.emit(!this.searchToggled); // Emit the opposite of searchToggled
   }
+
+
 
   toggleMenu2() {
     this.toggleMenu.emit(!this.menuToggled); // Emit the opposite of menuToggled

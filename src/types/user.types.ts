@@ -5,3 +5,15 @@ export type User = {
     lastName?:string;
     password:string;
 }
+
+export interface Token {
+  token:string;
+}
+
+export interface Step {
+  stepNumber: number;
+  stepTitle: string;
+  stepDescription: string;
+  isStepCompleted: boolean;
+  isStepActive: boolean;
+}

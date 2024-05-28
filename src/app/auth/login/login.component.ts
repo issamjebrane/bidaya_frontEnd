@@ -21,11 +21,11 @@ export class LoginComponent {
       password:new FormControl("",Validators.required)
     })
   }
-  
+
   constructor(private router:Router,private authservice :AuthService){}
-  
+
   goToRegister(){
-    this.router.navigateByUrl('/authentification/register')
+    this.router.navigateByUrl('/authentication/register')
   }
 
   submit(){
@@ -35,7 +35,6 @@ export class LoginComponent {
     }
     this.authservice.login(user).subscribe({
       next: value => {
-        console.log(value);
         this.error=undefined;
         this.router.navigate(['/home'])
       },

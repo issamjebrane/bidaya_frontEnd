@@ -14,6 +14,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import {AuthModule} from "./auth/auth.module";
 import { HttpClientModule } from '@angular/common/http';
+import {CampaignRoutingModule} from "./campaign/campaign-routing.module";
+import {CampaignModule} from "./campaign/campaign.module";
 
 @NgModule({
   declarations: [
@@ -34,13 +36,15 @@ import { HttpClientModule } from '@angular/common/http';
     AuthModule,
     AppRoutingModule,
     AuthRoutingModule,
+    CampaignRoutingModule,
     NgOptimizedImage,
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  exports: [
+    HeaderComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
 export class AppModule { }

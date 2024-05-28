@@ -5,7 +5,7 @@ import { ResgiterComponent } from './resgiter/resgiter.component';
 
 const routes: Routes = [
   {
-    path:'authentification',
+    path:'authentication',
     children:[
       {
         path:'login',

@@ -18,7 +18,8 @@ const routes: Routes = [
         path:'home'
       }
     ]
-  }
+  },
+
 ];
 
 @NgModule({

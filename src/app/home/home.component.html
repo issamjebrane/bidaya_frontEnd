@@ -152,47 +152,49 @@
               </div>
           </div>
       </div>
-      <swiper-container
-        loop="true"
-        speed="500"
-        slides-per-view="auto"
-        space-between="20"
-        free-mode="true"
-        class="xl:hidden"
-      >
-        <swiper-slide *ngFor="let userComment of userComments" class="bg-white w-72 rounded-lg shadow px-4 py-5 ">
-          <div class="flex flex-col gap-7">
-            <div class="flex flex-col items-start justify-center gap-5">
-              <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.2734 28.875V18.7124C19.2734 10.8694 24.4035 5.55363 31.625 4.125L32.9931 7.08262C29.6491 8.3435 27.5
-                 12.0849 27.5 15.125H33V28.875H19.2734ZM0 28.875V18.7124C0 10.8694 5.1535 5.55225 12.375 4.125L13.7445 7.08262C10.3991
-                  8.3435 8.25 12.0849 8.25 15.125H13.7266V28.875H0Z" fill="#43A046"/>
-              </svg>
-              <p class="text-neutral-600 text-sm font-normal font-outfit">{{userComment.comment}}</p>
-            </div>
-            <div class="flex flex-col gap-3 justify-center items-start">
-              <div class="flex justify-start gap-5 items-center">
-                <div class="w-16 h-16">
-                  <img [src]="'../..'+userComment.image" alt="" class="w-full h-full object-cover">
+      <div class="swiper-container-div">
+        <swiper-container
+          loop="true"
+          speed="500"
+          slides-per-view="auto"
+          space-between="20"
+          free-mode="true"
+          class="xl:hidden"
+        >
+          <swiper-slide *ngFor="let userComment of userComments" class="bg-white w-72 rounded-lg shadow px-4 py-5 ">
+            <div class="flex flex-col gap-7">
+              <div class="flex flex-col items-start justify-center gap-5">
+                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19.2734 28.875V18.7124C19.2734 10.8694 24.4035 5.55363 31.625 4.125L32.9931 7.08262C29.6491 8.3435 27.5
+                  12.0849 27.5 15.125H33V28.875H19.2734ZM0 28.875V18.7124C0 10.8694 5.1535 5.55225 12.375 4.125L13.7445 7.08262C10.3991
+                    8.3435 8.25 12.0849 8.25 15.125H13.7266V28.875H0Z" fill="#43A046"/>
+                </svg>
+                <p class="text-neutral-600 text-sm font-normal font-outfit">{{userComment.comment}}</p>
+              </div>
+              <div class="flex flex-col gap-3 justify-center items-start">
+                <div class="flex justify-start gap-5 items-center">
+                  <div class="w-16 h-16">
+                    <img [src]="'../..'+userComment.image" alt="" class="w-full h-full object-cover">
+                  </div>
+                  <div class="flex flex-col justify-center items-start">
+                                <span class="user-name">
+                                        {{userComment.name}}
+                                </span>
+                    <h6 class="user-duty" style="margin: 0;">
+                      {{userComment.duty}}
+                    </h6>
+                  </div>
                 </div>
-                <div class="flex flex-col justify-center items-start">
-                              <span class="user-name">
-                                      {{userComment.name}}
-                              </span>
-                  <h6 class="user-duty" style="margin: 0;">
-                    {{userComment.duty}}
-                  </h6>
+                <div class="star-rating">
+                  <mat-icon *ngFor="let star of stars(userComment.rating)">star</mat-icon>
+                  <mat-icon *ngIf="userComment.rating % 1 !== 0">star_half</mat-icon>
                 </div>
               </div>
-              <div class="star-rating">
-                <mat-icon *ngFor="let star of stars(userComment.rating)">star</mat-icon>
-                <mat-icon *ngIf="userComment.rating % 1 !== 0">star_half</mat-icon>
-              </div>
             </div>
-          </div>
 
-        </swiper-slide>
-      </swiper-container>
+          </swiper-slide>
+        </swiper-container>
+      </div>  
 <!--      <div class="flex 2xl:px-36 gap-5 w-screen">-->
 <!--          <div *ngFor="let userComment of userComments" class="bg-white rounded-lg shadow px-10 py-8 gap-7">-->
 <!--              <div class="flex flex-col gap-7 w-96">-->
