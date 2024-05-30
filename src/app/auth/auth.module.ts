@@ -4,7 +4,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ResgiterComponent } from './resgiter/resgiter.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
+import {MatIcon} from "@angular/material/icon";
+
 
 
 @NgModule({
@@ -13,10 +14,10 @@ import { MatIconModule } from '@angular/material/icon';
     ResgiterComponent
   ],
   imports: [
-    MatIconModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     CommonModule,
+    MatIcon,
   ]
 })
 export class AuthModule { }

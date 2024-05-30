@@ -1,13 +1,14 @@
 export type User = {
     id?:number;
-    email:string;
+    email?:string;
     firstName?:string;
     lastName?:string;
-    password:string;
+    password?:string;
 }
 
-export interface Token {
+export interface AuthenticationResponse {
   token:string;
+  user:User;
 }
 
 export interface Step {

@@ -16,6 +16,8 @@ import {AuthModule} from "./auth/auth.module";
 import { HttpClientModule } from '@angular/common/http';
 import {CampaignRoutingModule} from "./campaign/campaign-routing.module";
 import {CampaignModule} from "./campaign/campaign.module";
+import {MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
+import {MatButton} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -27,18 +29,21 @@ import {CampaignModule} from "./campaign/campaign.module";
     NavMenuComponent,
     CardsContainerComponent,
   ],
-  imports: [
-    HttpClientModule,
-    MatProgressBarModule,
-    MatIconModule,
-    BrowserModule,
-    CommonModule,
-    AuthModule,
-    AppRoutingModule,
-    AuthRoutingModule,
-    CampaignRoutingModule,
-    NgOptimizedImage,
-  ],
+    imports: [
+        HttpClientModule,
+        MatProgressBarModule,
+        MatIconModule,
+        MatButton,
+        MatMenuModule,
+        BrowserModule,
+        CommonModule,
+        AuthModule,
+        AppRoutingModule,
+        AuthRoutingModule,
+        CampaignRoutingModule,
+        NgOptimizedImage,
+        MatMenuTrigger,
+    ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [

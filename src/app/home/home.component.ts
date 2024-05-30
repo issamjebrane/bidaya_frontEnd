@@ -104,6 +104,20 @@ export class HomeComponent {
       comment:'Thanks to BIDAYA, keep up the good work! I would like to say thank you to all your staff and all the bakers behind it.'
     },
     {
+      name:'Sami Fakroun',
+      duty:'Music Composer',
+      image:'/assets/user2.svg',
+      rating:4.5,
+      comment:'Thanks to BIDAYA, keep up the good work! I would like to say thank you to all your staff and all the bakers behind it.'
+    },
+    {
+      name:'Basma Loukil',
+      duty:'Community Manager',
+      image:'/assets/user3.svg',
+      rating:4,
+      comment:'Thanks to BIDAYA, keep up the good work! I would like to say thank you to all your staff and all the bakers behind it.'
+    },
+    {
       name:'Basma Loukil',
       duty:'Community Manager',
       image:'/assets/user3.svg',

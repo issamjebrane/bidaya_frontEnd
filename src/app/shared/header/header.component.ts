@@ -1,11 +1,14 @@
-import { Component  } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {AuthService} from "../../services/auth/auth.service";
+import {User} from "../../../types/user.types";
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.sass'
+  styleUrl: './header.component.sass',
+
 })
 
 export class HeaderComponent {
@@ -32,6 +35,10 @@ export class HeaderComponent {
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
+  }
+
+  getUserFromLocalStorage(): User{
+    return this.authService.getUserFromLocalStorage();
   }
 
   onToggleMenu(newValue : Boolean){
