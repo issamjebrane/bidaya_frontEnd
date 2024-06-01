@@ -19,7 +19,6 @@ export class NavMenuComponent {
   }
 
 
-
   toggleMenu2() {
     this.toggleMenu.emit(!this.menuToggled); // Emit the opposite of menuToggled
     this.overFlow = !this.menuToggled; // Toggle overflow based on menuToggled state

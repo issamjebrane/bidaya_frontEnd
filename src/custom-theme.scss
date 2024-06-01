@@ -23,12 +23,15 @@ $green-gray-theme: mat.define-light-theme((
   density: 0
 ));
 
+
+
 // Include theme styles for core and each component used in your app.
 @include mat.all-component-themes($green-gray-theme);
-
+@include mat.form-field-theme($green-gray-theme);
+@include mat.input-theme($green-gray-theme);
+@include mat.select-theme($green-gray-theme);
 // Additional global styles
 html, body {
-
   margin: 0;
   font-family: "Outfit", "Helvetica Neue", sans-serif;
 }

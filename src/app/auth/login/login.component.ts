@@ -12,6 +12,7 @@ import { User } from '../../../types/user.types';
 export class LoginComponent {
   loginGroupForm!:FormGroup
   error?:string;
+  inputType:string = 'password';
   ngOnInit(): void {
     this.loginGroupForm=new FormGroup({
       email: new FormControl("",Validators.compose([
@@ -26,6 +27,10 @@ export class LoginComponent {
 
   goToRegister(){
     this.router.navigateByUrl('/authentication/register')
+  }
+
+  toggleType(){
+    this.inputType = this.inputType === 'text' ? 'password' : 'text';
   }
 
   submit(){

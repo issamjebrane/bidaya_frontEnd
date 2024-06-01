@@ -1,4 +1,4 @@
-<div class=" h-full  w-full flex lg:flex-row flex-col justify-stretch items-stretch gap-1 font-outfit overflow-x-hidden text-[15px]">
+<div class=" bg-gray-800  flex lg:flex-row flex-col justify-stretch items-stretch gap-1 font-outfit overflow-x-hidden text-[15px]">
     <div class=" flex flex-1 items-center justify-center py-12 bg-gray-800">
         <img src="./assets/ILLUSTRATION.svg" alt="" class="">
     </div>
@@ -43,7 +43,7 @@
                   <label for="Password" class="text-[18px] font-medium text-neutral-500">Password <span class="text-red-500">*</span></label>
                   <div class=" has-[:focus]:border-black has-[:focus]:border-2 flex items-center justify-between px-4 self-stretch border border-neutral-500 rounded  py-2 pl-5">
                       <input type="Password"  [attr.type]="inputType" id="Password" placeholder="Enter your password (At least 8 characters,an uppercase, a lowercase and a digit)"  class=" w-full focus:outline-none placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="password">
-                      <img [src]=" inputType === 'text' ? './assets/eye.svg':'./assets/eye-off.svg'"  class="hover:bg-slate-200 hover:rounded-full p-1" (click)="toggleType()"/>
+                      <img [src]="inputType === 'text' ? './assets/eye.svg':'./assets/eye-off.svg'"  class="hover:bg-slate-200 hover:rounded-full p-1" (click)="toggleType()" alt=""/>
                   </div>
                   <span *ngIf="registerGroupForm.get('password')?.errors?.['pattern']" class="text-red-500 text-sm">Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.
                   </span>

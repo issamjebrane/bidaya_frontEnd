@@ -31,9 +31,9 @@ export class ResgiterComponent {
     })
   }
   constructor(private router:Router,private authService:AuthService){}
-  
+
   goToLogin(){
-    this.router.navigateByUrl('/authentification/login')
+    this.router.navigateByUrl('/authentication/login')
   }
   register(){
     this.buttonCLicked = true;

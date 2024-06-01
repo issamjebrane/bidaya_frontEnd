@@ -1,0 +1,160 @@
+<div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+    <h3 class="text-gray-800 text-xl font-bold">
+      Project Title
+      <span class="text-red-600">*</span>
+    </h3>
+    <p class="text-neutral-500 text-base font-normal">
+      Craft a concise yet informative title and subtitle that <br/>
+      succinctly communicates the essence of your project. These <br/>
+      elements will prominently feature on your project page as well
+      as during the pre-launch phase.
+    </p>
+  </div>
+  <div class="flex-1 flex flex-col gap-4">
+    <div class="flex-col flex items-start justify-center gap-1.5">
+      <label class="text-neutral-500 text-base font-medium">
+        Title
+      </label>
+      <input type="text" placeholder="Your title here..." class="self-stretch w-full
+        border border-neutral-500 rounded outline-black py-3 pl-5 placeholder:font-normal
+       placeholder:text-gray-400 placeholder:font-outfit"/>
+    </div>
+    <div class="flex-col flex items-start justify-center gap-1.5">
+        <label class="text-neutral-500 text-base font-medium">
+          Subtitle
+        </label>
+        <input type="text" placeholder="Your subtitle here..." class="self-stretch w-full
+        border border-neutral-500 rounded outline-black py-3 pl-5 placeholder:font-normal
+        placeholder:text-gray-400 placeholder:font-outfit"/>
+    </div>
+  </div>
+</div>
+
+<div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+
+<div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+    <h3 class="text-gray-800 text-xl font-bold">
+      Project Location
+      <span class="text-red-600">*</span>
+    </h3>
+    <p class="text-neutral-500 text-base font-normal">
+      Specify the geographic location that most accurately <br/> represents the base of your project.
+      This information helps <br/> potential backers understand where your project originates <br/> and fosters
+      a sense of connection with your endeavor.
+    </p>
+  </div>
+  <div class="flex-1 flex flex-col gap-4">
+    <div class="flex-col flex items-start justify-center gap-1.5">
+      <label class="text-neutral-500 text-base font-medium">
+        Location
+      </label>
+      <input type="text" placeholder="Country ..." class="self-stretch w-full
+        border border-neutral-500 rounded outline-black py-3 pl-5 placeholder:font-normal
+       placeholder:text-gray-400 placeholder:font-outfit"/>
+    </div>
+  </div>
+</div>
+
+<div class="w-full opacity-50 border-2 border-slate-300 mb-10  "></div>
+
+<div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+    <h3 class="text-gray-800 text-xl font-bold">
+      Project Category
+      <span class="text-red-600">*</span>
+    </h3>
+    <p class="text-neutral-500 text-base font-normal">
+      Assist potential backers in discovering your campaign by <br/>
+      choosing the category that best aligns with your project. <br/>
+      This ensures that your project appears in relevant searches <br/>
+      and increases its visibility to the right audience.
+    </p>
+  </div>
+  <div class="flex-1 flex justify-start items-center gap-7">
+    <div class="flex-col flex items-stretch justify-center gap-1.5 flex-1">
+      <label class="text-neutral-500 text-base font-medium">
+        Category
+      </label>
+      <mat-form-field>
+        <mat-label class="text-neutral-500 text-base font-medium">Select a category</mat-label>
+        <mat-select [(ngModel)]="selectedCategory" name="food">
+          @for (category of categories; track category) {
+            <mat-option [value]="category.value">{{category.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="flex-col flex items-stretch justify-center gap-1.5 flex-1">
+      <label class="text-neutral-500 text-base font-medium">
+        Sub-Category
+      </label>
+      <mat-form-field >
+        <mat-label class="text-neutral-500 text-base font-medium">Select a subCategory</mat-label>
+        <mat-select [(ngModel)]="selectedsubCategory" name="food">
+          @for (subCategory of subCategories; track subCategory) {
+            <mat-option [value]="subCategory.value">{{subCategory.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+
+<div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+    <h3 class="text-gray-800 text-xl font-bold">
+      Project Card Image
+      <span class="text-red-600">*</span>
+    </h3>
+    <p class="text-neutral-500 text-base font-normal">
+      Select an image that effectively captures the essence of <br/>
+      your project and looks appealing across various sizes. This <br/>
+      image will be featured prominently on your project page, <br/>
+      throughout the Kickstarter website and mobile apps, and  <br/>
+      when shared on social media channels.
+    </p>
+  </div>
+  <div class="flex-1 flex flex-col gap-4">
+    <div class="flex-col flex items-start justify-center gap-1.5">
+      <label class="text-neutral-500 text-base font-medium">
+        Location
+      </label>
+      <input type="text" placeholder="Country ..." class="self-stretch w-full
+        border border-neutral-500 rounded outline-black py-3 pl-5 placeholder:font-normal
+       placeholder:text-gray-400 placeholder:font-outfit"/>
+    </div>
+  </div>
+</div>
+
+<div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+
+<div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+    <h3 class="text-gray-800 text-xl font-bold">
+      Project Location
+      <span class="text-red-600">*</span>
+    </h3>
+    <p class="text-neutral-500 text-base font-normal">
+      Specify the geographic location that most accurately <br/> represents the base of your project.
+      This information helps <br/> potential backers understand where your project originates <br/> and fosters
+      a sense of connection with your endeavor.
+    </p>
+  </div>
+  <div class="flex-1 flex flex-col gap-4">
+    <div class="flex items-center justify-center bg-gray-100 h-[246px] ">
+      <div class="flex items-center justify-center w-1/2 h-1/2 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
+          <div class="flex items-center justify-center w-12 h-12  rounded-full bg-gray-300 ">
+            <img ngSrc="assets/upload-icon.svg" alt="Upload Icon" class="w-6 h-6" height="47" width="47">
+          </div>
+          <p class="text-lg text-gray-600">Upload Image</p>
+      </div>
+      <input type="file" #fileInput (change)="onFileSelected($event)" class="hidden" accept="image/*">
+    </div>
+  </div>
+</div>
+
+<div class="w-full opacity-50 border-2 border-slate-300 mb-20"></div>

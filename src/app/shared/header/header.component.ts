@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from "../../services/auth/auth.service";
 import {User} from "../../../types/user.types";
+import * as http from "node:http";
 
 
 @Component({
@@ -17,10 +18,10 @@ export class HeaderComponent {
   menuToggled:Boolean = false;
   path:string='home'
   overFlow:boolean = false;
-   constructor(private route: ActivatedRoute,private authService: AuthService){}
+   constructor(private router: ActivatedRoute,private route:Router,private authService: AuthService){}
 
    ngOnInit(){
-    this.route.url.subscribe(segments=>{
+    this.router.url.subscribe(segments=>{
        this.path = segments[0]?.path
     })
    }
@@ -45,5 +46,12 @@ export class HeaderComponent {
     this.menuToggled = !this.menuToggled;
     this.overFlow = !this.overFlow;
     // document.body.style.overflow = (this.overFlow ? 'hidden' : 'unset');
+  }
+
+  loggOut() {
+    return this.authService.logout().subscribe(() => {
+      this.route.navigate(['/home']);
+    }
+    );
   }
 }

@@ -1,5 +1,5 @@
-<div>
-  <div class="header">
+<div class="font-outfit">
+  <div class="header mb-10">
     <app-header class="lg:text-white"/>
     <div >
       <h1 class="text-center text-3xl mb-6 font-bold font-outfit text-white lg:text-4xl">
@@ -10,9 +10,20 @@
       </p>
     </div>
   </div>
-  <div class="flex items-center xl:gap-6 justify-between mt-16 mb-20 mx-36">
+  <div class="flex items-center w-fit justify-start gap-1.5 mx-36 cursor-pointer" (click)="previousStep()">
+    <mat-icon>keyboard_backspace</mat-icon>
+    <span class="font-medium font-outfit text-lg">Return</span>
+  </div>
+  <div class="flex items-center xl:gap-6 justify-between m-20 mx-36">
     <div *ngFor="let step of steps">
-      <app-steps [step]="step"/>
+      <app-steps [step]="step" (stepChange)="onStepChange(step.stepNumber)"></app-steps>
     </div>
   </div>
+  <app-basics/>
+  <div class="flex items-center justify-center mb-20">
+    <button (click)="onStepChange(currentStep + 1)" class="rounded-lg lg:w-[220px] w-full h-12 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base font-medium hover:bg-green-700">
+      Save & Continue
+    </button>
+  </div>
+  <app-footer/>
 </div>

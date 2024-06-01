@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AuthenticationResponse, User} from '../../../types/user.types';
-import { Observable } from 'rxjs';
+import {Observable, tap} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import {Router} from "@angular/router";
@@ -29,10 +29,15 @@ export class AuthService {
     return this.http.post<User>(`${environment.API}/auth/register`,lowercaseUser);
   }
 
-
   logout() {
-    this.removeToken();
-    this.router.navigate(['authenticate/login']);
+    const token = this.getToken();
+    return this.http.post(`${environment.API}/auth/logout`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).pipe(
+      tap(() => this.removeToken())
+    );
   }
   private setUser(user:User){
     localStorage?.setItem('user', JSON.stringify(user));

@@ -14,9 +14,6 @@
       </div>
     </div>
   </div>
-
-  <!--    style="&#45;&#45;swiper-navigation-color: #000; &#45;&#45;swiper-pagination-color: #0000 ; &#45;&#45;swiper-navigation-top-offset:10px"-->
-  <!--    [style]="{'.swiper-button-next, .swiper-button-prev': 'z-index: 300;'}"-->
   <div class="swiper-container-div">
     <swiper-container
       loop="true"
@@ -26,7 +23,7 @@
       free-mode="true"
       class="block lg:hidden"
     >
-  
+
       <swiper-slide *ngFor="let card of cards"  loading="lazy" class="flex gap-4 flex-col w-60 ">
         <div class="flex flex-col gap-2 div h-56">
           <div class="h-36 w-60">
@@ -46,7 +43,6 @@
     </swiper-container>
   </div>
 
-<!-- <div class="lg:py-14 pb-0 flex flex-col justify-center items-stretch gap-14 mb-20 px-5 lg:px-0"> -->
    <div class="lg:grid grid-cols-1 lg:grid-cols-3 gap-8 font-serif gap-y-14 xl:px-36 hidden">
        <div *ngFor="let card of cards" class="flex flex-col gap-5">
            <div class="flex flex-col gap-2">
@@ -66,7 +62,7 @@
        </div>
    </div>
 
-    <button class="lg:w-56 w-[90%] flex rounded-lg items-center justify-center font-outfit bg-green-500  h-14 px-8 py-4  text-white gap-3 self-center ">
+    <button class="lg:w-56 w-[90%] flex rounded-lg items-center justify-center font-outfit bg-green-500  h-14 px-8 py-4  text-white gap-3 self-center transition ease duration-300 text-base hover:bg-green-700 ">
         <span class="text-base">
             Browse All
         </span>

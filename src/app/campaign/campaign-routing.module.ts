@@ -5,7 +5,7 @@ import {ProjectCreationComponent} from "./project-creation/project-creation.comp
 const routes: Routes = [
   {
     component:ProjectCreationComponent,
-    path:"start-a-campaign"
+    path:"start-a-campaign",
   }
 ];
 

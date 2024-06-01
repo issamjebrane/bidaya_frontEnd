@@ -121,7 +121,7 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "style": "scss"
+      "style": "sass"
     }
   },
   "cli": {

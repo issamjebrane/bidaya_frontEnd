@@ -1,15 +1,32 @@
-<div class="flex font-outfit  cursor-pointer ">
-  <div class="flex items-center gap-5 group">
-    <h1 class="text-gray-800 text-4xl font-bold group-hover:text-green-600">
+<div class="flex font-outfit flex-col justify-between items-start cursor-pointer group">
+  <div class="flex items-center gap-5 ">
+    <p class="text-gray-800 text-2xl font-bold group-hover:text-green-600">
       0{{step?.stepNumber}}
-    </h1>
+    </p>
     <div>
-      <h4 class="text-gray-800 text-xl font-medium group-hover:text-green-600">
+      <h4 class="text-gray-800 text-lg font-medium group-hover:text-green-600">
         {{step?.stepTitle}}
       </h4>
       <h6 class="text-neutral-500 text-base font-normal group-hover:text-green-600 ">
         {{step?.stepDescription}}
       </h6>
     </div>
+  </div>
+  <div class="flex items-center justify-between gap-1.5" [ngClass]="{'hidden':step?.isStepActive === false}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="12" fill="#43A046"/>
+      <path d="M16.5713 9.14282L10.2856 15.4285L7.42847 12.5714" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <svg width="254" height="4" viewBox="0 0 254 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 2H253.5" stroke="#43A046" stroke-width="4"/>
+    </svg>
+  </div>
+  <div class="flex items-center justify-between gap-1.5" [ngClass]="{'hidden':step?.isStepActive === true}">
+    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12.5" cy="12" r="12" fill="#ABBED1"/>
+    </svg>
+    <svg width="254" height="4" viewBox="0 0 254 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0.5 2H254" stroke="#ABBED1" stroke-width="4"/>
+    </svg>
   </div>
 </div>

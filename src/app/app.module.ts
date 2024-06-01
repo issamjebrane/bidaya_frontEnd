@@ -17,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {CampaignRoutingModule} from "./campaign/campaign-routing.module";
 import {CampaignModule} from "./campaign/campaign.module";
 import {MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
-import {MatButton} from "@angular/material/button";
+import {MatButton, MatButtonModule} from "@angular/material/button";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -32,8 +33,10 @@ import {MatButton} from "@angular/material/button";
     imports: [
         HttpClientModule,
         MatProgressBarModule,
+        BrowserAnimationsModule,
         MatIconModule,
         MatButton,
+        MatButtonModule,
         MatMenuModule,
         BrowserModule,
         CommonModule,
@@ -46,9 +49,10 @@ import {MatButton} from "@angular/material/button";
     ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [
-    HeaderComponent
-  ],
+    exports: [
+        HeaderComponent,
+        FooterComponent
+    ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })

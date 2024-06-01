@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Step} from "../../../types/user.types";
+import {Router} from "@angular/router";
 
 
 
@@ -32,4 +33,50 @@ export class ProjectCreationComponent {
       isStepCompleted:false
     }
   ]
+  protected currentStep:number = 1;
+
+
+  constructor(private router: Router) {}
+
+  nextStep() {
+    if (this.currentStep < this.steps.length) {
+      this.updateStepStatus(this.currentStep, false, true);
+      this.currentStep++;
+      this.updateStepStatus(this.currentStep, true, false);
+    }
+  }
+
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.updateStepStatus(this.currentStep, false, false);
+      this.currentStep--;
+      this.updateStepStatus(this.currentStep, true, this.isStepCompleted(this.currentStep));
+    }
+  }
+
+  updateStepStatus(stepNumber: number, isActive: boolean, isCompleted: boolean) {
+    const step = this.steps.find(step => step.stepNumber === stepNumber);
+    if (step) {
+      step.isStepActive = isActive;
+      step.isStepCompleted = isCompleted;
+    }
+  }
+
+  isStepCompleted(stepNumber: number): boolean {
+    const step = this.steps.find(step => step.stepNumber === stepNumber);
+    return step ? step.isStepCompleted : false;
+  }
+
+  onStepChange(stepNumber: number) {
+    if(stepNumber === 4) {
+      this.router.navigate(['/home']);
+    }
+    // Mark the current step as not active and completed
+    this.updateStepStatus(this.currentStep, true, true);
+
+    // Update the current step
+    this.currentStep = stepNumber;
+
+    // Mark the new current step as active and not completed
+    this.updateStepStatus(this.currentStep, true, false);  }
 }

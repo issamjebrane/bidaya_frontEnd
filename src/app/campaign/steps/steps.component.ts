@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Step} from "../../../types/user.types";
 
 
@@ -10,6 +10,10 @@ import {Step} from "../../../types/user.types";
 })
 export class StepsComponent {
   @Input() step?:Step
+  @Output() stepChange = new EventEmitter<Step>()
 
-
+  onStepClick() {
+    // @ts-ignore
+    this.stepChange.emit(this.step.stepNumber);
+  }
 }
