@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {AuthService} from "../../services/auth/auth.service";
 
 interface Category {
   value: string;
@@ -13,12 +14,12 @@ interface SubCategory {
   selector: 'app-basics',
   templateUrl: './basics.component.html',
   styleUrl: './basics.component.sass',
+  encapsulation: ViewEncapsulation.None
 
 })
 export class BasicsComponent {
   selectedCategory?: string;
   selectedsubCategory: any;
-
   protected categories: Category[]=
     [
       {value: 'art', viewValue: 'Art'},
@@ -65,4 +66,6 @@ export class BasicsComponent {
       // You can add more file handling logic here
     }
   }
+
+
 }

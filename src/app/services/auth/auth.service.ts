@@ -11,7 +11,9 @@ import {Router} from "@angular/router";
 export class AuthService {
   private api = environment.API;
   private tokenKey= "token";
-  constructor(private http: HttpClient,private router:Router) { }
+  constructor(private http: HttpClient,private router:Router) {
+
+  }
 
   login(user:User):Observable<AuthenticationResponse>{
     let returnedData =  this.http.post<AuthenticationResponse>(`${environment.API}/auth/authenticate`,user);
@@ -73,4 +75,5 @@ export class AuthService {
   isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
+
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-
 import { CampaignRoutingModule } from './campaign-routing.module';
 import {ProjectCreationComponent} from "./project-creation/project-creation.component";
 import {AppModule} from "../app.module";
