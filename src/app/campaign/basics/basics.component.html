@@ -1,161 +1,219 @@
-<div class="flex items-start justify-between mx-36 mb-10 gap-36">
-  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
-    <h3 class="text-gray-800 text-xl font-bold">
-      Project Title
-      <span class="text-red-600">*</span>
-    </h3>
-    <p class="text-neutral-500 text-base font-normal">
-      Craft a concise yet informative title and subtitle that <br/>
-      succinctly communicates the essence of your project. These <br/>
-      elements will prominently feature on your project page as well
-      as during the pre-launch phase.
-    </p>
-  </div>
-  <div class="flex-1 flex flex-col gap-4">
-    <div class="flex-col flex items-start justify-center gap-1.5">
-      <label class="text-neutral-500 text-base font-medium">
-        Title
-      </label>
-      <input type="text" placeholder="Your title here..." class="self-stretch w-full
-        border border-neutral-500 rounded outline-black py-3 pl-5 placeholder:font-normal
-       placeholder:text-gray-400 placeholder:font-outfit"/>
+<div role="status" *ngIf="isLoading" class="w-full flex items-center justify-center py-20">
+  <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/></svg>
+  <span class="sr-only">Loading...</span>
+</div>
+<form [formGroup]="formGroup" (ngSubmit)="submit()" *ngIf="!isLoading && formGroup">
+  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Project Title
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal">
+        Craft a concise yet informative title and subtitle that <br/>
+        succinctly communicates the essence of your project. These <br/>
+        elements will prominently feature on your project page as well
+        as during the pre-launch phase.
+      </p>
     </div>
-    <div class="flex-col flex items-start justify-center gap-1.5">
+    <div class="flex-1 flex flex-col gap-4">
+      <div class="flex-col flex items-start justify-center gap-1.5">
         <label class="text-neutral-500 text-base font-medium">
-          Subtitle
+          Title
         </label>
-        <input type="text" placeholder="Your subtitle here..." class="self-stretch w-full
-        border border-neutral-500 rounded outline-black py-3 pl-5 placeholder:font-normal
-        placeholder:text-gray-400 placeholder:font-outfit"/>
+        <input type="text" placeholder="Your title here..." class="self-stretch w-full focus:ring-2 focus:ring-green-600
+          border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
+         placeholder:text-gray-400 placeholder:font-outfit" formControlName="title" required/>
+
+      </div>
+      <div class="flex-col flex items-start justify-center gap-1.5">
+          <label class="text-neutral-500 text-base font-medium">
+            Subtitle
+          </label>
+          <input type="text" placeholder="Your subtitle here..." class="self-stretch w-full focus:ring-2 focus:ring-green-600
+          border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
+         placeholder:text-gray-400 placeholder:font-outfit" formControlName="subtitle"/>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-<div class="flex items-start justify-between mx-36 mb-10 gap-36">
-  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
-    <h3 class="text-gray-800 text-xl font-bold">
-      Project Location
-      <span class="text-red-600">*</span>
-    </h3>
-    <p class="text-neutral-500 text-base font-normal">
-      Specify the geographic location that most accurately <br/> represents the base of your project.
-      This information helps <br/> potential backers understand where your project originates <br/> and fosters
-      a sense of connection with your endeavor.
-    </p>
-  </div>
-  <div class="flex-1 flex flex-col gap-4">
-    <div class="flex-col flex items-start justify-center gap-1.5">
-      <label class="text-neutral-500 text-base font-medium">
-        Location
-      </label>
-      <input type="text" placeholder="Country ..." class="self-stretch w-full
-        border border-neutral-500 rounded outline-black py-3 pl-5 placeholder:font-normal
-       placeholder:text-gray-400 placeholder:font-outfit"/>
+  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Project Location
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal">
+        Specify the geographic location that most accurately <br/> represents the base of your project.
+        This information helps <br/> potential backers understand where your project originates <br/> and fosters
+        a sense of connection with your endeavor.
+      </p>
+    </div>
+    <div class="flex-1 flex flex-col gap-4">
+      <div class="flex-col flex items-start justify-center gap-1.5">
+        <label class="text-neutral-500 text-base font-medium">
+          Location
+        </label>
+        <input type="text" placeholder="City ..." class="self-stretch w-full focus:ring-2 focus:ring-green-600
+          border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
+         placeholder:text-gray-400 placeholder:font-outfit" formControlName="location"/>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="w-full opacity-50 border-2 border-slate-300 mb-10  "></div>
+  <div class="w-full opacity-50 border-2 border-slate-300 mb-10  "></div>
 
-<div class="flex items-start justify-between mx-36 mb-10 gap-36">
-  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
-    <h3 class="text-gray-800 text-xl font-bold">
-      Project Category
-      <span class="text-red-600">*</span>
-    </h3>
-    <p class="text-neutral-500 text-base font-normal">
-      Assist potential backers in discovering your campaign by <br/>
-      choosing the category that best aligns with your project. <br/>
-      This ensures that your project appears in relevant searches <br/>
-      and increases its visibility to the right audience.
-    </p>
-  </div>
-  <div class="flex-1 flex justify-start items-center gap-7">
-    <div class="flex-col flex items-stretch justify-center gap-1.5 flex-1">
-      <label class="text-neutral-500 text-base font-medium">
-        Category
-      </label>
-      <mat-form-field>
-        <mat-label class="text-neutral-500 text-base font-medium">Select a category</mat-label>
-        <mat-select [(ngModel)]="selectedCategory" name="food">
+  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Project Category
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal">
+        Assist potential backers in discovering your campaign by <br/>
+        choosing the category that best aligns with your project. <br/>
+        This ensures that your project appears in relevant searches <br/>
+        and increases its visibility to the right audience.
+      </p>
+    </div>
+    <div class="flex-1 flex justify-start items-center gap-7">
+      <div class="flex-col flex items-stretch justify-center gap-1.5 flex-1">
+        <label for="category" class="text-neutral-500 text-lg font-medium">Category</label>
+        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="category">
           @for (category of categories; track category) {
-            <mat-option [value]="category.value">{{category.viewValue}}</mat-option>
+            <option value="{{category.value}}">{{category.viewValue}}</option>
           }
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="flex-col flex items-stretch justify-center gap-1.5 flex-1">
-      <label class="text-neutral-500 text-base font-medium">
-        Sub-Category
-      </label>
-      <mat-form-field >
-        <mat-label class="text-neutral-500 text-base font-medium">Select a subCategory</mat-label>
-        <mat-select [(ngModel)]="selectedsubCategory" name="food">
+        </select>
+      </div>
+      <div class="flex-col flex items-stretch justify-center gap-1.5 flex-1">
+        <label for="subCategory" class="text-neutral-500 text-lg font-medium">Sub-Category</label>
+        <select id="subCategory"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                formControlName="subCategory"
+        >
           @for (subCategory of subCategories; track subCategory) {
-            <mat-option [value]="subCategory.value">{{subCategory.viewValue}}</mat-option>
+            <option value="{{subCategory.value}}">{{subCategory.viewValue}}</option>
           }
-        </mat-select>
-      </mat-form-field>
+        </select>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-<div class="flex items-start justify-between mx-36 mb-10 gap-36">
-  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
-    <h3 class="text-gray-800 text-xl font-bold">
-      Project Card Image
-      <span class="text-red-600">*</span>
-    </h3>
-    <p class="text-neutral-500 text-base font-normal">
+  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+
+  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Project Card Image
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal">
       Select an image that effectively captures the essence of <br/>
       your project and looks appealing across various sizes. This <br/>
       image will be featured prominently on your project page, <br/>
       throughout the Kickstarter website and mobile apps, and  <br/>
       when shared on social media channels.
-    </p>
-  </div>
-  <div class="flex-1 flex flex-col gap-4">
-    <div class="flex-col flex items-start justify-center gap-1.5">
-      <label class="text-neutral-500 text-base font-medium">
-        Location
-      </label>
-      <input type="text" placeholder="Country ..." class="self-stretch w-full
-        border border-neutral-500 rounded outline-black py-3 pl-5 placeholder:font-normal
-       placeholder:text-gray-400 placeholder:font-outfit"/>
+      </p>
     </div>
-  </div>
-</div>
-
-<div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
-
-<div class="flex items-start justify-between mx-36 mb-10 gap-36">
-  <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
-    <h3 class="text-gray-800 text-xl font-bold">
-      Project Location
-      <span class="text-red-600">*</span>
-    </h3>
-    <p class="text-neutral-500 text-base font-normal">
-      Specify the geographic location that most accurately <br/> represents the base of your project.
-      This information helps <br/> potential backers understand where your project originates <br/> and fosters
-      a sense of connection with your endeavor.
-    </p>
-  </div>
-  <div class="flex-1 flex flex-col gap-4">
-    <div class="flex items-center justify-center bg-gray-100 h-[246px] ">
-      <div class="flex items-center justify-center w-1/2 h-1/2 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
+    <div class="flex-1 flex flex-col gap-10 items-stretch">
+      <div class="flex items-center justify-center bg-gray-100 h-[246px] rounded-lg" [style.background-image]="'url(' + backgroundImage + ')'"
+      [style.background-size]="'cover'"
+      [style.background-position]="'center'">
+        <div *ngIf="!selectedFilePath" class="flex items-center justify-center w-1/2 h-1/2 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
           <div class="flex items-center justify-center w-12 h-12  rounded-full bg-gray-300 ">
             <img ngSrc="assets/upload-icon.svg" alt="Upload Icon" class="w-6 h-6" height="47" width="47">
           </div>
           <p class="text-lg text-gray-600">Upload Image</p>
+        </div>
+        <input type="file" #fileInput (change)="onFileSelected($event)" class="hidden" accept="image/*" formControlName="cardImage">
       </div>
-      <input type="file" #fileInput (change)="onFileSelected($event)" class="hidden" accept="image/*">
+      <button *ngIf="selectedFilePath" (click)="removeImage()" class=" self-center focus:outline-none w-fit text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+        Remove Image
+      </button>
     </div>
   </div>
-</div>
 
-<div class="w-full opacity-50 border-2 border-slate-300 mb-20"></div>
+  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
+  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Funding Goal
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal">
+        Establish a realistic funding goal that encompasses the <br/>
+        necessary resources to successfully complete your project.
+        <br/>
+        Remember, crowdfunding operates on an all-or-nothing  <br/>
+        basis. If your campaign doesn't reach its goal, no funds will <br/>
+        be collected. Ensure your goal reflects the true cost of your  <br/>
+        project to maximize your chances of success.
+      </p>
+    </div>
+    <div class="flex-1 flex flex-col gap-4">
+      <div class="flex-col flex items-start justify-center gap-2">
+        <label class="text-neutral-500 text-lg font-medium">
+          Your Starting Goal :
+        </label>
+        <div class="flex items-center self-stretch">
+          <label class="rounded-l border-r-0 border border-neutral-500 py-3 px-5 text-center">MAD</label>
+          <input type="number" class="justify-self-stretch w-full focus:ring-2 focus:ring-green-600
+          border border-neutral-500 focus:border-none rounded-l-none rounded py-3 pl-5 placeholder:font-normal
+         placeholder:text-gray-400 placeholder:font-outfit" formControlName="goal"/>
+        </div>
+        <p class="text-lg">including taxes and fees will be :
+          <span class="text-green-400">{{ formGroup.controls["goal"].value }} Mad </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full opacity-50 border-2 border-slate-300 mb-20"></div>
+
+  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Campaign Duration
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal">
+        How many days will you be running your campaign for? You <br/>
+        can run a campaign for any number of days, with a 60 day <br/>
+        duration maximum. Keep in mind that you will be able to <br/>
+        extend as many times as you want up until the 60 day <br/>
+        duration maximum!
+      </p>
+    </div>
+    <div class="flex-1">
+        <div class="relative flex items-center max-w-[8rem]">
+          <input type="number" min="30" max="60" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation"
+                 class="bg-gray-50 rounded border h-11 text-center text-gray-900 text-sm focus:ring-green-500 focus:border-green-500 block w-full py-2.5"
+                 formControlName="duration" />
+        </div>
+    </div>
+  </div>
+
+  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+    <div class="flex items-center justify-center mb-10">
+      <button
+              [disabled]="!formGroup.valid"
+              class="rounded-lg lg:w-[220px] w-full h-12 flex items-center  justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2 transition ease duration-300 text-base font-medium hover:bg-green-700"
+              [ngClass]="{'bg-gray-400 cursor-not-allowed hover:bg-gray-400': !formGroup.valid}">
+        <span *ngIf="!isClicked">
+          Save & Continue
+        </span>
+        <span *ngIf="isClicked">
+          <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/>
+            </svg>
+            Loading...
+        </span>
+      </button>
+    </div>
+</form>

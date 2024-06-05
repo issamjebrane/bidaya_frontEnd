@@ -5,11 +5,11 @@ import { AuthService } from '../../services/auth/auth.service';
 import { User } from '../../../types/user.types';
 
 @Component({
-  selector: 'app-resgiter',
-  templateUrl: './resgiter.component.html',
-  styleUrl: './resgiter.component.sass'
+  selector: 'app-register',
+  templateUrl: './Register.component.html',
+  styleUrl: './register.component.sass'
 })
-export class ResgiterComponent {
+export class RegisterComponent {
   registerGroupForm!:FormGroup
   buttonCLicked:boolean = false;
   error?:string

@@ -33,7 +33,7 @@ export class ProjectCreationComponent {
       isStepCompleted:false
     }
   ]
-  protected currentStep:number = 1;
+  protected currentStep:number = 2;
 
 
   constructor(private router: Router) {}
@@ -71,12 +71,9 @@ export class ProjectCreationComponent {
     if(stepNumber === 4) {
       this.router.navigate(['/home']);
     }
-    // Mark the current step as not active and completed
     this.updateStepStatus(this.currentStep, true, true);
 
-    // Update the current step
     this.currentStep = stepNumber;
 
-    // Mark the new current step as active and not completed
     this.updateStepStatus(this.currentStep, true, false);  }
 }

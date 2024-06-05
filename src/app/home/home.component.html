@@ -15,13 +15,11 @@
                       <span class="text-base">
                           Explore campaigns
                       </span>
-                      <mat-icon>arrow_right_alt</mat-icon>
                   </button>
                   <button class="lg:flex rounded-r-lg w-56 h-14 hidden items-center justify-center font-normal text-green-500 lg:px-3 lg:py-2  gap-3 border-green-500  ">
                       <span class="text-base">
                           Start a complain
                       </span>
-                      <mat-icon>arrow_right_alt</mat-icon>
                   </button>
               </div>
     </div>
@@ -55,7 +53,7 @@
                      <br/> Showcasing Diverse Projects, Backer Rewards, and the Unparalleled <br/> Experience Awaiting You!</div>
                   </div>
                 </div>
-              <button class="lg:w rounded-lg lg:w-56 w-full h-14 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base hover:bg-green-700 ">
+              <button class="lg:w rounded-lg lg:w-56 w-full h-14 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base hover:bg-green-700 " routerLink="/authentication/register">
                   <span class="text-base">
                       Create Account
                   </span>
@@ -154,8 +152,8 @@
                   </div>
                 </div>
                 <div class="star-rating">
-                  <mat-icon *ngFor="let star of stars(userComment.rating)">star</mat-icon>
-                  <mat-icon *ngIf="userComment.rating % 1 !== 0">star_half</mat-icon>
+<!--                  <mat-icon *ngFor="let star of stars(userComment.rating)">star</mat-icon>-->
+<!--                  <mat-icon *ngIf="userComment.rating % 1 !== 0">star_half</mat-icon>-->
                 </div>
               </div>
             </div>
@@ -187,7 +185,7 @@
                       <h5  style="color: #333333; font-size: 20px; font-weight: 600;margin:0;">
                           How do I start a campaign?
                       </h5>
-                      <mat-icon class="cursor-pointer">add</mat-icon>
+<!--                      <mat-icon class="cursor-pointer">add</mat-icon>-->
                   </div>
               </div>
               <div>
@@ -195,7 +193,7 @@
                       <h5  style="color: #333333; font-size: 20px; font-weight: 600;margin:0;">
                           What types of projects are allowed on BIDAYA ?
                       </h5>
-                      <mat-icon class="cursor-pointer">add</mat-icon>
+<!--                      <mat-icon class="cursor-pointer">add</mat-icon>-->
                   </div>
               </div>
               <div>
@@ -211,7 +209,7 @@
                       <h5  style="color: #333333; font-size: 20px;  font-weight: 600;margin:0;">
                           Can I contact BIDAYA for help with my campaign?
                       </h5>
-                      <mat-icon class="cursor-pointer">add</mat-icon>
+<!--                      <mat-icon class="cursor-pointer">add</mat-icon>-->
                   </div>
               </div>
           </div>

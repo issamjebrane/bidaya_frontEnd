@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-rewards',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './rewards.component.sass'
 })
 export class RewardsComponent {
-
+  @Output() stepChange = new EventEmitter<number>();
+  @Input () currentStep!: number;
 }
