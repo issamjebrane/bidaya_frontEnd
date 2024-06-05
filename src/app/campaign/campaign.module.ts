@@ -9,6 +9,7 @@ import { BasicsComponent } from './basics/basics.component';
 import { RewardsComponent } from './rewards/rewards.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SafePipe} from "./safe.pipe";
+import { BasicEditorComponent } from './basic-editor/basic-editor.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {SafePipe} from "./safe.pipe";
       StoryComponent,
       BasicsComponent,
       RewardsComponent,
-      SafePipe
+      SafePipe,
+      BasicEditorComponent
   ],
     imports: [
       ReactiveFormsModule,

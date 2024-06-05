@@ -33,28 +33,28 @@ export class BasicsComponent implements OnInit{
     this.isLoading = true;
      setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+     }, 2000);
     if (typeof window !== 'undefined') {
-      const formDataJsonString = localStorage.getItem('formData');
-      let formData;
-      console.log(this.isClicked)
-      if (formDataJsonString) {
-        formData = JSON.parse(formDataJsonString);
-        this.formGroup = new FormGroup({
-          title: new FormControl(formData.title || '', [Validators.required]),
-          subtitle: new FormControl(formData.subtitle || '', [Validators.required]),
-          category: new FormControl(formData.category || 'Art', [Validators.required]),
-          subCategory: new FormControl(formData.subCategory || 'Games', [Validators.required]),
-          location: new FormControl(formData.location || '', [Validators.required]),
-          goal: new FormControl(formData.goal || '', [Validators.required]),
-          duration: new FormControl(formData.duration || '', [Validators.required]),
-          cardImage: new FormControl('', [Validators.required]),
-        });
-      } else {
-        formData = {};
-      }
+         const formDataJsonString = localStorage.getItem('formData');
+         let formData;
+         console.log(this.isClicked)
+         if (formDataJsonString) {
+           formData = JSON.parse(formDataJsonString);
+         } else {
+           formData = {};
+         }
+         this.formGroup = new FormGroup({
+           title: new FormControl(formData.title || '', [Validators.required]),
+           subtitle: new FormControl(formData.subtitle || '', [Validators.required]),
+           category: new FormControl( formData.category || '', [Validators.required]),
+           subCategory: new FormControl( formData.subCategory || '', [Validators.required]),
+           location: new FormControl(formData.location || '', [Validators.required]),
+           goal: new FormControl(formData.goal || '', [Validators.required]),
+           duration: new FormControl(formData.duration || '', [Validators.required]),
+           cardImage: new FormControl('', [Validators.required]),
+         });
+       }
 
-    }
   }
 
   protected categories: Category[]=
