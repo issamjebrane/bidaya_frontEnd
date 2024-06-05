@@ -38,7 +38,7 @@ export class HeaderComponent {
     return this.authService.isLoggedIn();
   }
 
-  getUserFromLocalStorage(): User{
+  getUserFromLocalStorage(): User {
     return this.authService.getUserFromLocalStorage();
   }
 

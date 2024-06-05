@@ -24,13 +24,15 @@
                 </div>
                 <div class="flex flex-col items-start justify-start w-full">
                     <label for="Email" class="text-[15px] font-medium">Email <span class="text-red-500">*</span></label>
-                    <input type="Email" id="Email" placeholder="Enter your email" class="self-stretch border border-neutral-500 rounded outline-black py-2 pl-5 placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="email">
-                    <span *ngIf="loginGroupForm.get('email')?.errors?.['required'] && loginGroupForm.get('email')?.touched && loginGroupForm.get('email')?.dirty" class="text-red-500 text-[15px]">the email field is required</span>
+                  <div class=" has-[:focus]:border-black has-[:focus]:border-2 flex items-center justify-between px-2 self-stretch border border-neutral-500 rounded  py-1 ">
+                    <input type="Email" id="Email" placeholder="Enter your email" class="border-none w-full focus:outline-none placeholder:font-normal placeholder:text-gray-400 focus:ring-0 focus:ring-transparent placeholder:font-outfit" formControlName="email">
+                  </div>
+                  <span *ngIf="loginGroupForm.get('email')?.errors?.['required'] && loginGroupForm.get('email')?.touched && loginGroupForm.get('email')?.dirty" class="text-red-500 text-[15px]">the email field is required</span>
                 </div>
                 <div class="flex flex-col items-start justify-start w-full">
                     <label for="Password" class="text-[15px] font-medium">Password <span class="text-red-500">*</span></label>
-                    <div class=" has-[:focus]:border-black has-[:focus]:border-2 flex items-center justify-between px-4 self-stretch border border-neutral-500 rounded  py-2 pl-5">
-                      <input type="Password"  [attr.type]="inputType" id="Password" placeholder="Enter your password"  class=" w-full focus:outline-none placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="password">
+                    <div class=" has-[:focus]:border-black has-[:focus]:border-2 flex items-center justify-between  self-stretch border border-neutral-500 rounded  py-1">
+                      <input type="Password"  [attr.type]="inputType" id="Password" placeholder="Enter your password"  class="border-none w-full focus:outline-none focus:ring-0 focus:ring-transparent placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="password">
                       <img [src]="inputType === 'text' ? './assets/eye.svg':'./assets/eye-off.svg'"  class="hover:bg-slate-200 hover:rounded-full p-1" (click)="toggleType()" alt=""/>
                     </div>
                     <span *ngIf="loginGroupForm.get('password')?.errors?.['required'] && loginGroupForm.get('password')?.dirty && loginGroupForm.get('password')?.touched" class="text-red-500 text-[15px]">the password field is required</span>

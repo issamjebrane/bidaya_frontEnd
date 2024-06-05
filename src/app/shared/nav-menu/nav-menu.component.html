@@ -1,5 +1,5 @@
 <div [ngClass]="{'toggle' : menuToggled}" >
-  <mat-icon class="close" (click)="toggleMenu2()">close</mat-icon>
+<!--  <mat-icon class="close" (click)="toggleMenu2()">close</mat-icon>-->
   <div class="flex  gap-9 font-outfit" [ngClass]="{'menuToggled' : menuToggled}">
     <a routerLink="/home" class="link" [ngClass]="{'selectedLink' : path === 'home'}">
       Home
@@ -19,9 +19,9 @@
     <a routerLink="/authentication/register" class="link  lg:hidden" [ngClass]="{'selectedLink' : path === 'register'}">
       Sign up
     </a>
-    <label class="w-7 h-7 hover:text-green-500 lg:flex justify-center items-center hidden justify-self-start"
-           [ngClass]="{'hide' : path === 'start-a-campaign'}" (click)="toggle()" for="search">
-      <mat-icon>search</mat-icon>
+    <label class="w-7 h-7 hover:text-green-500  justify-center items-center hidden justify-self-start"
+           [ngClass]="{'hide' : path === 'start-a-campaign'}" (click)="toggle()">
+      search
     </label>
   </div>
 </div>

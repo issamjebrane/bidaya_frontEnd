@@ -17,7 +17,7 @@
             </div>
             <img src="assets/user.svg" alt="" class="lg:hidden">
             <app-nav-menu class="lg:block hidden" [path]="path" (toggleSearch)="onToggleSearch($event)" [searchToggled]="searchToggled"/>
-            <div *ngIf="isLoggedIn()" mat-button [matMenuTriggerFor]="afterMenu" class="hover:bg-green-600 hover:bg-opacity-40 cursor-pointer rounded-3xl ease-out duration-300 p-1 xl:flex hidden items-center justify-between gap-3" >
+            <div *ngIf="isLoggedIn()"  class="hover:bg-green-600 hover:bg-opacity-40 cursor-pointer rounded-3xl ease-out duration-300 p-1 xl:flex hidden items-center justify-between gap-3" >
               <div class="w-10 h-10 rounded-full bg-white overflow-hidden" >
                 <img ngSrc="assets/hero.svg" class="w-full h-full object-cover object-center" alt="" height="861" width="574">
               </div>
@@ -32,11 +32,6 @@
                   </span>
                 </div>
             </div>
-            <mat-menu #afterMenu="matMenu" xPosition="after" class="w-44">
-              <button mat-menu-item>My profile</button>
-              <button mat-menu-item>Settings</button>
-              <button mat-menu-item (click)="loggOut()">log Out</button>
-            </mat-menu>
               <div *ngIf="!isLoggedIn()" class="lg:flex items-center justify-center gap-3 hidden">
                     <button routerLink="/authentication/login" class="text-green-500 w-32 h-14 rounded-lg transition ease duration-300 hover:border-green-500 border-2 border-transparent text-base">Sign In</button>
                     <button routerLink="/authentication/register" class="bg-green-500 w-32 h-14 rounded-lg transition ease duration-300  text-white text-base hover:bg-green-700">Sign Up</button>
@@ -55,7 +50,7 @@
       </div>
     </div>
         <div class="w-7 h-7 hover:text-green-500 flex justify-center items-center" (click)="toggleSearch()">
-            <mat-icon>close</mat-icon>
+        close
         </div>
   </div>
   <div class="lg:hidden" *ngIf="menuToggled">

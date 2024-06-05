@@ -10,20 +10,16 @@
       </p>
     </div>
   </div>
-  <div class="flex items-center w-fit justify-start gap-1.5 mx-36 cursor-pointer" (click)="previousStep()">
-    <mat-icon>keyboard_backspace</mat-icon>
+  <div *ngIf="currentStep > 1" class="flex items-center w-fit justify-start gap-1.5 mx-36 cursor-pointer" (click)="previousStep()" >
     <span class="font-medium font-outfit text-lg">Return</span>
   </div>
-  <div class="flex items-center xl:gap-6 justify-between m-20 mx-36">
+  <div class="flex items-center xl:gap-6 justify-between m-10 mx-36 mb-20">
     <div *ngFor="let step of steps">
       <app-steps [step]="step" (stepChange)="onStepChange(step.stepNumber)"></app-steps>
     </div>
   </div>
-  <app-basics/>
-  <div class="flex items-center justify-center mb-20">
-    <button (click)="onStepChange(currentStep + 1)" class="rounded-lg lg:w-[220px] w-full h-12 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base font-medium hover:bg-green-700">
-      Save & Continue
-    </button>
-  </div>
+  <app-basics *ngIf="currentStep === 1" [currentStep]="currentStep" (stepChange)="onStepChange($event)" />
+  <app-story *ngIf="currentStep === 2" [currentStep]="currentStep" (stepChange)="onStepChange($event)" />
+  <app-rewards *ngIf="currentStep === 3" [currentStep]="currentStep" (stepChange)="onStepChange($event)" />
   <app-footer/>
 </div>

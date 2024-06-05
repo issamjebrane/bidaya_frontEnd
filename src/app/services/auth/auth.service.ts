@@ -24,9 +24,16 @@ export class AuthService {
     return returnedData;
   }
 
-  register(user:User):Observable<User>{
+  register(user:User):Observable<AuthenticationResponse>{
     const lowercaseUser:User = {...user,email:user.email?.toLowerCase(),firstName:user.firstName?.toLowerCase(),lastName:user.lastName?.toLowerCase()}
-    return this.http.post<User>(`${environment.API}/auth/register`,lowercaseUser);
+    let returnedData =  this.http.post<AuthenticationResponse>(`${environment.API}/auth/register`,lowercaseUser);
+    returnedData.subscribe(next => {
+      if(next.token != undefined){
+        this.setToken(next.token);
+        this.setUser({firstName:next.user.firstName,lastName:next.user.lastName});
+      }
+    })
+    return returnedData;
   }
 
   logout() {

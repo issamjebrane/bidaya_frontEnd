@@ -1,6 +1,5 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatIconModule} from '@angular/material/icon'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -10,14 +9,11 @@ import { HomeComponent } from './home/home.component';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { CardsContainerComponent } from './shared/cards-container/cards-container.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import {AuthModule} from "./auth/auth.module";
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {CampaignRoutingModule} from "./campaign/campaign-routing.module";
 import {CampaignModule} from "./campaign/campaign.module";
-import {MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
-import {MatButton, MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
@@ -32,12 +28,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   ],
     imports: [
         HttpClientModule,
-        MatProgressBarModule,
         BrowserAnimationsModule,
-        MatIconModule,
-        MatButton,
-        MatButtonModule,
-        MatMenuModule,
         BrowserModule,
         CommonModule,
         AuthModule,
@@ -45,9 +36,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         AuthRoutingModule,
         CampaignRoutingModule,
         NgOptimizedImage,
-        MatMenuTrigger,
     ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent],
     exports: [
         HeaderComponent,
