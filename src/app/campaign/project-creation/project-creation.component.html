@@ -1,7 +1,7 @@
 <div class="font-outfit">
   <div class="header mb-10">
     <app-header class="lg:text-white"/>
-    <div >
+    <div>
       <h1 class="text-center text-3xl mb-6 font-bold font-outfit text-white lg:text-4xl">
         Start Your Project With US
       </h1>
@@ -10,10 +10,13 @@
       </p>
     </div>
   </div>
-  <div *ngIf="currentStep > 1" class="flex items-center w-fit justify-start gap-1.5 mx-36 cursor-pointer" (click)="previousStep()" >
+  <div *ngIf="currentStep > 1" class="flex items-center w-fit justify-start gap-1.5 2xl:mx-60 lg:mx-36 cursor-pointer" (click)="previousStep()" >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 19L3 12M3 12L10 5M3 12H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     <span class="font-medium font-outfit text-lg">Return</span>
   </div>
-  <div class="flex items-center xl:gap-6 justify-between m-10 mx-36 mb-20">
+  <div class="lg:flex items-center 2xl:mx-60 xl:gap-6 justify-between m-10 hidden mx-36 mb-20">
     <div *ngFor="let step of steps">
       <app-steps [step]="step" (stepChange)="onStepChange(step.stepNumber)"></app-steps>
     </div>

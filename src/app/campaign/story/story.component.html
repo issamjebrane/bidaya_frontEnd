@@ -3,7 +3,7 @@
   <span class="sr-only">Loading...</span>
 </div>
 <form [formGroup]="formGroup" (ngSubmit)="submit()" *ngIf="!isLoading">
-  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Video Url
@@ -19,8 +19,8 @@
         <button type="button" (click)="submitUrl()" class="text-white absolute end-2.5 bottom-2.5 bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-100 font-medium rounded-lg text-sm px-4 py-2">Submit</button>
       </div>
     </div>
-    <div class="flex-1 flex flex-col gap-10 items-stretch">
-      <div class="flex items-center justify-center bg-gray-100 h-[246px] rounded-lg">
+    <div class="flex-1 flex flex-col gap-10 items-stretch mb-10">
+      <div class="flex items-center justify-center rounded-lg">
         <iframe [src]="videoUrlBackground | safe : 'resourceUrl'" width="560" height="315"></iframe>
       </div>
     </div>
@@ -28,7 +28,7 @@
 
   <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Video Overlay Image
@@ -57,7 +57,34 @@
     </div>
   </div>
 
-  <app-basic-editor/>
+  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Story
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal w-fit">
+        Engage potential contributors with your campaign by <br/>
+        providing details that will inspire and motivate them <br/>
+        to support you. A strong pitch is compelling,<br/> informative,
+        and easy to understand. Here's how to make yours stand out: <br/>
+        For more tips and examples, click here to learn more.
+      </p>
+    </div>
+    <div class="flex-1 flex flex-col gap-10 items-stretch border p-4 border-black rounded-lg">
+      <div class="flex items-center gap-0.5">
+        <button (click)="editor.chain().focus().toggleBold().run()" [class.active]="editor.isActive('bold')" class="editor-button" ><b>B</b></button>
+        <button (click)="editor.chain().focus().toggleItalic().run()" [class.active]="editor.isActive('italic')" class="editor-button"><i>i</i></button>
+        <button (click)="editor.chain().focus().toggleStrike().run()" [class.active]="editor.isActive('strike')" class="editor-button">Strike</button>
+        <button (click)="editor.chain().focus().toggleUnderline().run()" [class.active]="editor.isActive('underline')" class="editor-button">Underline</button>
+        <button (click)="editor.chain().focus().toggleUnderline().run()" [class.active]="editor.isActive('underline')" class="editor-button">Underline</button>
+      </div>
+        <tiptap-editor [editor]="editor" formControlName="story"></tiptap-editor>
+    </div>
+  </div>
+
 
   <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
@@ -65,7 +92,8 @@
     <button
       [disabled]="!formGroup.valid"
       class="rounded-lg lg:w-[220px] w-full h-12 flex items-center  justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2 transition ease duration-300 text-base font-medium hover:bg-green-700"
-      [ngClass]="{'bg-gray-400 cursor-not-allowed hover:bg-gray-400': !formGroup.valid}">
+      [ngClass]="{'bg-gray-400 cursor-not-allowed hover:bg-gray-400': !formGroup.valid}"
+      (click)="handleSave()">
         <span *ngIf="!isClicked">
           Save & Continue
         </span>

@@ -10,6 +10,7 @@ import { RewardsComponent } from './rewards/rewards.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SafePipe} from "./safe.pipe";
 import { BasicEditorComponent } from './basic-editor/basic-editor.component';
+import {NgxTiptapModule} from "ngx-tiptap";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { BasicEditorComponent } from './basic-editor/basic-editor.component';
       CampaignRoutingModule,
       AppModule,
       FormsModule,
-      NgOptimizedImage
+      NgOptimizedImage,
+      NgxTiptapModule
     ]
 })
 export class CampaignModule { }

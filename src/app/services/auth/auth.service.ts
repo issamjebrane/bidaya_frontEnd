@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {AuthenticationResponse, User} from '../../../types/user.types';
-import {Observable, tap} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {Observable, tap,of} from 'rxjs';
+import { HttpClient , HttpErrorResponse} from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import {Router} from "@angular/router";
+import { catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +47,13 @@ export class AuthService {
         Authorization: `Bearer ${token}`
       }
     }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.removeToken();
+          return of(null);
+        }
+        throw error;
+      }),
       tap(() => this.removeToken())
     );
   }

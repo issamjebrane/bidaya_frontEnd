@@ -2,15 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import e from "express";
 import {ProjectService} from "../../services/project/project.service";
+import {categories, moroccanCities, subCategories} from "../../values";
+import {map, Observable, startWith} from "rxjs";
 
-interface Category {
-  value: string;
-  viewValue: string;
-}
-interface SubCategory {
-  value: string;
-  viewValue: string;
-}
+
 
 @Component({
   selector: 'app-basics',
@@ -25,19 +20,25 @@ export class BasicsComponent implements OnInit{
   backgroundImage: string = '';
   formGroup!: FormGroup
   isClicked: boolean = false;
-  constructor(private projectService:ProjectService) {
+  cities = moroccanCities;
+  searchTerm = '';
+  filteredCities: string[] = [];
+  categories = categories;
+  subCategories = subCategories;
+  constructor(private projectService:ProjectService) {}
 
-  }
+
+
   isLoading: boolean = false;
   ngOnInit(): void {
     this.isLoading = true;
      setTimeout(() => {
       this.isLoading = false;
+       window.scrollTo({ top: 0, behavior: 'smooth' });
      }, 2000);
     if (typeof window !== 'undefined') {
          const formDataJsonString = localStorage.getItem('formData');
          let formData;
-         console.log(this.isClicked)
          if (formDataJsonString) {
            formData = JSON.parse(formDataJsonString);
          } else {
@@ -48,51 +49,15 @@ export class BasicsComponent implements OnInit{
            subtitle: new FormControl(formData.subtitle || '', [Validators.required]),
            category: new FormControl( formData.category || '', [Validators.required]),
            subCategory: new FormControl( formData.subCategory || '', [Validators.required]),
-           location: new FormControl(formData.location || '', [Validators.required]),
+           location: new FormControl(''),
            goal: new FormControl(formData.goal || '', [Validators.required]),
            duration: new FormControl(formData.duration || '', [Validators.required]),
            cardImage: new FormControl('', [Validators.required]),
          });
        }
-
   }
 
-  protected categories: Category[]=
-    [
-      {value: 'art', viewValue: 'Art'},
-      {value: 'comics', viewValue: 'Comics'},
-      {value: 'crafts', viewValue: 'Crafts'},
-      {value: 'dance', viewValue: 'Dance'},
-      {value: 'design', viewValue: 'Design'},
-      {value: 'fashion', viewValue: 'Fashion'},
-      {value: 'film', viewValue: 'Film & Video'},
-      {value: 'food', viewValue: 'Food'},
-      {value: 'games', viewValue: 'Games'},
-      {value: 'journalism', viewValue: 'Journalism'},
-      {value: 'music', viewValue: 'Music'},
-      {value: 'photography', viewValue: 'Photography'},
-      {value: 'publishing', viewValue: 'Publishing'},
-      {value: 'technology', viewValue: 'Technology'},
-      {value: 'theater', viewValue: 'Theater'}
-    ];
-  protected subCategories: SubCategory[]=
-    [
-      {value: 'film', viewValue: 'Film & Video'},
-      {value: 'food', viewValue: 'Food'},
-      {value: 'games', viewValue: 'Games'},
-      {value: 'journalism', viewValue: 'Journalism'},
-      {value: 'music', viewValue: 'Music'},
-      {value: 'photography', viewValue: 'Photography'},
-      {value: 'publishing', viewValue: 'Publishing'},
-      {value: 'technology', viewValue: 'Technology'},
-      {value: 'theater', viewValue: 'Theater'},
-      {value: 'art', viewValue: 'Art'},
-      {value: 'comics', viewValue: 'Comics'},
-      {value: 'crafts', viewValue: 'Crafts'},
-      {value: 'dance', viewValue: 'Dance'},
-      {value: 'design', viewValue: 'Design'},
-      {value: 'fashion', viewValue: 'Fashion'}
-    ]
+
 
 
   onFileSelected(event: Event): void {
@@ -138,4 +103,13 @@ export class BasicsComponent implements OnInit{
     }, 1000);
   }
 
+  search() {
+    const filterValue = this.formGroup.get('location')?.value.toLowerCase();
+    this.filteredCities = this.cities.filter(city => city.toLowerCase().includes(filterValue));
+  }
+
+  selectCity(city: string) {
+    this.formGroup.get('location')?.setValue(city);
+    this.filteredCities = [];
+  }
 }

@@ -1,17 +1,28 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter, Inject,
-  Input,
-  Output,
+  Input, OnDestroy,
+  Output, ViewChild,
 } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import EditorJS from "@editorjs/editorjs";
+import {BasicEditorComponent} from "../basic-editor/basic-editor.component";
+import {Editor} from "@tiptap/core";
+import StarterKit from "@tiptap/starter-kit";
+import {TextStyle} from "@tiptap/extension-text-style";
+import {Link} from "@tiptap/extension-link";
+import {Underline} from "@tiptap/extension-underline";
+import {Strike} from "@tiptap/extension-strike";
+import {Placeholder} from "@tiptap/extension-placeholder";
 
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.sass']
 })
-export class StoryComponent  {
+export class StoryComponent implements OnDestroy{
+  @ViewChild(BasicEditorComponent)
   @Output() stepChange = new EventEmitter<number>();
   @Input() currentStep!: number;
   isLoading: boolean = false;
@@ -21,16 +32,37 @@ export class StoryComponent  {
   backgroundImage: string = '';
   videoUrlBackground: string = "https://www.youtube.com/embed/watch?v=KwnTCzLNdGI";
   isVideoLoading: boolean = false;
+  value = "write your story here..."
+  editor = new Editor({
+    extensions: [
+      StarterKit,
+      TextStyle,
+      Link,
+      Underline,
+      Strike,
+      Placeholder.configure({
+        placeholder: 'Enter text here...',
+      }),
+    ],
+  });
 
+  ngOnDestroy(): void {
+    this.editor.destroy();
 
+  }
+
+  // todo add the form data to the local storage correctly
+  handleSave() {
+
+  }
 
 
   ngOnInit(): void {
     this.isLoading = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
-
       const formDataJsonString = localStorage.getItem('formData');
       let formData;
       if (formDataJsonString) {
@@ -39,10 +71,9 @@ export class StoryComponent  {
         formData = {};
       }
       this.formGroup = new FormGroup({
-        story: new FormControl(formData.story || '', [Validators.required]),
-        risks: new FormControl(formData.risks || '', [Validators.required]),
         videoUrl: new FormControl(formData.videoUrl || '', [Validators.required]),
         overlayImage: new FormControl('', [Validators.required]),
+        story: new FormControl(formData.story || this.value, [Validators.required]),
       });
 
   }
@@ -75,11 +106,11 @@ export class StoryComponent  {
         videoId = videoId.substring(0, ampersandPosition);
       }
       this.videoUrlBackground = 'https://www.youtube.com/embed/' + videoId;
-      console.log(this.videoUrlBackground)
     }
   }
 
   submit() {
-    // Add your submit logic here
+    console.log(this.formGroup.value);
+
   }
 }

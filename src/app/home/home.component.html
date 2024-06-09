@@ -1,25 +1,28 @@
 <main class="flex xl:block flex-col ">
-  <div class="bg-container flex flex-col items-stretch  justify-between relative gap-32  lg:mb-0 pt-5 pb-24">
+  <div class="bg-container flex flex-col items-stretch justify-between gap-20 lg:gap-36 lg:justify-start relative 2xl:gap-60 lg:mb-0 pt-5 pb-24">
     <app-header/>
-    <div class="flex justify-center gap-10 lg:gap-14 items-center flex-col lg:items-start lg:mx-36">
+    <div class="flex justify-center gap-10 lg:gap-14 items-center flex-col lg:items-start 2xl:mx-60 lg:mx-36">
               <div class="flex flex-col gap-4 lg:items-start justify-center items-center">
                   <h2 class=" text-gray-800 font-bold  font-outfit text-[30px] lg:text-5xl text-center lg:text-start" >
                       Join The Revolution<br/> Of Innovation
                   </h2>
                   <p class=" text-gray-800 font-normal lg:text-xl text-[14px] font-outfit text-center lg:text-start ">
-                      Empower projects, support creators, and be <br class="block lg:hidden"> part of the <br class="hidden lg:block"> morrocan community that brings <br class="block lg:hidden"> dreams to life.
+                      Empower projects, support creators, and be <br class="block lg:hidden"> part of the <br class="hidden lg:block"> Moroccan community that brings <br class="block lg:hidden"> dreams to life.
                   </p>
               </div>
-              <div class="flex lg:gap-3.5 w-[50%] gap-5 flex-col lg:flex-row lg:justify-start  justify-between items-center font-outfit lg:px-0">
-                  <button class="lg:w rounded-lg lg:w-[353px] w-full h-14 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base hover:bg-green-700 ">
+              <div class="flex lg:gap-3.5 gap-5 lg:justify-start w-full flex-row justify-center items-center font-outfit lg:px-0">
+                  <button class="rounded-lg lg:min-w-56 lg:h-12 px-8 py-4  flex items-center justify-center font-outfit bg-green-500  border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700 ">
                       <span class="text-base">
                           Explore campaigns
                       </span>
                   </button>
-                  <button class="lg:flex rounded-r-lg w-56 h-14 hidden items-center justify-center font-normal text-green-500 lg:px-3 lg:py-2  gap-3 border-green-500  ">
+                  <button routerLink="/start-a-campaign" class="hidden min-w-56 h-12 px-8 py-4 lg:flex group justify-center items-center gap-3 text-green-500 rounded-lg transition ease duration-300 hover:bg-green-500 hover:text-white border-2 border-green-500 text-base  ">
                       <span class="text-base">
-                          Start a complain
+                          Start a campaign
                       </span>
+                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg" class="group-hover:text-white" >
+                      <path d="M19.719 5.78101L18.28 7.22001L24.563 13.5H11C7.145 13.5 4 16.645 4 20.5C4 24.355 7.145 27.5 11 27.5V25.5C8.227 25.5 6 23.273 6 20.5C6 17.727 8.227 15.5 11 15.5H24.563L18.281 21.781L19.719 23.219L27.719 15.219L28.406 14.5L27.719 13.781L19.719 5.78101Z" fill="currentColor"/>
+                    </svg>
                   </button>
               </div>
     </div>
@@ -36,9 +39,9 @@
       </div>
     </div>
   </div>
-  <app-cards-container [cards]="cards"/>
-  <div class="bg-slate-100 py-20 mb-10">
-      <div class="2xl:px-36  flex lg:flex-row flex-col justify-between items-center gap-10 lg:gap-28 px-5 ">
+  <app-cards-container [cards]="cards" />
+  <div class="bg-slate-100 py-20  mb-10">
+      <div class=" lg:mx-36 flex lg:flex-row flex-col justify-between items-center gap-10 lg:gap-28 2xl:mx-60 lg:px-0 px-5 ">
           <div class="items-start gap-8 flex flex-col">
                 <div class=" top-0 justify-center items-center gap-2 flex">
                   <div class="border border-green-700 w-24"></div>
@@ -107,7 +110,7 @@
       </button>
     </div>
   <div class=" bg-slate-100 flex flex-col gap-6 xl:gap-8 xl:px-0 px-5 py-20">
-      <div class="flex justify-between flex-col items-center gap-2 2xl:px-36 ">
+      <div class="flex justify-between flex-col items-center gap-2 lg:mx-36 2xl:mx-60">
           <div class=" justify-start items-center gap-4 xl:gap-2 flex flex-grow-0 self-start">
               <div class="border border-green-700 w-12 xl:w-24"></div>
               <div class="text-green-700 text-base xl:text-2xl font-medium font-outfit">Testimonials</div>
@@ -125,7 +128,7 @@
           slides-per-view="auto"
           space-between="20"
           free-mode="true"
-          class="2xl:px-36"
+          class="lg:mx-36 2xl:mx-60"
         >
           <swiper-slide *ngFor="let userComment of userComments" class="bg-white w-72 rounded-lg shadow px-4 py-5 ">
             <div class="flex flex-col gap-7">
@@ -152,8 +155,7 @@
                   </div>
                 </div>
                 <div class="star-rating">
-<!--                  <mat-icon *ngFor="let star of stars(userComment.rating)">star</mat-icon>-->
-<!--                  <mat-icon *ngIf="userComment.rating % 1 !== 0">star_half</mat-icon>-->
+
                 </div>
               </div>
             </div>
@@ -163,9 +165,9 @@
       </div>
   </div>
 
-  <div class="lg:flex flex-col items-stretch justify-center mb-20 px-36 py-20 gap-12 hidden">
+  <div class="lg:flex flex-col items-stretch justify-center mb-20 2xl:mx-60 lg:mx-36 py-20 gap-12 hidden">
       <h1 class="header h1">Most Frequently Asked Questions (FAQ)</h1>
-      <div class="flex justify-between items-center gap-16 xl:justify-evenly">
+      <div class="flex justify-between items-center gap-16 xl:justify-between">
               <img ngSrc="./assets/qa.svg" alt="" class=" shadow-md" height="420" width="496">
           <div class="flex flex-col gap-5">
               <div>
@@ -201,7 +203,6 @@
                       <h5  style="color: #333333; font-size: 20px; font-weight: 600;margin:0;">
                           What payment methods are accepted on BIDAYA ?
                       </h5>
-                      <mat-icon class="cursor-pointer">add</mat-icon>
                   </div>
               </div>
               <div>
@@ -216,9 +217,9 @@
       </div>
   </div>
   <div class=" xl:block hidden bg-slate-100">
-      <div class="2xl:px-36 py-20 flex justify-between items-center gap-28 px-0 xl:justify-between">
-          <img class="  shadow-md" ngSrc="./assets/subscribe.svg" alt="" height="365" width="589"/>
-          <div class="justify-center items-start gap-4 flex flex-col">
+      <div class="2xl:mx-60 lg:mx-36 py-20 flex justify-between items-center gap-28 px-0 xl:justify-between">
+          <img class=" flex-1 shadow-md" ngSrc="./assets/subscribe.svg" alt="" height="365" width="589"/>
+          <div class="justify-center items-start gap-4 flex flex-col flex-1">
                 <div class=" top-0  justify-center items-center gap-2 flex">
                   <div class="border border-green-700 w-24"></div>
                     <div class="text-green-700 text-2xl font-medium font-outfit">Subscribe Now</div>
@@ -231,12 +232,10 @@
                       <div class=" text-stone-500 text-base font-normal font-outfit w-80">Subscribe Today for a Front-Row Seat to Latest News and Special Offers</div>
                   </div>
                 </div>
-                <div class="flex items-center justify-between py-2.5 px-4 bg-white  self-stretch">
-                  <input type="email" placeholder="Email Address" class="input">
-                  <button class=" px-6 py-2  font-outfit bg-green-500  text-white text-base text-center font-semibold ">
-                          Subscribe
-                  </button>
-                </div>
+            <div class="w-full relative">
+              <input type="search" class="block w-full p-4 ps-5 text-sm text-gray-900 border  rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500" placeholder="Email address" formControlName="videoUrl" required />
+              <button type="button"  class="text-white absolute end-2.5 bottom-2.5 bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-100 font-medium rounded-lg text-sm px-4 py-2">Submit</button>
+            </div>
           </div>
       </div>
   </div>

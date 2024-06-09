@@ -44,7 +44,7 @@ export class HomeComponent {
       title:'Jakob & Rryan Movies pack',
       raisedFunds:10442,
       durationDays:30,
-      type:'You-Cinema',
+      type:'CINEMA',
       careatedAt: new Date('2024-04-19')
 
     }
@@ -53,14 +53,14 @@ export class HomeComponent {
       title:'Green Fund : Sustain Earth Now',
       raisedFunds:50240,
       durationDays:60,
-      type:'Wearth',
+      type:'TECHNOLOGY',
       careatedAt: new Date('2024-04-15')
     } , {
       image:'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       title:'MSV Monitor : New Gaming Experience',
       raisedFunds:50240,
       durationDays:60,
-      type:'MSV',
+      type:'FOOD',
       careatedAt: new Date('2024-04-20')
     },
     {
@@ -68,7 +68,7 @@ export class HomeComponent {
       title:'Jakob & Rryan Movies pack',
       raisedFunds:10442,
       durationDays:30,
-      type:'You-Cinema',
+      type:'GAMING',
       careatedAt: new Date('2024-04-19')
 
     }
@@ -77,7 +77,7 @@ export class HomeComponent {
       title:'Green Fund : Sustain Earth Now',
       raisedFunds:50240,
       durationDays:30,
-      type:'Wearth',
+      type:'ENTERTAINMENT',
       careatedAt: new Date('2024-04-15')
     }
   ]

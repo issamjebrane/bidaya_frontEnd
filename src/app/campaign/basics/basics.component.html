@@ -3,7 +3,7 @@
   <span class="sr-only">Loading...</span>
 </div>
 <form [formGroup]="formGroup" (ngSubmit)="submit()" *ngIf="!isLoading && formGroup">
-  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Project Title
@@ -39,7 +39,7 @@
 
   <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Project Location
@@ -56,16 +56,29 @@
         <label class="text-neutral-500 text-base font-medium">
           Location
         </label>
-        <input type="text" placeholder="City ..." class="self-stretch w-full focus:ring-2 focus:ring-green-600
-          border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
-         placeholder:text-gray-400 placeholder:font-outfit" formControlName="location"/>
+        <div class="relative">
+          <input type="text" placeholder="City ..." class="self-stretch w-full focus:ring-2 focus:ring-green-600
+            border border-neutral-500 focus:border-none rounded py-3 pl-5 placeholder:font-normal
+            placeholder:text-gray-400 placeholder:font-outfit" formControlName="location" (input)="search()" autocomplete="off">
+          <div class="absolute z-10 mt-2 w-full bg-white rounded-md shadow-lg" *ngIf="filteredCities.length > 0">
+            <ul class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+              <li *ngFor="let city of filteredCities" class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-200" (click)="selectCity(city)">
+                <div class="flex items-center">
+                  <span class="font-normal ml-3 block truncate">
+                    {{city}}
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="w-full opacity-50 border-2 border-slate-300 mb-10  "></div>
 
-  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Project Category
@@ -105,7 +118,7 @@
 
   <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Project Card Image
@@ -139,7 +152,7 @@
 
   <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Funding Goal
@@ -175,7 +188,7 @@
 
   <div class="w-full opacity-50 border-2 border-slate-300 mb-20"></div>
 
-  <div class="flex items-start justify-between mx-36 mb-10 gap-36">
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Campaign Duration

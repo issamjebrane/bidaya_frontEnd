@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CampaignRoutingModule} from "./campaign/campaign-routing.module";
 import {CampaignModule} from "./campaign/campaign.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         AuthRoutingModule,
         CampaignRoutingModule,
         NgOptimizedImage,
+        FormsModule,
+        ReactiveFormsModule,
     ],
   providers: [
   ],
