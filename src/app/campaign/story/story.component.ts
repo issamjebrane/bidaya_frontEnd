@@ -13,9 +13,10 @@ import StarterKit from "@tiptap/starter-kit";
 import {TextStyle} from "@tiptap/extension-text-style";
 import {Link} from "@tiptap/extension-link";
 import {Underline} from "@tiptap/extension-underline";
-import {Strike} from "@tiptap/extension-strike";
-import {Placeholder} from "@tiptap/extension-placeholder";
-
+import {Color} from "@tiptap/extension-color";
+import CodeBlock from "@tiptap/extension-code-block";
+import Blockquote from '@tiptap/extension-blockquote';
+import Image from "@tiptap/extension-image";
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -32,20 +33,36 @@ export class StoryComponent implements OnDestroy{
   backgroundImage: string = '';
   videoUrlBackground: string = "https://www.youtube.com/embed/watch?v=KwnTCzLNdGI";
   isVideoLoading: boolean = false;
-  value = "write your story here..."
+  currentColor: string = '#000000'; // Default color
+  // todo implement the editor
   editor = new Editor({
     extensions: [
       StarterKit,
       TextStyle,
-      Link,
       Underline,
-      Strike,
-      Placeholder.configure({
-        placeholder: 'Enter text here...',
+      Link,
+      Color.configure({
+        types: ['textStyle'],
       }),
+      Image,
+      CodeBlock,
+      Blockquote,
     ],
+    content: `
+        <h3>
+          write your Storyyyyyyyyyy here
+        </h3>
+      `,
   });
 
+  setColor(event: Event): void {
+    const input = event.target as HTMLInputElement; // Typecast to HTMLInputElement
+    const color = input.value;
+    this.currentColor = color;
+    if (this.editor) {
+      this.editor.chain().focus().setColor(color).run();
+    }
+  }
   ngOnDestroy(): void {
     this.editor.destroy();
 
@@ -73,7 +90,6 @@ export class StoryComponent implements OnDestroy{
       this.formGroup = new FormGroup({
         videoUrl: new FormControl(formData.videoUrl || '', [Validators.required]),
         overlayImage: new FormControl('', [Validators.required]),
-        story: new FormControl(formData.story || this.value, [Validators.required]),
       });
 
   }
