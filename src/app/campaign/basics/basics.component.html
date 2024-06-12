@@ -133,10 +133,10 @@
       </p>
     </div>
     <div class="flex-1 flex flex-col gap-10 items-stretch">
-      <div class="flex items-center justify-center bg-gray-100 h-[246px] rounded-lg" [style.background-image]="'url(' + backgroundImage + ')'"
+      <div class="flex items-center justify-center bg-gray-100 h-[246px] rounded-lg" [style.background-image]="'url(' + this.projectService.backgroundImage + ')'"
       [style.background-size]="'cover'"
       [style.background-position]="'center'">
-        <div *ngIf="!selectedFilePath" class="flex items-center justify-center w-1/2 h-1/2 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
+        <div *ngIf="!this.projectService.selectedFilePath" class="flex items-center justify-center w-1/2 h-1/2 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
           <div class="flex items-center justify-center w-12 h-12  rounded-full bg-gray-300 ">
             <img ngSrc="assets/upload-icon.svg" alt="Upload Icon" class="w-6 h-6" height="47" width="47">
           </div>
@@ -144,7 +144,7 @@
         </div>
         <input type="file" #fileInput (change)="onFileSelected($event)" class="hidden" accept="image/*" formControlName="cardImage">
       </div>
-      <button *ngIf="selectedFilePath" (click)="removeImage()" class=" self-center focus:outline-none w-fit text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+      <button *ngIf="this.projectService.selectedFilePath" (click)="removeImage()" class=" self-center focus:outline-none w-fit text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
         Remove Image
       </button>
     </div>

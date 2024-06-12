@@ -52,6 +52,9 @@ export class AuthService {
           this.removeToken();
           return of(null);
         }
+        const notification = document.createElement('div');
+        notification.classList.add('fixed', 'bottom-0', 'right-0', 'm-6', 'p-4', 'bg-red-500', 'text-white', 'rounded-md', 'z-50');
+        notification.textContent = 'something went wrong please try again later';
         throw error;
       }),
       tap(() => this.removeToken())

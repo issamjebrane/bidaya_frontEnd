@@ -16,17 +16,17 @@ import {map, Observable, startWith} from "rxjs";
 export class BasicsComponent implements OnInit{
   @Output() stepChange = new EventEmitter<number>();
   @Input () currentStep!: number;
-  selectedFilePath: string = '';
-  backgroundImage: string = '';
   formGroup!: FormGroup
+
   isClicked: boolean = false;
   cities = moroccanCities;
   searchTerm = '';
   filteredCities: string[] = [];
   categories = categories;
   subCategories = subCategories;
-  constructor(private projectService:ProjectService) {}
 
+  constructor(protected projectService:ProjectService) {
+  }
 
 
   isLoading: boolean = false;
@@ -61,26 +61,13 @@ export class BasicsComponent implements OnInit{
 
 
   onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.selectedFilePath = file.name;
-      this.readFileAsDataURL(file).then(dataUrl => {
-        this.backgroundImage = dataUrl;
-      });
-    }
+    this.projectService.onFileSelected(event);
   }
   readFileAsDataURL(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (e) => resolve(e.target?.result as string);
-      reader.onerror = (e) => reject(e);
-      reader.readAsDataURL(file);
-    });
+    return this.projectService.readFileAsDataURL(file);
   }
   removeImage(): void {
-    this.selectedFilePath = '';
-    this.backgroundImage = '';
+    this.projectService.removeImage();
   }
 
   submit(): void {

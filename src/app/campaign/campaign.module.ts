@@ -12,7 +12,6 @@ import {SafePipe} from "./safe.pipe";
 import { BasicEditorComponent } from './basic-editor/basic-editor.component';
 import {NgxTiptapModule} from "ngx-tiptap";
 
-
 @NgModule({
   declarations: [
       ProjectCreationComponent,
@@ -30,7 +29,7 @@ import {NgxTiptapModule} from "ngx-tiptap";
       AppModule,
       FormsModule,
       NgOptimizedImage,
-      NgxTiptapModule
+      NgxTiptapModule,
     ]
 })
 export class CampaignModule { }

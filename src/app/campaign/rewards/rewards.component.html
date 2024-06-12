@@ -1,0 +1,87 @@
+<form [formGroup]="formGroup" >
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Offer Bakers Rewards
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal">
+        Effortlessly create and manage enticing rewards with our <br/>
+        intuitive, mobile-friendly design, ensuring a smooth and <br/>
+        engaging experience for your contributors.
+      </p>
+    </div>
+    <div class="flex-1 flex flex-col gap-4">
+      <div class="flex-col flex items-start justify-center gap-1.5">
+        <label class="text-neutral-500 text-base font-medium">
+          Title
+        </label>
+        <input type="text" class="self-stretch w-full focus:ring-2 focus:ring-green-600
+          border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
+         placeholder:text-gray-400 placeholder:font-outfit"  required/>
+      </div>
+      <div class="flex-col flex items-start justify-center gap-1.5">
+        <label class="text-neutral-500 text-base font-medium">
+          Description
+        </label>
+        <textarea type="text" class="self-stretch h-[200px] w-full focus:ring-2 focus:ring-green-600
+          border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
+         placeholder:text-gray-400 placeholder:font-outfit"></textarea>
+      </div>
+        <div class="flex-col flex items-start justify-center gap-1.5">
+          <label class="text-neutral-500 text-base font-medium">
+            Contribution Level
+            <span class="text-gray-400 font-normal">
+              ( minimum contribution amount required to receive the reward. )
+            </span>
+          </label>
+          <div class="flex items-center self-stretch">
+            <label class="rounded-l border-r-0 border border-neutral-500 py-[11px] px-5 text-center">MAD</label>
+            <input type="number" class="justify-self-stretch w-full focus:ring-2 focus:ring-green-600
+              border border-neutral-500 focus:border-none rounded-l-none rounded py-3 pl-5 placeholder:font-normal
+             placeholder:text-gray-400 placeholder:font-outfit" />
+          </div>
+        </div>
+        <!--estimated delivery date-->
+          <div class="flex-col flex items-start justify-center gap-1.5">
+            <label class="text-neutral-500 text-base font-medium">
+              Estimated Delivery Date
+            </label>
+            <div class="relative max-w-sm">
+              <input datepicker datepicker-autohide type="text" class=" border text-gray-900 text-sm rounded focus:ring-transparent focus:border-green-600 block w-full ps-3 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+              <div class="absolute inset-y-0 start-[90%] rounded-r flex items-center px-2 bg-green-500 pointer-events-none">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M15.7099 15.18L12.6099 13.33C12.0699 13.01 11.6299 12.24 11.6299 11.61V7.51001" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col gap-3 items-stretch w-full">
+              <label class="text-neutral-500 text-base font-medium">
+                Add image
+              </label>
+              <!--upload image/video-->
+                <div class="flex items-center justify-center bg-gray-100 h-[300px] rounded-lg" [style.background-image]="'url(' + this.projectService.backgroundImage + ')'"
+                     [style.background-size]="'cover'"
+                     [style.background-position]="'center'">
+                  <div *ngIf="!this.projectService.selectedFilePath" class="flex items-center justify-center w-1/2 h-1/2 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
+                    <div class="flex items-center justify-center w-12 h-12  rounded-full bg-gray-300 ">
+                      <img ngSrc="assets/upload-icon.svg" alt="Upload Icon" class="w-6 h-6" height="47" width="47">
+                    </div>
+                    <p class="text-lg text-gray-600">Upload Image</p>
+                  </div>
+                  <input type="file" #fileInput (change)="onFileSelected($event)" class="hidden" accept="image/*" formControlName="overlayImage">
+                </div>
+                <div class="flex justify-center gap-10 items-center">
+                  <button *ngIf="this.projectService.selectedFilePath" (click)="removeImage()" class=" self-center focus:outline-none w-fit text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                    Remove Image
+                  </button>
+                  <button *ngIf="this.projectService.selectedFilePath" (click)="uploadImage()" class=" self-center focus:outline-none w-fit text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                    Upload the file
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+  </div>
+</form>

@@ -68,9 +68,10 @@
       <p class="text-neutral-500 text-base font-normal w-fit">
         Engage potential contributors with your campaign by <br/>
         providing details that will inspire and motivate them <br/>
-        to support you. A strong pitch is compelling,<br/> informative,
-        and easy to understand. Here's how to make yours stand out: <br/>
-        For more tips and examples, click here to learn more.
+        to support you. A strong pitch is compelling,<br/>
+        informative, and easy to understand. Here's how to <br/>
+        make yours stand out: <br/>
+        For more tips and examples, click here to <a target="_blank" href="#" class="text-blue-600 hover:underline cursor-pointer">learn more</a>.
       </p>
     </div>
     <div class="flex-1 flex flex-col gap-10 items-stretch border p-4 border-[#ced4da] rounded-lg shadow-md">
@@ -135,6 +136,59 @@
     </div>
   </div>
 
+  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+
+  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
+    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+      <h3 class="text-gray-800 text-xl font-bold">
+        Frequently Asked Questions
+        <span class="text-red-600">*</span>
+      </h3>
+      <p class="text-neutral-500 text-base font-normal">
+        The FAQ segment should encompass the key information <br/>
+        that potential backers seek when assessing your campaign. <br/>
+        Additionally, we'll furnish typical responses addressing <br/>
+        inquiries regarding crowdfunding and the operational <br/>
+        mechanics of Bidaya
+      </p>
+    </div>
+    <div class="flex-1 flex flex-col gap-4">
+      <div formArrayName="questions" *ngFor="let question of questionForms.controls; let i = index">
+        <div [formGroupName]="i">
+          <div class="flex-col flex items-start justify-center gap-1.5">
+            <label class="text-neutral-500 text-base font-medium" for="question">
+              Question
+            </label>
+            <input type="text" id="question" class="self-stretch w-full focus:ring-2 focus:ring-green-600
+              border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
+             placeholder:text-gray-400 placeholder:font-outfit" formControlName="question" required/>
+            <div *ngIf="!questionForms.at(i).get('question')?.valid && questionForms.at(i).get('question')?.touched">
+              <small class="text-red-600 font-medium">Question is required</small>
+            </div>
+          </div>
+          <div class="flex-col flex items-start justify-center gap-1.5">
+            <label class="text-neutral-500 text-base font-medium" for="answer">
+              Answer
+            </label>
+            <textarea id="answer" class="self-stretch w-full focus:ring-2 focus:ring-green-600
+              border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
+             placeholder:text-gray-400 placeholder:font-outfit" formControlName="answer"></textarea>
+            <div *ngIf="!questionForms.at(i).get('answer')?.valid && questionForms.at(i).get('answer')?.touched">
+              <small class="text-red-600 font-medium">Answer is required</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-start items-center text-green-600 gap-2 cursor-pointer" (click)="addQuestion()">
+        <svg width="24" height="24" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14.3333 27.9999C21.6971 27.9999 27.6667 22.0304 27.6667 14.6666C27.6667 7.30279 21.6971 1.33325 14.3333 1.33325C6.96954 1.33325 1 7.30279 1 14.6666C1 22.0304 6.96954 27.9999 14.3333 27.9999Z" stroke="#43A046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14.3333 9.33325V19.9999" stroke="#43A046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 14.6665H19.6667" stroke="#43A046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Add another question</span>
+      </div>
+    </div>
+  </div>
 
   <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 

@@ -3,27 +3,24 @@ import {
   Component,
   EventEmitter, Inject,
   Input, OnDestroy,
-  Output, ViewChild,
+  Output
 } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import EditorJS from "@editorjs/editorjs";
-import {BasicEditorComponent} from "../basic-editor/basic-editor.component";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Editor} from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import {TextStyle} from "@tiptap/extension-text-style";
 import {Link} from "@tiptap/extension-link";
 import {Underline} from "@tiptap/extension-underline";
 import {Color} from "@tiptap/extension-color";
-import CodeBlock from "@tiptap/extension-code-block";
 import Blockquote from '@tiptap/extension-blockquote';
-import Image from "@tiptap/extension-image";
+
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.sass']
 })
+
 export class StoryComponent implements OnDestroy{
-  @ViewChild(BasicEditorComponent)
   @Output() stepChange = new EventEmitter<number>();
   @Input() currentStep!: number;
   isLoading: boolean = false;
@@ -44,9 +41,6 @@ export class StoryComponent implements OnDestroy{
       Color.configure({
         types: ['textStyle'],
       }),
-      Image,
-      CodeBlock,
-      Blockquote,
     ],
     content: `
         <h3>
@@ -54,6 +48,7 @@ export class StoryComponent implements OnDestroy{
         </h3>
       `,
   });
+  constructor(private fb: FormBuilder) { }
 
   setColor(event: Event): void {
     const input = event.target as HTMLInputElement; // Typecast to HTMLInputElement
@@ -87,13 +82,36 @@ export class StoryComponent implements OnDestroy{
       } else {
         formData = {};
       }
-      this.formGroup = new FormGroup({
-        videoUrl: new FormControl(formData.videoUrl || '', [Validators.required]),
-        overlayImage: new FormControl('', [Validators.required]),
-      });
-
+    this.formGroup = new FormGroup({
+      videoUrl: new FormControl(formData.videoUrl || '', [Validators.required]),
+      overlayImage: new FormControl('', [Validators.required]),
+      questions: this.fb.array([this.createQuestion()])
+    });
   }
 
+  createQuestion(): FormGroup {
+    return this.fb.group({
+      question: ['', Validators.required],
+      answer: ['', Validators.required]
+    }, {validator: this.questionAnswerValidator});
+  }
+  questionAnswerValidator(formGroup: FormGroup) {
+    const question = formGroup.get('question');
+    const answer = formGroup.get('answer');
+
+    if (question?.value.trim() && answer?.value.trim()) {
+      return null;  // return null if both fields are filled
+    } else {
+      return {questionAnswer: true};  // return validation error if one of them is not filled
+    }
+  }
+  addQuestion(): void {
+    (this.formGroup.get('questions') as FormArray).push(this.createQuestion());
+  }
+
+  get questionForms() {
+    return this.formGroup.get('questions') as FormArray;
+  }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -126,7 +144,6 @@ export class StoryComponent implements OnDestroy{
   }
 
   submit() {
-    console.log(this.formGroup.value);
 
   }
 }

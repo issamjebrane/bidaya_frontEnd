@@ -1,11 +1,8 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import { Editor } from '@tiptap/core';
-import StarterKit from '@tiptap/starter-kit';
-import {TextStyle} from "@tiptap/extension-text-style";
-import {Link} from "@tiptap/extension-link";
-import {Underline} from "@tiptap/extension-underline";
-import {Strike} from "@tiptap/extension-strike";
-import {Placeholder} from "@tiptap/extension-placeholder";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
+import {ProjectService} from "../../services/project/project.service";
+
+
 
 @Component({
   selector: 'app-rewards',
@@ -14,30 +11,38 @@ import {Placeholder} from "@tiptap/extension-placeholder";
 })
 
 //todo implement the rewards component with the html side.
-export class RewardsComponent implements OnDestroy {
+export class RewardsComponent implements OnInit{
+  @Input() currentStep!: number;
   @Output() stepChange = new EventEmitter<number>();
-  @Input () currentStep!: number;
+  formGroup!: FormGroup;
+  isClicked: boolean = false;
+  isLoading: boolean = false;
 
-  editor = new Editor({
-    extensions: [
-      StarterKit,
-      TextStyle,
-      Link,
-      Underline,
-      Strike,
-      Placeholder.configure({
-        placeholder: 'Enter text here...',
-      }),
-    ],
-  });
-
-
-  value = '<p>Hello, Tiptap!</p>'; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
-
-  ngOnDestroy(): void {
-    this.editor.destroy();
+  constructor(protected projectService: ProjectService) {
 
   }
 
+  ngOnInit(): void {
+    this.formGroup = new FormGroup(
+      {
+        overlayImage: new FormControl(''),
+      }
+    )
+  }
 
+  onFileSelected(event: Event): void {
+    console.log('triggered')
+    this.projectService.onFileSelected(event);
+  }
+  readFileAsDataURL(file: File): Promise<string> {
+    return this.projectService.readFileAsDataURL(file);
+  }
+  removeImage(): void {
+    this.projectService.removeImage();
+    this.formGroup.get('overlayImage')?.reset();
+  }
+
+  uploadImage() {
+    this.projectService.uploadImage();
+  }
 }
