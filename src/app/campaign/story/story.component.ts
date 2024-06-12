@@ -1,7 +1,6 @@
 import {
-  AfterViewInit,
   Component,
-  EventEmitter, Inject,
+  EventEmitter,
   Input, OnDestroy,
   Output
 } from '@angular/core';
@@ -12,7 +11,7 @@ import {TextStyle} from "@tiptap/extension-text-style";
 import {Link} from "@tiptap/extension-link";
 import {Underline} from "@tiptap/extension-underline";
 import {Color} from "@tiptap/extension-color";
-import Blockquote from '@tiptap/extension-blockquote';
+import {ProjectService} from "../../services/project/project.service";
 
 @Component({
   selector: 'app-story',
@@ -28,9 +27,11 @@ export class StoryComponent implements OnDestroy{
   formGroup!: FormGroup;
   selectedFilePath: string = '';
   backgroundImage: string = '';
-  videoUrlBackground: string = "https://www.youtube.com/embed/watch?v=KwnTCzLNdGI";
+  videoUrlBackground: string = "";
   isVideoLoading: boolean = false;
   currentColor: string = '#000000'; // Default color
+  isUploaded: boolean = false;
+  fileUrl: string = '';
   // todo implement the editor
   editor = new Editor({
     extensions: [
@@ -48,7 +49,7 @@ export class StoryComponent implements OnDestroy{
         </h3>
       `,
   });
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,protected projectService:ProjectService) { }
 
   setColor(event: Event): void {
     const input = event.target as HTMLInputElement; // Typecast to HTMLInputElement
@@ -64,6 +65,7 @@ export class StoryComponent implements OnDestroy{
   }
 
   // todo add the form data to the local storage correctly
+
   handleSave() {
 
   }
@@ -75,7 +77,7 @@ export class StoryComponent implements OnDestroy{
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
-      const formDataJsonString = localStorage.getItem('formData');
+      const formDataJsonString = localStorage.getItem('story');
       let formData;
       if (formDataJsonString) {
         formData = JSON.parse(formDataJsonString);
@@ -84,7 +86,6 @@ export class StoryComponent implements OnDestroy{
       }
     this.formGroup = new FormGroup({
       videoUrl: new FormControl(formData.videoUrl || '', [Validators.required]),
-      overlayImage: new FormControl('', [Validators.required]),
       questions: this.fb.array([this.createQuestion()])
     });
   }
@@ -113,37 +114,86 @@ export class StoryComponent implements OnDestroy{
     return this.formGroup.get('questions') as FormArray;
   }
 
+
   onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.selectedFilePath = file.name;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.backgroundImage = e.target?.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
+    this.projectService.onFileSelected(event);
   }
 
   removeImage(): void {
-    this.selectedFilePath = '';
-    this.backgroundImage = '';
+    this.projectService.removeImage();
+    this.formGroup.get('cardImage')?.reset();
   }
 
-  submitUrl() {
-    if (this.formGroup.get('videoUrl')?.value) {
-      const youtubeUrl = this.formGroup.get('videoUrl')?.value;
-      let videoId = youtubeUrl.split('v=')[1];
-      const ampersandPosition = videoId.indexOf('&');
-      if (ampersandPosition !== -1) {
-        videoId = videoId.substring(0, ampersandPosition);
+  submitUrl(): void {
+    const url = this.formGroup.get('videoUrl')?.value;
+    let videoId: string | null = null;
+    let iframeUrl: string = '';
+
+    if (url.includes('youtube')) {
+      videoId = this.getYoutubeId(url);
+      if (videoId) {
+        iframeUrl = `https://www.youtube.com/embed/${videoId}`;
+        this.formGroup.get('videoUrl')?.setValue(iframeUrl);
+        console.log(iframeUrl)
       }
-      this.videoUrlBackground = 'https://www.youtube.com/embed/' + videoId;
+    } else if (url.includes('vimeo')) {
+      videoId = this.getVimeoId(url);
+      if (videoId) {
+        iframeUrl = `https://player.vimeo.com/video/${videoId}`;
+        this.formGroup.get('videoUrl')?.setValue(iframeUrl);
+        console.log(iframeUrl)
+      }
+    }
+
+    if (iframeUrl) {
+      this.videoUrlBackground = iframeUrl;
+    } else {
+      // Handle invalid URL
     }
   }
 
-  submit() {
+  getYoutubeId(url: string): string | null {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    console.log('match here')
+    return (match && match[2]) ? match[2] : null;
+  }
 
+  getVimeoId(url: string): string | null {
+    const regExp = /(http|https)?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+    const match = url.match(regExp);
+    console.log(match)
+    return (match && match[3]) ? match[3] : null;
+  }
+  uploadImage()
+  {
+    this.projectService.uploadImage()     .subscribe(
+      {
+        next: (data) => {
+          // @ts-ignore
+          this.fileUrl = data['filename'];
+          console.log(this.fileUrl);
+        },
+        error: (error) => {
+          console.error('Error occurred:', error);
+        },
+        complete: () => {
+          this.isUploaded = true;
+        }
+      }
+    );
+  }
+  submit() {
+    this.isClicked = true;
+    const formData = {
+      videoUrl: this.formGroup.get('videoUrl')?.value,
+      questions: this.formGroup.get('questions')?.value,
+      fileUrl: this.fileUrl
+    };
+    this.projectService.handleStepFormSubmit(formData, 'story');
+    setTimeout(() => {
+      this.isClicked = false;
+      this.stepChange.emit(this.currentStep + 1);
+    }, 2000);
   }
 }

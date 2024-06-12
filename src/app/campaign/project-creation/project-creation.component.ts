@@ -33,7 +33,7 @@ export class ProjectCreationComponent {
       isStepCompleted:false
     }
   ]
-  protected currentStep:number = 3;
+  protected currentStep:number = 1;
 
 
   constructor(private router: Router) {}

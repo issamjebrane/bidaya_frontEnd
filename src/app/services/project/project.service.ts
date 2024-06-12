@@ -13,16 +13,16 @@ export class ProjectService {
   file: any;
   constructor(private http:HttpClient) { }
 
-  handleBasicFormSubmit(formData:{}) {
+  handleStepFormSubmit(formData:{},stepName:string) {
     const formDataJsonString = JSON.stringify(formData);
-    localStorage.setItem('formData', formDataJsonString);
+    localStorage.setItem(stepName, formDataJsonString);
   }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.file = input.files[0];
-      if(this.file.size > 10485760 ){
+      if(this.file.size > 50485760 ){
         alert('File size is too big');
         return;
       }
@@ -49,7 +49,7 @@ export class ProjectService {
   uploadImage() {
     const formData = new FormData();
     formData.append('file', this.file);
-    this.http.post('http://localhost:8080/api/v1/projects/upload', formData, {
+    return this.http.post('http://localhost:8080/api/v1/projects/upload', formData, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -61,12 +61,8 @@ export class ProjectService {
           return throwError(error);
         })
       )
-      .subscribe(
-         {
-           next: (v) => console.log(v),
-          error: (e) => console.error(e),
-          complete: () => console.info('complete')
-         }
-      );
   }
+
+
+
 }

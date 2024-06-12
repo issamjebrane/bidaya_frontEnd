@@ -24,8 +24,13 @@ export class RewardsComponent implements OnInit{
 
   ngOnInit(): void {
     this.formGroup = new FormGroup(
+      // add the other form controls here corresponding to the rewards component
       {
         overlayImage: new FormControl(''),
+        title: new FormControl(''),
+        description: new FormControl(''),
+        contributionLevel: new FormControl(''),
+        estimatedDeliveryDate: new FormControl(''),
       }
     )
   }
