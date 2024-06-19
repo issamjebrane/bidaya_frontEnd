@@ -1,7 +1,7 @@
 import {
   Component,
   EventEmitter,
-  Input, OnDestroy,
+  Input, OnDestroy, OnInit,
   Output
 } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -19,19 +19,19 @@ import {ProjectService} from "../../services/project/project.service";
   styleUrls: ['./story.component.sass']
 })
 
-export class StoryComponent implements OnDestroy{
+export class StoryComponent implements OnDestroy,OnInit{
   @Output() stepChange = new EventEmitter<number>();
   @Input() currentStep!: number;
   isLoading: boolean = false;
   isClicked: boolean = false;
   formGroup!: FormGroup;
-  selectedFilePath: string = '';
-  backgroundImage: string = '';
   videoUrlBackground: string = "";
-  isVideoLoading: boolean = false;
   currentColor: string = '#000000'; // Default color
   isUploaded: boolean = false;
   fileUrl: string = '';
+  isVideoUrlValid: boolean = true;
+  selectedFilePath: string = '';
+  backgroundImage: string = '';
   // todo implement the editor
   editor = new Editor({
     extensions: [
@@ -49,10 +49,11 @@ export class StoryComponent implements OnDestroy{
         </h3>
       `,
   });
+
   constructor(private fb: FormBuilder,protected projectService:ProjectService) { }
 
   setColor(event: Event): void {
-    const input = event.target as HTMLInputElement; // Typecast to HTMLInputElement
+    const input = event.target as HTMLInputElement;
     const color = input.value;
     this.currentColor = color;
     if (this.editor) {
@@ -61,13 +62,6 @@ export class StoryComponent implements OnDestroy{
   }
   ngOnDestroy(): void {
     this.editor.destroy();
-
-  }
-
-  // todo add the form data to the local storage correctly
-
-  handleSave() {
-
   }
 
 
@@ -77,17 +71,36 @@ export class StoryComponent implements OnDestroy{
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
-      const formDataJsonString = localStorage.getItem('story');
-      let formData;
-      if (formDataJsonString) {
-        formData = JSON.parse(formDataJsonString);
-      } else {
-        formData = {};
-      }
+    const formDataJsonString = localStorage.getItem('story');
     this.formGroup = new FormGroup({
-      videoUrl: new FormControl(formData.videoUrl || '', [Validators.required]),
+      videoUrl: new FormControl( '', [Validators.required]),
       questions: this.fb.array([this.createQuestion()])
     });
+    // add the form data edtiorcontent from local storage to the editor
+
+    let formData;
+    if (formDataJsonString) {
+      formData = JSON.parse(formDataJsonString);
+      this.formGroup.get('videoUrl')?.setValue(formData.videoUrl);
+      this.fileUrl = formData.fileUrl;
+      this.isUploaded = !!formData;
+      if (formData.editorContent) {
+        this.editor.commands.setContent(formData.editorContent);
+      }
+      if (Array.isArray(formData.questions)) {
+        const questionsFormArray = (this.formGroup.get('questions') as FormArray);
+        formData.questions.forEach((question:any, index:number) => {
+          if (questionsFormArray.at(index)) {
+            questionsFormArray.at(index).setValue(question);
+          } else {
+            questionsFormArray.push(this.fb.group(question));
+          }
+        });
+      }
+    } else {
+      formData = {};
+    }
+
   }
 
   createQuestion(): FormGroup {
@@ -101,9 +114,9 @@ export class StoryComponent implements OnDestroy{
     const answer = formGroup.get('answer');
 
     if (question?.value.trim() && answer?.value.trim()) {
-      return null;  // return null if both fields are filled
+      return null;
     } else {
-      return {questionAnswer: true};  // return validation error if one of them is not filled
+      return {questionAnswer: true};
     }
   }
   addQuestion(): void {
@@ -116,12 +129,22 @@ export class StoryComponent implements OnDestroy{
 
 
   onFileSelected(event: Event): void {
-    this.projectService.onFileSelected(event);
+    const {
+      selectedFilePath,
+      readFile$
+    } = this.projectService.onFileSelected(event);
+
+    this.selectedFilePath = selectedFilePath;
+    readFile$.then((result) => {
+      this.backgroundImage = result;
+    });
+    (event.target as HTMLInputElement).value = '';
   }
 
   removeImage(): void {
     this.projectService.removeImage();
-    this.formGroup.get('cardImage')?.reset();
+    this.selectedFilePath = '';
+    this.backgroundImage = '';
   }
 
   submitUrl(): void {
@@ -134,45 +157,41 @@ export class StoryComponent implements OnDestroy{
       if (videoId) {
         iframeUrl = `https://www.youtube.com/embed/${videoId}`;
         this.formGroup.get('videoUrl')?.setValue(iframeUrl);
-        console.log(iframeUrl)
       }
     } else if (url.includes('vimeo')) {
       videoId = this.getVimeoId(url);
       if (videoId) {
         iframeUrl = `https://player.vimeo.com/video/${videoId}`;
         this.formGroup.get('videoUrl')?.setValue(iframeUrl);
-        console.log(iframeUrl)
       }
     }
 
     if (iframeUrl) {
       this.videoUrlBackground = iframeUrl;
+      this.isVideoUrlValid = true;
     } else {
-      // Handle invalid URL
+      this.isVideoUrlValid = false;
     }
   }
 
   getYoutubeId(url: string): string | null {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     const match = url.match(regExp);
-    console.log('match here')
     return (match && match[2]) ? match[2] : null;
   }
 
   getVimeoId(url: string): string | null {
     const regExp = /(http|https)?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
     const match = url.match(regExp);
-    console.log(match)
     return (match && match[3]) ? match[3] : null;
   }
-  uploadImage()
-  {
+
+  uploadImage() {
     this.projectService.uploadImage()     .subscribe(
       {
         next: (data) => {
           // @ts-ignore
           this.fileUrl = data['filename'];
-          console.log(this.fileUrl);
         },
         error: (error) => {
           console.error('Error occurred:', error);
@@ -183,11 +202,13 @@ export class StoryComponent implements OnDestroy{
       }
     );
   }
+
   submit() {
     this.isClicked = true;
     const formData = {
       videoUrl: this.formGroup.get('videoUrl')?.value,
       questions: this.formGroup.get('questions')?.value,
+      editorContent: this.editor.getHTML(),
       fileUrl: this.fileUrl
     };
     this.projectService.handleStepFormSubmit(formData, 'story');

@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -6,7 +6,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { PagesLayoutComponent } from './layouts/pages-layout/pages-layout.component';
 import { HomeComponent } from './home/home.component';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {CommonModule, NgOptimizedImage, registerLocaleData} from '@angular/common';
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { CardsContainerComponent } from './shared/cards-container/cards-container.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
@@ -16,6 +16,10 @@ import {CampaignRoutingModule} from "./campaign/campaign-routing.module";
 import {CampaignModule} from "./campaign/campaign.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr, 'fr');
+
 
 @NgModule({
   declarations: [
@@ -41,6 +45,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         ReactiveFormsModule,
     ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent],
     exports: [

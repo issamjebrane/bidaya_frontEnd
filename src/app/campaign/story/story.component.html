@@ -40,27 +40,27 @@
       </p>
     </div>
     <div class="flex-1 flex flex-col gap-10 items-stretch">
-      <div *ngIf="!isUploaded" class="flex items-center flex-col gap-3 justify-center bg-gray-100 h-[300px] rounded-lg" [style.background-image]="'url(' + this.projectService.backgroundImage + ')'"
+      <div *ngIf="!isUploaded" class="flex items-center w-[659px] h-[460px]  flex-col gap-3 justify-center bg-gray-100 rounded-lg" [style.background-image]="'url(' + this.backgroundImage + ')'"
            [style.background-size]="'cover'"
            [style.background-position]="'center'">
-        <div *ngIf="!this.projectService.selectedFilePath" class="flex items-center flex-col justify-center w-1/4 h-1/3 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
+        <div *ngIf="!this.selectedFilePath" class="flex items-center flex-col justify-center w-1/4 h-1/3 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
           <div class="flex items-center justify-center w-10 h-10  rounded-full bg-gray-300 ">
             <img ngSrc="assets/upload-icon.svg" alt="Upload Icon" class="w-6 h-6" height="47" width="47">
           </div>
         </div>
         <input  type="file" #fileInput (change)="onFileSelected($event)" class="hidden" accept="image/*">
-        <p class="px-1.5 text-sm text-gray-400 text-center" *ngIf="!this.projectService.selectedFilePath" >
+        <p class="px-1.5 text-sm text-gray-400 text-center" *ngIf="!this.selectedFilePath" >
           Image specifications: JPG, PNG, GIF, or WEBP, 3:2 ratio, 348 x 232 pixels, 50 MB maximum.
         </p>
       </div>
-      <div *ngIf="isUploaded" class="flex items-center flex-col gap-3 justify-center bg-gray-100 h-[300px] rounded-lg text-green-600">
+      <div *ngIf="isUploaded" class="flex items-center flex-col gap-3 justify-center bg-gray-100 w-[659px] h-[460px]  rounded-lg text-green-600">
         image uploaded successfully
       </div>
       <div class="flex justify-center gap-10 items-center" *ngIf="!isUploaded">
-        <button *ngIf="this.projectService.selectedFilePath" type="button" (click)="removeImage()" class=" self-center focus:outline-none w-fit text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+        <button *ngIf="this.selectedFilePath" type="button" (click)="removeImage()" class=" self-center focus:outline-none w-fit text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
           Remove Image
         </button>
-        <button type="button" *ngIf="this.projectService.selectedFilePath" (click)="uploadImage()" class=" self-center focus:outline-none w-fit text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+        <button type="button" *ngIf="this.selectedFilePath" (click)="uploadImage()" class=" self-center focus:outline-none w-fit text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
           Upload the file
         </button>
       </div>
@@ -135,7 +135,7 @@
         </button>
       </div>
 
-        <tiptap-editor [editor]="editor" class="text-editor"></tiptap-editor>
+        <tiptap-editor [editor]="editor" class="text-editor" ></tiptap-editor>
     </div>
   </div>
 
@@ -155,7 +155,7 @@
         mechanics of Bidaya
       </p>
     </div>
-    <div class="flex-1 flex flex-col gap-4">
+    <div class="flex-1 flex flex-col gap-10">
       <div formArrayName="questions" *ngFor="let question of questionForms.controls; let i = index">
         <div [formGroupName]="i">
           <div class="flex-col flex items-start justify-center gap-1.5">
@@ -173,7 +173,7 @@
             <label class="text-neutral-500 text-base font-medium" for="answer">
               Answer
             </label>
-            <textarea id="answer" class="self-stretch w-full focus:ring-2 focus:ring-green-600
+            <textarea id="answer" class="self-stretch w-full focus:ring-2 focus:ring-green-600 h-[150px]
               border border-neutral-500 focus:border-none  rounded py-3 pl-5 placeholder:font-normal
              placeholder:text-gray-400 placeholder:font-outfit" formControlName="answer"></textarea>
             <div *ngIf="!questionForms.at(i).get('answer')?.valid && questionForms.at(i).get('answer')?.touched">
@@ -199,8 +199,7 @@
     <button
       [disabled]="!formGroup.valid"
       class="rounded-lg lg:w-[220px] w-full h-12 flex items-center  justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2 transition ease duration-300 text-base font-medium hover:bg-green-700"
-      [ngClass]="{'bg-gray-400 cursor-not-allowed hover:bg-gray-400': !formGroup.valid}"
-      (click)="handleSave()">
+      [ngClass]="{'bg-gray-400 cursor-not-allowed hover:bg-gray-400': !formGroup.valid}">
         <span *ngIf="!isClicked">
           Save & Continue
         </span>

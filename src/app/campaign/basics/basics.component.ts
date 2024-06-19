@@ -22,6 +22,8 @@ export class BasicsComponent implements OnInit{
   subCategories = subCategories;
   fileUrl: string = '';
   isUploaded: boolean = false;
+  selectedFilePath: string = '';
+  backgroundImage: string = '';
   constructor(protected projectService:ProjectService) {
   }
 
@@ -37,6 +39,8 @@ export class BasicsComponent implements OnInit{
          let formData;
          if (formDataJsonString) {
            formData = JSON.parse(formDataJsonString);
+           this.isUploaded = !!formData;
+           this.fileUrl = formData.cardImage;
          } else {
            formData = {};
          }
@@ -55,14 +59,24 @@ export class BasicsComponent implements OnInit{
 
 
   onFileSelected(event: Event): void {
-    this.projectService.onFileSelected(event);
+    const {
+      selectedFilePath,
+      readFile$
+    } = this.projectService.onFileSelected(event);
+
+    this.selectedFilePath = selectedFilePath;
+    readFile$.then((result) => {
+      this.backgroundImage = result;
+      this.formGroup.controls['cardImage'].setValue(this.selectedFilePath);
+    });
+    (event.target as HTMLInputElement).value = '';
   }
 
   removeImage(): void {
     this.projectService.removeImage();
-    this.formGroup.get('cardImage')?.reset();
+    this.selectedFilePath = '';
+    this.backgroundImage = '';
   }
-
 
 
   onInputChange(event: Event,controlName :string): void {
@@ -115,7 +129,6 @@ export class BasicsComponent implements OnInit{
       duration: this.formGroup.get('duration')?.value,
       cardImage: this.fileUrl
     }
-
       setTimeout(() => {
       this.isClicked = false;
       this.projectService.handleStepFormSubmit(formData,'basicForm');

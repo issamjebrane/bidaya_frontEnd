@@ -8,8 +8,6 @@ import {throwError} from "rxjs";
   providedIn: 'root'
 })
 export class ProjectService {
-  selectedFilePath: string = '';
-  backgroundImage: string = '';
   file: any;
   constructor(private http:HttpClient) { }
 
@@ -18,19 +16,28 @@ export class ProjectService {
     localStorage.setItem(stepName, formDataJsonString);
   }
 
-  onFileSelected(event: Event): void {
+  onFileSelected(event: Event): {readFile$:Promise<string>,selectedFilePath:string} {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.file = input.files[0];
       if(this.file.size > 50485760 ){
         alert('File size is too big');
-        return;
+        return{
+          readFile$:new Promise((resolve,reject)=>{}),
+          selectedFilePath:''
+        };
       }
-      this.selectedFilePath = this.file.name;
-      this.readFileAsDataURL(this.file).then(dataUrl => {
-        this.backgroundImage = dataUrl;
-      });
+      const selectedFilePath = this.file.name;
+      let backgroundImage = '';
+      return {
+        readFile$:this.readFileAsDataURL(this.file),
+        selectedFilePath:selectedFilePath,
+      }
     }
+  return {
+    readFile$:new Promise((resolve,reject)=>{}),
+    selectedFilePath:''
+  } ;
   }
   readFileAsDataURL(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -41,8 +48,6 @@ export class ProjectService {
     });
   }
   removeImage(): void {
-    this.selectedFilePath = '';
-    this.backgroundImage = '';
     this.file = null;
   }
 
@@ -62,7 +67,5 @@ export class ProjectService {
         })
       )
   }
-
-
 
 }

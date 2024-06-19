@@ -44,7 +44,6 @@ export class RegisterComponent {
         setTimeout(()=>{
           this.buttonCLicked = false;
           //@ts-ignore
-          localStorage.setItem('id',value.id?.toString())
           this.router.navigate(['/home'])
         },2000)
       },
