@@ -15,7 +15,6 @@ import { CampaignNotFoundComponent } from './campaign-not-found/campaign-not-fou
 import {HeaderComponent} from "../shared/header/header.component";
 import {SharedModule} from "../shared/shared.module";
 
-
 @NgModule({
   declarations: [
       ProjectCreationComponent,
@@ -35,7 +34,7 @@ import {SharedModule} from "../shared/shared.module";
       CampaignRoutingModule,
       FormsModule,
       NgOptimizedImage,
-      NgxTiptapModule
+      NgxTiptapModule,
     ]
 })
 export class CampaignModule { }

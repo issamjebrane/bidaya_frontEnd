@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import e from "express";
 import {ProjectService} from "../../services/project/project.service";
 import {categories, moroccanCities, subCategories} from "../../values";
-import {map, Observable, startWith} from "rxjs";
 
 
 
@@ -16,18 +14,18 @@ import {map, Observable, startWith} from "rxjs";
 export class BasicsComponent implements OnInit{
   @Output() stepChange = new EventEmitter<number>();
   @Input () currentStep!: number;
-  selectedFilePath: string = '';
-  backgroundImage: string = '';
   formGroup!: FormGroup
   isClicked: boolean = false;
   cities = moroccanCities;
-  searchTerm = '';
   filteredCities: string[] = [];
   categories = categories;
   subCategories = subCategories;
-  constructor(private projectService:ProjectService) {}
-
-
+  fileUrl: string = '';
+  isUploaded: boolean = false;
+  selectedFilePath: string = '';
+  backgroundImage: string = '';
+  constructor(protected projectService:ProjectService) {
+  }
 
   isLoading: boolean = false;
   ngOnInit(): void {
@@ -37,10 +35,12 @@ export class BasicsComponent implements OnInit{
        window.scrollTo({ top: 0, behavior: 'smooth' });
      }, 2000);
     if (typeof window !== 'undefined') {
-         const formDataJsonString = localStorage.getItem('formData');
+         const formDataJsonString = localStorage.getItem('basicForm');
          let formData;
          if (formDataJsonString) {
            formData = JSON.parse(formDataJsonString);
+           this.isUploaded = !!formData;
+           this.fileUrl = formData.cardImage;
          } else {
            formData = {};
          }
@@ -49,58 +49,44 @@ export class BasicsComponent implements OnInit{
            subtitle: new FormControl(formData.subtitle || '', [Validators.required]),
            category: new FormControl( formData.category || '', [Validators.required]),
            subCategory: new FormControl( formData.subCategory || '', [Validators.required]),
-           location: new FormControl(''),
+           location: new FormControl(formData.location || '', [Validators.required]),
            goal: new FormControl(formData.goal || '', [Validators.required]),
            duration: new FormControl(formData.duration || '', [Validators.required]),
-           cardImage: new FormControl('', [Validators.required]),
          });
        }
   }
 
 
 
-
   onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.selectedFilePath = file.name;
-      this.readFileAsDataURL(file).then(dataUrl => {
-        this.backgroundImage = dataUrl;
-      });
-    }
-  }
-  readFileAsDataURL(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (e) => resolve(e.target?.result as string);
-      reader.onerror = (e) => reject(e);
-      reader.readAsDataURL(file);
+    const {
+      selectedFilePath,
+      readFile$
+    } = this.projectService.onFileSelected(event);
+
+    this.selectedFilePath = selectedFilePath;
+    readFile$.then((result) => {
+      this.backgroundImage = result;
+      this.formGroup.controls['cardImage'].setValue(this.selectedFilePath);
     });
+    (event.target as HTMLInputElement).value = '';
   }
+
   removeImage(): void {
+    this.projectService.removeImage();
     this.selectedFilePath = '';
     this.backgroundImage = '';
   }
 
-  submit(): void {
-      this.isClicked = true;
-    const formData = {
-      title: this.formGroup.get('title')?.value,
-      subtitle: this.formGroup.get('subtitle')?.value,
-      category: this.formGroup.get('category')?.value,
-      subCategory: this.formGroup.get('subCategory')?.value,
-      location: this.formGroup.get('location')?.value,
-      goal: this.formGroup.get('goal')?.value,
-      duration: this.formGroup.get('duration')?.value,
-      cardImage: this.formGroup.get('cardImage')?.value
-    }
 
-    setTimeout(() => {
-      this.isClicked = false;
-      this.projectService.handleBasicFormSubmit(formData);
-      this.stepChange.emit(this.currentStep + 1);
-    }, 1000);
+  onInputChange(event: Event,controlName :string): void {
+    let value = (event.target as HTMLInputElement).valueAsNumber;
+    if (value < 0) {
+      value = 0;
+    } else if (!Number.isInteger(value)) {
+      value = Math.ceil(value);
+    }
+    this.formGroup.controls[controlName].setValue(value);
   }
 
   search() {
@@ -112,4 +98,42 @@ export class BasicsComponent implements OnInit{
     this.formGroup.get('location')?.setValue(city);
     this.filteredCities = [];
   }
+
+  uploadImage() {
+    this.projectService.uploadImage()     .subscribe(
+      {
+        next: (data) => {
+          // @ts-ignore
+          this.fileUrl = data['filename'];
+          console.log(this.fileUrl);
+        },
+        error: (error) => {
+          console.error('Error occurred:', error);
+        },
+        complete: () => {
+          this.isUploaded = true;
+        }
+      }
+    );
+  }
+
+  submit(): void {
+    this.isClicked = true;
+    const formData = {
+      title: this.formGroup.get('title')?.value,
+      subtitle: this.formGroup.get('subtitle')?.value,
+      category: this.formGroup.get('category')?.value,
+      subCategory: this.formGroup.get('subCategory')?.value,
+      location: this.formGroup.get('location')?.value,
+      goal: this.formGroup.get('goal')?.value,
+      duration: this.formGroup.get('duration')?.value,
+      cardImage: this.fileUrl
+    }
+      setTimeout(() => {
+      this.isClicked = false;
+      this.projectService.handleStepFormSubmit(formData,'basicForm');
+      this.stepChange.emit(this.currentStep + 1);
+    }, 1000);
+  }
+
 }

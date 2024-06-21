@@ -1,3 +1,4 @@
+
 <div class="bg-gray-800 h-screen flex lg:flex-row flex-col items-stretch justify-between gap-1 font-outfit">
     <div class="bg-white flex-1 w-full lg:w-auto flex flex-col items-center justify-start gap-16 lg:px-20 xl:px-44 py-10 lg:order-none order-2">
         <div class="w-full hidden lg:block cursor-pointer" routerLink="/home">
@@ -39,10 +40,7 @@
                 </div>
                 <div *ngIf="error" class="text-red-500 text-center">{{error}}</div>
                 <div class="flex items-center justify-between">
-                    <div class="lg:flex items-center justify-center gap-2 hidden">
-                        <input type="checkbox" style="margin: 0;">
-                        <p style="margin: 0;">Keep me logged in</p>
-                    </div>
+
                     <a class="text-green-500 cursor-pointer font-medium" (click)="goToRegister()">
                         Forgot password?
                     </a>

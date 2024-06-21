@@ -49,12 +49,16 @@ export class AuthService {
     }).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          this.removeToken();
           return of(null);
         }
+        const notification = document.createElement('div');
+        notification.classList.add('fixed', 'bottom-0', 'right-0', 'm-6', 'p-4', 'bg-red-500', 'text-white', 'rounded-md', 'z-50');
+        notification.textContent = 'something went wrong please try again later';
         throw error;
       }),
-      tap(() => this.removeToken())
+      tap(() => {
+        this.removeToken();
+      })
     );
   }
   private setUser(user:User){
@@ -79,6 +83,10 @@ export class AuthService {
   }
   private removeToken() {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem('user');
+    localStorage.removeItem('basicForm');
+    localStorage.removeItem('story');
+    localStorage.removeItem('rewards');
   }
 
   getToken(): string | null {
