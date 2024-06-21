@@ -16,24 +16,26 @@ import {CampaignRoutingModule} from "./campaign/campaign-routing.module";
 import {CampaignModule} from "./campaign/campaign.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     PagesLayoutComponent,
     HomeComponent,
-    NavMenuComponent,
     CardsContainerComponent,
+    PageNotFoundComponent,
   ],
     imports: [
         HttpClientModule,
         BrowserAnimationsModule,
         BrowserModule,
         CommonModule,
+        SharedModule,
         AuthModule,
         AppRoutingModule,
+        CampaignModule,
         AuthRoutingModule,
         CampaignRoutingModule,
         NgOptimizedImage,
@@ -44,8 +46,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   ],
   bootstrap: [AppComponent],
     exports: [
-        HeaderComponent,
-        FooterComponent
     ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

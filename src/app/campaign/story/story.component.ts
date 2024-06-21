@@ -33,7 +33,7 @@ export class StoryComponent implements OnDestroy{
   backgroundImage: string = '';
   videoUrlBackground: string = "https://www.youtube.com/embed/watch?v=KwnTCzLNdGI";
   isVideoLoading: boolean = false;
-  currentColor: string = '#000000'; // Default color
+  currentColor: string = '#000000';
   // todo implement the editor
   editor = new Editor({
     extensions: [
@@ -56,7 +56,7 @@ export class StoryComponent implements OnDestroy{
   });
 
   setColor(event: Event): void {
-    const input = event.target as HTMLInputElement; // Typecast to HTMLInputElement
+    const input = event.target as HTMLInputElement;
     const color = input.value;
     this.currentColor = color;
     if (this.editor) {
@@ -70,7 +70,9 @@ export class StoryComponent implements OnDestroy{
 
   // todo add the form data to the local storage correctly
   handleSave() {
-
+    console.log(
+      this.editor.getHTML()
+    )
   }
 
 

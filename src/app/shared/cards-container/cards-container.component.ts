@@ -1,5 +1,6 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {Card} from '../../home/home.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cards-container',
@@ -10,6 +11,9 @@ import {Card} from '../../home/home.component';
 export class CardsContainerComponent {
   @Input() cards?:Card[]
 
+
+  constructor(private route:Router) {
+  }
 
   getDaysLeft(createdAt:Date,duration:number){
     const today = new Date()
@@ -22,5 +26,9 @@ export class CardsContainerComponent {
   getPercentage(createdAt:Date,duration:number){
     const daysLeft = this.getDaysLeft(createdAt,duration);
     return daysLeft*(100/duration)
+  }
+
+  goToCampaign(campaignTitle:string) {
+    this.route.navigate(['/campaign',campaignTitle])
   }
 }

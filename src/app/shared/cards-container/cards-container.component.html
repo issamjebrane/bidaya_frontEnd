@@ -31,7 +31,7 @@
       </div>
     </div>
   </div>
-  <div class="swiper-container-div lg:hidden block">
+  <div class="swiper-container-div lg:hidden block" >
     <swiper-container
       loop="true"
       speed="500"
@@ -39,7 +39,7 @@
       space-between="10"
       free-mode="true"
     >
-      <swiper-slide *ngFor="let card of cards"  loading="lazy" class="flex gap-4 flex-col w-60 ">
+      <swiper-slide *ngFor="let card of cards"  loading="lazy" class="flex gap-4 flex-col w-60 " >
         <div class="flex flex-col gap-2 div h-56">
           <div class="h-36 w-60">
             <img [src]="card.image" alt="" class=" rounded-lg object-cover w-full h-full">
@@ -69,7 +69,7 @@
     </ul>
   </div>
    <div class="lg:grid grid-cols-1 lg:grid-cols-3 gap-4 font-outfit gap-y-9 xl:mx-36 2xl:mx-60 hidden">
-     <div *ngFor="let card of cards" class="flex flex-col gap-5 cursor-pointer group hover-parent justify-between">
+     <div *ngFor="let card of cards" class="flex flex-col gap-5 cursor-pointer group hover-parent justify-between" (click)="goToCampaign(card.title)">
        <div class="flex flex-col gap-4 hover-effect">
          <div class="h-60 ">
            <img [src]="card.image" alt="" class="rounded-lg object-cover w-full h-full">

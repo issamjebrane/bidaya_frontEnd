@@ -3,7 +3,6 @@ import {Step} from "../../../types/user.types";
 import {Router} from "@angular/router";
 
 
-
 @Component({
   selector: 'app-project-creation',
   templateUrl: './project-creation.component.html',
