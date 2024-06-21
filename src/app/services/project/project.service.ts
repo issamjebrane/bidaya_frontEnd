@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
+import { environment } from '../../../environments/environment.development';
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
 
@@ -14,6 +14,10 @@ export class ProjectService {
   handleStepFormSubmit(formData:{},stepName:string) {
     const formDataJsonString = JSON.stringify(formData);
     localStorage.setItem(stepName, formDataJsonString);
+    if(stepName === 'rewards'){
+  // uploading all project data to the server
+      this.uploadProjectData();
+    }
   }
 
   onFileSelected(event: Event): {readFile$:Promise<string>,selectedFilePath:string} {
@@ -68,4 +72,39 @@ export class ProjectService {
       )
   }
 
+  private uploadProjectData() {
+    const story = localStorage.getItem('story');
+    const basicForm = localStorage.getItem('basicForm');
+    const rewards = localStorage.getItem('rewards');
+
+    const storyObject = story ? JSON.parse(story) : null;
+    const basicFormObject = basicForm ? JSON.parse(basicForm) : null;
+    const rewardsObject = rewards ? JSON.parse(rewards) : {rewards:[]};
+    let formData = {
+      basics: basicFormObject,
+      story: storyObject,
+      rewards: rewardsObject.rewards,
+      userId:''
+    }
+    // get the user id from the token then sending it to the server with the form data
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const id =JSON.parse(atob(token.split('.')[1])).sub;
+      formData = {...formData, "userId": id};
+      this.http.post(`${environment.API}/projects/add`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }).subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (error) => {
+          console.error('Error occurred:', error);
+        }
+      });
+    }
+
+  }
 }

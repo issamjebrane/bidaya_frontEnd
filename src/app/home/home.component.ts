@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {register} from "swiper/swiper-element";
 
 export interface Card {
@@ -28,7 +28,7 @@ export interface UserComments {
   styleUrl: './home.component.sass',
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
   cards:Card[] = [
     {
@@ -126,7 +126,10 @@ export class HomeComponent {
       comment:'Thanks to BIDAYA, keep up the good work! I would like to say thank you to all your staff and all the bakers behind it.'
     }
   ]
-
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
    stars(rating:number):number[] {
     return Array(Math.floor(rating)).fill(0);
   }
