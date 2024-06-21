@@ -19,16 +19,16 @@ export class RewardsComponent implements OnInit {
   backgroundImage: string = '';
   isUploaded: boolean = false;
   fileUrl: string = '';
-  fileUrlContainer: [string] = [''];
   isCongratulation: boolean = false;
   isLoadingCongratulation: boolean = false
+
   constructor(protected projectService: ProjectService, private formBuilder: FormBuilder) {
 
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({top: 0, behavior: 'smooth'});
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
@@ -42,10 +42,9 @@ export class RewardsComponent implements OnInit {
     if (formDataJsonString) {
       formData = JSON.parse(formDataJsonString);
       this.isUploaded = !!formData;
-      this.fileUrl = formData.fileUrl;
       if (Array.isArray(formData.rewards)) {
-        const rewardsFormArray = (this.formGroup.get('rewards') as FormArray);
-        formData.rewards.forEach((reward:any, index:number) => {
+        const rewardsFormArray = this.rewards;
+        formData.rewards.forEach((reward: any, index: number) => {
           if (rewardsFormArray.at(index)) { // If the FormGroup at this index exists
             rewardsFormArray.at(index).setValue(reward); // Set its value to the corresponding object
           } else { // If the FormGroup at this index doesn't exist
@@ -65,15 +64,15 @@ export class RewardsComponent implements OnInit {
       description: ['', Validators.required],
       contributionLevel: ['', Validators.required],
       estimatedDeliveryDate: ['', Validators.required],
+      fileUrl: ['', Validators.required]
     });
   }
 
   addReward() {
     (this.formGroup.get('rewards') as FormArray).push(this.createReward());
-    console.log(this.formGroup.get('rewards')?.value);
   }
 
-  get rewards() {
+  get rewards(): FormArray{
     return this.formGroup.get('rewards') as FormArray;
   }
 
@@ -98,16 +97,16 @@ export class RewardsComponent implements OnInit {
     this.projectService.removeImage();
     this.selectedFilePath = '';
     this.backgroundImage = '';
-
   }
 
-  uploadImage() {
-    this.projectService.uploadImage()     .subscribe(
+  uploadImage(i:number) {
+    this.projectService.uploadImage().subscribe(
       {
         next: (data) => {
           // @ts-ignore
           this.fileUrl = data['filename'];
-          this.fileUrlContainer.push(this.fileUrl)
+          const reward = this.rewards.at(i);
+          reward?.get('fileUrl')?.setValue(this.fileUrl);
           console.log(this.fileUrl);
         },
         error: (error) => {
@@ -117,7 +116,8 @@ export class RewardsComponent implements OnInit {
           this.isUploaded = true;
         }
       }
-    );  }
+    );
+  }
 
 
   submit() {
@@ -126,15 +126,8 @@ export class RewardsComponent implements OnInit {
     setTimeout(() => {
       this.isLoadingCongratulation = false;
     }, 2000);
-
-    const formData = {...this.formGroup.value, 'fileUrl': this.fileUrl};
-
-      this.projectService.handleStepFormSubmit(formData, 'rewards');
+    const formData = this.formGroup.value;
+    this.projectService.handleStepFormSubmit(formData, 'rewards');
     this.isCongratulation = true;
-  }
-
-  handleDatePicker(event: Event) {
-    let dateValue = (event.target as HTMLInputElement).value;
-    console.log(dateValue);
   }
 }
