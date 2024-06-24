@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivateFn, Router } from '@angular/router';
 import {AuthService} from "./services/auth/auth.service";
 
 export const authGuard: CanActivateFn = (route, state) => {
@@ -8,17 +7,25 @@ export const authGuard: CanActivateFn = (route, state) => {
   const auth = inject(AuthService);
   // Logic to check if the user is logged in
   const isLoggedIn = auth.isLoggedIn();
+  if(isLoggedIn){
+    router.navigate(['/home']);
+    return false;
+  }
+  return true;
 
+};
+export const guestGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
+  const auth = inject(AuthService);
+  // Logic to check if the user is logged in
+  const isLoggedIn = auth.isLoggedIn();
   if (!isLoggedIn) {
     router.navigate(['/authentication/login']);
     showNotification();
     return false;
   }
-
-
   return true;
-};
-
+}
 
 function showNotification(): void {
   const notification = document.createElement('div');

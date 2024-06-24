@@ -1,12 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {AuthService} from "../../services/auth/auth.service";
+import {Component, Input, Output, EventEmitter, AfterViewInit} from '@angular/core';
+import {initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.sass'] // Use styleUrls instead of styleUrl
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements AfterViewInit{
   @Input() path?: String;
   @Input() menuToggled: Boolean = false;
   @Input() searchToggled: Boolean = false;
@@ -14,10 +14,13 @@ export class NavMenuComponent {
   @Output() toggleSearch = new EventEmitter<boolean>();
   @Output() toggleMenu = new EventEmitter<boolean>();
 
+  ngAfterViewInit() {
+    initFlowbite();
+  }
+
   toggle() {
     this.toggleSearch.emit(!this.searchToggled); // Emit the opposite of searchToggled
   }
-
 
   toggleMenu2() {
     this.toggleMenu.emit(!this.menuToggled); // Emit the opposite of menuToggled

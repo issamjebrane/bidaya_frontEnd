@@ -1,5 +1,5 @@
-<div class="flex font-outfit flex-col justify-between items-start cursor-pointer group">
-  <div class="flex items-center gap-5 ">
+<div class="lg:flex w-full  lg:w-auto font-outfit flex-col justify-between items-start cursor-pointer group  lg:mx-0">
+  <div class="lg:flex items-center gap-5 hidden">
     <p class="text-gray-800 text-2xl font-bold group-hover:text-green-600">
       0{{step?.stepNumber}}
     </p>
@@ -12,7 +12,7 @@
       </h6>
     </div>
   </div>
-  <div class="flex items-center justify-between gap-1.5" [ngClass]="{'hidden':step?.isStepActive === false}">
+  <div class="lg:flex hidden items-center justify-between gap-1.5" *ngIf="step?.isStepActive">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="12" cy="12" r="12" fill="#43A046"/>
       <path d="M16.5713 9.14282L10.2856 15.4285L7.42847 12.5714" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -21,7 +21,7 @@
       <path d="M0 2H253.5" stroke="#43A046" stroke-width="4"/>
     </svg>
   </div>
-  <div class="flex items-center justify-between gap-1.5" [ngClass]="{'hidden':step?.isStepActive === true}">
+  <div class="lg:flex hidden items-center justify-between gap-1.5" *ngIf="!step?.isStepActive">
     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="12.5" cy="12" r="12" fill="#ABBED1"/>
     </svg>
@@ -29,4 +29,23 @@
       <path d="M0.5 2H254" stroke="#ABBED1" stroke-width="4"/>
     </svg>
   </div>
+  <div class="flex lg:hidden w-full items-center  text-green-600  after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block " [ngClass]="{'after:content-none after:w-auto ':step?.stepNumber===3}">
+        <span *ngIf="step?.isStepCompleted" class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
+            <svg class="w-3.5 h-3.5 text-green-600 lg:w-4 lg:h-4 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+            </svg>
+        </span>
+        <span *ngIf="step?.isStepActive && !step?.isStepCompleted" class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+          <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="5.4375" cy="5" r="5" fill="#43A046"/>
+          </svg>
+        </span>
+        <span *ngIf="!step?.isStepActive && !step?.isStepCompleted" class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+          <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="5.4375" cy="5" r="5" fill="#D1D5DB"/>
+          </svg>
+        </span>
+  </div>
 </div>
+
+

@@ -12,7 +12,6 @@ import { BasicEditorComponent } from './basic-editor/basic-editor.component';
 import {NgxTiptapModule} from "ngx-tiptap";
 import { CampaignComponent } from './campaign/campaign.component';
 import { CampaignNotFoundComponent } from './campaign-not-found/campaign-not-found.component';
-import {HeaderComponent} from "../shared/header/header.component";
 import {SharedModule} from "../shared/shared.module";
 
 @NgModule({

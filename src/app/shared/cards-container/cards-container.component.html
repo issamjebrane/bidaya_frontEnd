@@ -39,7 +39,7 @@
       space-between="10"
       free-mode="true"
     >
-      <swiper-slide *ngFor="let card of cards"  loading="lazy" class="flex gap-4 flex-col w-60 " >
+      <swiper-slide *ngFor="let card of cards"  loading="lazy" class="flex gap-4 flex-col w-60 " (click)="goToCampaign(card.title)" >
         <div class="flex flex-col gap-2 div h-56">
           <div class="h-36 w-60">
             <img [src]="card.image" alt="" class=" rounded-lg object-cover w-full h-full">

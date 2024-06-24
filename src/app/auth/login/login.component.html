@@ -1,5 +1,5 @@
 
-<div class="bg-gray-800 h-screen flex lg:flex-row flex-col items-stretch justify-between gap-1 font-outfit">
+<div class="bg-gray-800 lg:h-screen flex lg:flex-row flex-col items-stretch justify-between gap-1 font-outfit">
     <div class="bg-white flex-1 w-full lg:w-auto flex flex-col items-center justify-start gap-16 lg:px-20 xl:px-44 py-10 lg:order-none order-2">
         <div class="w-full hidden lg:block cursor-pointer" routerLink="/home">
           <svg width="87" height="24" viewBox="0 0 87 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
                 <div class="flex flex-col items-start justify-start w-full">
                     <label for="Password" class="text-[15px] font-medium">Password <span class="text-red-500">*</span></label>
                     <div class=" has-[:focus]:border-black has-[:focus]:border-2 flex items-center justify-between  self-stretch border border-neutral-500 rounded  py-1">
-                      <input type="Password"  [attr.type]="inputType" id="Password" placeholder="Enter your password"  class="border-none w-full focus:outline-none focus:ring-0 focus:ring-transparent placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="password">
+                      <input type="Password"  [attr.type]="inputType" id="Password" placeholder="Enter your password" autocomplete="false" class="border-none w-full focus:outline-none focus:ring-0 focus:ring-transparent placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="password">
                       <img [src]="inputType === 'text' ? './assets/eye.svg':'./assets/eye-off.svg'"  class="hover:bg-slate-200 hover:rounded-full p-1" (click)="toggleType()" alt=""/>
                     </div>
                     <span *ngIf="loginGroupForm.get('password')?.errors?.['required'] && loginGroupForm.get('password')?.dirty && loginGroupForm.get('password')?.touched" class="text-red-500 text-[15px]">the password field is required</span>

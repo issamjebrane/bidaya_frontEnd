@@ -107,4 +107,14 @@ export class ProjectService {
     }
 
   }
+
+  getProject(id: number) {
+    return this.http.get(`${environment.API}/projects/project/${id}`);
+  }
+
+  removeLocalStorageDate() {
+    localStorage.removeItem('basicForm');
+    localStorage.removeItem('story');
+    localStorage.removeItem('rewards');
+  }
 }

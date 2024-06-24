@@ -33,6 +33,7 @@
     "@editorjs/paragraph": "^2.11.4",
     "@editorjs/quote": "^2.6.0",
     "@editorjs/simple-image": "^1.6.0",
+    "@popperjs/core": "^2.11.8",
     "@tiptap/core": "^2.4.0",
     "@tiptap/extension-blockquote": "^2.4.0",
     "@tiptap/extension-code-block": "^2.4.0",
@@ -71,6 +72,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
-    "typescript": "~5.3.2"
+    "typescript": "~5.3.2",
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }

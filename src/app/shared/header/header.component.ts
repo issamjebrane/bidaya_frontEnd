@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from "../../services/auth/auth.service";
 import {User} from "../../../types/user.types";
-import * as http from "node:http";
+import {initFlowbite} from "flowbite";
 
 
 @Component({
@@ -11,8 +11,7 @@ import * as http from "node:http";
   styleUrl: './header.component.sass',
 
 })
-
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
   searchToggled:Boolean = false ;
   menuToggled:Boolean = false;
@@ -20,6 +19,9 @@ export class HeaderComponent {
   overFlow:boolean = false;
    constructor(private router: ActivatedRoute,private route:Router,private authService: AuthService){}
 
+  ngAfterViewInit() {
+    initFlowbite();
+  }
    ngOnInit(){
     this.router.url.subscribe(segments=>{
        this.path = segments[0]?.path

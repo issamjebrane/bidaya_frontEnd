@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../services/project/project.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-rewards',
@@ -22,7 +23,7 @@ export class RewardsComponent implements OnInit {
   isCongratulation: boolean = false;
   isLoadingCongratulation: boolean = false
 
-  constructor(protected projectService: ProjectService, private formBuilder: FormBuilder) {
+  constructor(protected projectService: ProjectService, private formBuilder: FormBuilder, private router: Router) {
 
   }
 
@@ -129,5 +130,10 @@ export class RewardsComponent implements OnInit {
     const formData = this.formGroup.value;
     this.projectService.handleStepFormSubmit(formData, 'rewards');
     this.isCongratulation = true;
+  }
+
+  goHome() {
+    this.projectService.removeLocalStorageDate();
+    this.router.navigate(['/home']);
   }
 }

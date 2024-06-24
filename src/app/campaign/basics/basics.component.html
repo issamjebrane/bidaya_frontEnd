@@ -1,23 +1,26 @@
-<div role="status" *ngIf="isLoading" class="w-full flex items-center justify-center py-20">
+<div role="status" *ngIf="isLoading" class="w-full flex items-center justify-center py-36 lg:py-20">
   <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/></svg>
   <span class="sr-only">Loading...</span>
 </div>
-<form [formGroup]="formGroup" (ngSubmit)="submit()" *ngIf="!isLoading && formGroup">
-  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
-    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+<form [formGroup]="formGroup" (ngSubmit)="submit()" *ngIf="!isLoading && formGroup" class="">
+  <div class="flex  flex-col lg:flex-row lg:items-start lg:justify-between items-stretch 2xl:mx-60 lg:mx-36 mx-6 mb-10 lg:gap-36 gap-4">
+    <div class="flex items-start justify-center flex-col gap-2.5 lg:flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Project Title
         <span class="text-red-600">*</span>
       </h3>
-      <p class="text-neutral-500 text-base font-normal">
+      <p class="text-neutral-500 text-base font-normal hidden lg:block">
         Craft a concise yet informative title and subtitle that <br/>
         succinctly communicates the essence of your project. These <br/>
         elements will prominently feature on your project page as well
         as during the pre-launch phase.
       </p>
+      <p class="text-neutral-500 text-sm lg:hidden">
+        Craft a concise yet informative title and subtitle that succinctly communicates the essence of your project.
+      </p>
     </div>
-    <div class="flex-1 flex flex-col gap-4">
-      <div class="flex-col flex items-start justify-center gap-1.5">
+    <div class="lg:flex-1 flex flex-col gap-4">
+      <div class="flex-col  flex items-start justify-center gap-1.5">
         <label class="text-neutral-500 text-base font-medium">
           Title
         </label>
@@ -37,31 +40,34 @@
     </div>
   </div>
 
-  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+  <div class="hidden lg:block w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
-    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+  <div class="flex  flex-col lg:flex-row lg:items-start lg:justify-between items-stretch 2xl:mx-60 lg:mx-36 mx-6 mb-10 lg:gap-36 gap-4">
+    <div class="flex items-start justify-center flex-col gap-2.5 lg:flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Project Location
         <span class="text-red-600">*</span>
       </h3>
-      <p class="text-neutral-500 text-base font-normal">
+      <p class="text-neutral-500 text-base font-normal hidden lg:block">
         Specify the geographic location that most accurately <br/> represents the base of your project.
         This information helps <br/> potential backers understand where your project originates <br/> and fosters
         a sense of connection with your endeavor.
       </p>
+      <p class="text-neutral-500 text-sm lg:hidden">
+        Specify the geographic location that most accurately represents the base of your project.
+      </p>
     </div>
-    <div class="flex-1 flex flex-col gap-4">
+    <div class="lg:flex-1 flex flex-col gap-4">
       <div class="flex-col flex items-start justify-center gap-1.5">
         <label class="text-neutral-500 text-base font-medium">
           Location
         </label>
-        <div class="relative">
+        <div class="relative w-full">
           <input type="text" placeholder="City ..." class="self-stretch w-full focus:ring-2 focus:ring-green-600
             border border-neutral-500 focus:border-none rounded py-3 pl-5 placeholder:font-normal
             placeholder:text-gray-400 placeholder:font-outfit" formControlName="location" (input)="search()" autocomplete="on">
           <div class="absolute z-10 mt-2 w-full bg-white rounded-md shadow-lg" *ngIf="filteredCities.length > 0">
-            <ul class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+            <ul class="lg:max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
               <li *ngFor="let city of filteredCities" class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-200" (click)="selectCity(city)">
                 <div class="flex items-center">
                   <span class="font-normal ml-3 block truncate">
@@ -76,22 +82,25 @@
     </div>
   </div>
 
-  <div class="w-full opacity-50 border-2 border-slate-300 mb-10  "></div>
+  <div class="hidden lg:block w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
+  <div class="flex  flex-col lg:flex-row lg:items-start lg:justify-between items-stretch 2xl:mx-60 lg:mx-36 mx-6 mb-10 lg:gap-36 gap-4">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Project Category
         <span class="text-red-600">*</span>
       </h3>
-      <p class="text-neutral-500 text-base font-normal">
+      <p class="text-neutral-500 text-base font-normal hidden lg:block">
         Assist potential backers in discovering your campaign by <br/>
         choosing the category that best aligns with your project. <br/>
         This ensures that your project appears in relevant searches <br/>
         and increases its visibility to the right audience.
       </p>
+      <p class="text-neutral-500 text-sm lg:hidden">
+        Assist potential backers in discovering your campaign by choosing the category that best aligns with your project.
+      </p>
     </div>
-    <div class="flex-1 flex justify-start items-center gap-7">
+    <div class="flex-1 flex flex-col lg:flex-row justify-start items-stretch lg:items-center gap-7">
       <div class="flex-col flex items-stretch justify-center gap-1.5 flex-1">
         <label for="category" class="text-neutral-500 text-lg font-medium">Category</label>
         <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -116,27 +125,30 @@
   </div>
 
 
-  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+  <div class="hidden lg:block w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
+  <div class="flex  flex-col lg:flex-row lg:items-start lg:justify-between items-stretch 2xl:mx-60 lg:mx-36 mx-6 mb-10 lg:gap-36 gap-4">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Project Card Image
         <span class="text-red-600">*</span>
       </h3>
-      <p class="text-neutral-500 text-base font-normal">
+      <p class="text-neutral-500 text-base font-normal hidden lg:block">
       Select an image that effectively captures the essence of <br/>
       your project and looks appealing across various sizes. This <br/>
       image will be featured prominently on your project page, <br/>
       throughout the Kickstarter website and mobile apps, and  <br/>
       when shared on social media channels.
       </p>
+      <p class="text-neutral-500 text-sm lg:hidden">
+        Select an image that effectively captures the essence of your project and looks appealing across various sizes.
+      </p>
     </div>
     <div class="flex-1 flex flex-col gap-10 items-stretch">
-      <div *ngIf="!isUploaded" class="flex items-center flex-col gap-3 justify-center bg-gray-100 w-[659px] h-[460px] rounded-lg" [style.background-image]="'url(' + this.backgroundImage + ')'"
+      <div *ngIf="!isUploaded" class="flex items-center flex-col gap-3 justify-center bg-gray-100  lg:w-[659px] lg:h-[460px] h-[200px] rounded-lg" [style.background-image]="'url(' + this.backgroundImage + ')'"
       [style.background-size]="'cover'"
       [style.background-position]="'center'">
-        <div *ngIf="!this.selectedFilePath" class="flex items-center flex-col justify-center w-1/2 h-1/3 bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
+        <div *ngIf="!this.selectedFilePath" class="flex items-center flex-col justify-center w-1/2 h-1/3  bg-white gap-3.5 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-500" (click)="fileInput.click()">
           <div class="flex items-center justify-center w-10 h-10  rounded-full bg-gray-300 ">
             <img ngSrc="assets/upload-icon.svg" alt="Upload Icon" class="w-6 h-6" height="47" width="47">
           </div>
@@ -146,7 +158,7 @@
           Image specifications: JPG, PNG, GIF, or WEBP, 3:2 ratio, 348 x 232 pixels, 50 MB maximum.
         </p>
       </div>
-      <div *ngIf="isUploaded" class="flex items-center flex-col gap-3 justify-center bg-gray-100 w-[659px] h-[460px] rounded-lg text-green-600">
+      <div *ngIf="isUploaded" class="flex items-center flex-col gap-3 justify-center bg-gray-100 lg:w-[659px] lg:h-[460px] h-[200px] rounded-lg text-green-600">
         image uploaded successfully
       </div>
       <div class="flex justify-center gap-10 items-center" *ngIf="!isUploaded">
@@ -160,15 +172,15 @@
     </div>
   </div>
 
-  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+  <div class="hidden lg:block w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
+  <div class="flex  flex-col lg:flex-row lg:items-start lg:justify-between items-stretch 2xl:mx-60 lg:mx-36 mx-6 mb-10 lg:gap-36 gap-4">
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Funding Goal
         <span class="text-red-600">*</span>
       </h3>
-      <p class="text-neutral-500 text-base font-normal">
+      <p class="text-neutral-500 text-base font-normal hidden lg:block">
         Establish a realistic funding goal that encompasses the <br/>
         necessary resources to successfully complete your project.
         <br/>
@@ -176,6 +188,9 @@
         basis. If your campaign doesn't reach its goal, no funds will <br/>
         be collected. Ensure your goal reflects the true cost of your  <br/>
         project to maximize your chances of success.
+      </p>
+      <p class="text-neutral-500 text-sm lg:hidden">
+        Establish a realistic funding goal that encompasses the necessary resources to successfully complete your project.
       </p>
     </div>
     <div class="flex-1 flex flex-col gap-4">
@@ -196,24 +211,27 @@
     </div>
   </div>
 
-  <div class="w-full opacity-50 border-2 border-slate-300 mb-20"></div>
+  <div class="hidden lg:block w-full opacity-50 border-2 border-slate-300 mb-10"></div>
 
-  <div class="flex items-start justify-between flex-row 2xl:mx-60 lg:mx-36 mb-10 gap-36">
-    <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
+  <div class="flex  flex-col lg:flex-row lg:items-start lg:justify-between items-stretch 2xl:mx-60 lg:mx-36 mx-6 mb-10 lg:gap-36 gap-4">
+    <div class="flex items-start justify-center flex-col gap-2.5 lg:flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Campaign Duration
         <span class="text-red-600">*</span>
       </h3>
-      <p class="text-neutral-500 text-base font-normal">
+      <p class="text-neutral-500 text-base font-normal hidden lg:block">
         How many days will you be running your campaign for? You <br/>
         can run a campaign for any number of days, with a 60 day <br/>
         duration maximum. Keep in mind that you will be able to <br/>
         extend as many times as you want up until the 60 day <br/>
         duration maximum!
       </p>
+      <p class="text-neutral-500 text-sm lg:hidden">
+        How many days will you be running your campaign for? You can run a campaign for any number of days.
+      </p>
     </div>
-    <div class="flex-1">
-        <div class="relative flex items-center max-w-[8rem]">
+    <div class="lg:flex-1">
+        <div class="relative flex items-center lg:max-w-[8rem]">
           <input type="number" (change)="onInputChange($event,'duration')" min="30" max="60" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation"
                  class="bg-gray-50 rounded border h-11 text-center text-gray-900 text-sm focus:ring-green-500 focus:border-green-500 block w-full py-2.5"
                  formControlName="duration" />
@@ -221,22 +239,23 @@
     </div>
   </div>
 
-  <div class="w-full opacity-50 border-2 border-slate-300 mb-10"></div>
-    <div class="flex items-center justify-center mb-10">
-      <button
-              [disabled]="!formGroup.valid"
-              class="rounded-lg lg:w-[220px] w-full h-12 flex items-center  justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2 transition ease duration-300 text-base font-medium hover:bg-green-700"
-              [ngClass]="{'bg-gray-400 cursor-not-allowed hover:bg-gray-400': !formGroup.valid}">
-        <span *ngIf="!isClicked">
-          Save & Continue
-        </span>
-        <span *ngIf="isClicked">
-          <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/>
-            </svg>
-            Loading...
-        </span>
-      </button>
-    </div>
+  <div class="hidden lg:block w-full opacity-50 border-2 border-slate-300 mb-10"></div>
+
+  <div class="flex items-center justify-center lg:mx-0 mx-[20%]  self-center mb-10">
+    <button
+            [disabled]="!formGroup.valid"
+            class="rounded-lg lg:w-[220px] w-full h-12 flex items-center  justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2 transition ease duration-300 text-base font-medium hover:bg-green-700"
+            [ngClass]="{'bg-gray-400 cursor-not-allowed hover:bg-gray-400': !formGroup.valid}">
+      <span *ngIf="!isClicked">
+        Save & Continue
+      </span>
+      <span *ngIf="isClicked">
+        <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+          <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/>
+          </svg>
+          Loading...
+      </span>
+    </button>
+  </div>
 </form>

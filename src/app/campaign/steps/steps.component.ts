@@ -11,9 +11,9 @@ import {Step} from "../../../types/user.types";
 export class StepsComponent {
   @Input() step?:Step
   @Output() stepChange = new EventEmitter<Step>()
-
-  onStepClick() {
-    // @ts-ignore
-    this.stepChange.emit(this.step.stepNumber);
-  }
+  //
+  // onStepClick() {
+  //   // @ts-ignore
+  //   this.stepChange.emit(this.step.stepNumber);
+  // }
 }

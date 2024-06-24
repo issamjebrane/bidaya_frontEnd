@@ -32,12 +32,6 @@ export class StoryComponent implements OnDestroy,OnInit{
   isVideoUrlValid: boolean = true;
   selectedFilePath: string = '';
   backgroundImage: string = '';
-<<<<<<< HEAD
-  videoUrlBackground: string = "https://www.youtube.com/embed/watch?v=KwnTCzLNdGI";
-  isVideoLoading: boolean = false;
-  currentColor: string = '#000000';
-=======
->>>>>>> a1f540e1452e360d52c687b11e21530ef80eb8a6
   // todo implement the editor
   editor = new Editor({
     extensions: [
@@ -68,17 +62,6 @@ export class StoryComponent implements OnDestroy,OnInit{
   }
   ngOnDestroy(): void {
     this.editor.destroy();
-<<<<<<< HEAD
-
-  }
-
-  // todo add the form data to the local storage correctly
-  handleSave() {
-    console.log(
-      this.editor.getHTML()
-    )
-=======
->>>>>>> a1f540e1452e360d52c687b11e21530ef80eb8a6
   }
 
 

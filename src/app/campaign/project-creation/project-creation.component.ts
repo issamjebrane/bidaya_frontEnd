@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Step} from "../../../types/user.types";
 import {Router} from "@angular/router";
+import {isActive} from "@tiptap/core";
 
 
 @Component({
@@ -75,4 +76,6 @@ export class ProjectCreationComponent {
     this.currentStep = stepNumber;
 
     this.updateStepStatus(this.currentStep, true, false);  }
+
+  protected readonly isActive = isActive;
 }
