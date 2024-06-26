@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {Step} from "../../../types/user.types";
 import {Router} from "@angular/router";
-import {isActive} from "@tiptap/core";
 
 
 @Component({
@@ -38,13 +37,13 @@ export class ProjectCreationComponent {
 
   constructor(private router: Router) {}
 
-  nextStep() {
-    if (this.currentStep < this.steps.length) {
-      this.updateStepStatus(this.currentStep, false, true);
-      this.currentStep++;
-      this.updateStepStatus(this.currentStep, true, false);
-    }
-  }
+  // nextStep() {
+  //   if (this.currentStep < this.steps.length) {
+  //     this.updateStepStatus(this.currentStep, false, true);
+  //     this.currentStep++;
+  //     this.updateStepStatus(this.currentStep, true, false);
+  //   }
+  // }
 
   previousStep() {
     if (this.currentStep > 1) {
@@ -69,7 +68,9 @@ export class ProjectCreationComponent {
 
   onStepChange(stepNumber: number) {
     if(stepNumber === 4) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home']).then(() => {
+        //nothing to add here
+      });
     }
     this.updateStepStatus(this.currentStep, true, true);
 
@@ -77,5 +78,4 @@ export class ProjectCreationComponent {
 
     this.updateStepStatus(this.currentStep, true, false);  }
 
-  protected readonly isActive = isActive;
 }

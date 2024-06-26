@@ -1,0 +1,36 @@
+import {SafeUrl} from "@angular/platform-browser";
+
+export  type Campaign = {
+  basics: {
+    cardImage: string |SafeUrl,
+    title: string,
+    subtitle: string,
+    category: string,
+    location: string,
+    goal: number,
+    subCategory: string,
+    duration: number,
+  },
+  story: {
+    editorContent: string,
+    fileUrl: string | SafeUrl,
+    question:[
+      {
+        question: string,
+        answer: string
+      }
+    ],
+    videoUrl: string,
+  },
+  rewards: [
+    {
+      contributionLevel: string,
+      description: string,
+      estimatedDeliveryDate: string,
+      fileUrl: string | SafeUrl,
+      title: string,
+    }
+  ],
+  userId: string,
+  creationDate: string,
+}

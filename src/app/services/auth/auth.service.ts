@@ -30,14 +30,9 @@ export class AuthService {
 
   register(user:User):Observable<AuthenticationResponse>{
     const lowercaseUser:User = {...user,email:user.email?.toLowerCase(),firstName:user.firstName?.toLowerCase(),lastName:user.lastName?.toLowerCase()}
-    let returnedData =  this.http.post<AuthenticationResponse>(`${environment.API}/auth/register`,lowercaseUser);
-    returnedData.subscribe(next => {
-      if(next.token != undefined){
-        this.setToken(next.token);
-        this.setUser({firstName:next.user.firstName,lastName:next.user.lastName});
-      }
-    })
-    return returnedData;
+    console.log('i was called')
+    return this.http.post<AuthenticationResponse>(`${environment.API}/auth/register`,lowercaseUser);
+
   }
 
   logout() {
@@ -61,10 +56,10 @@ export class AuthService {
       })
     );
   }
-  private setUser(user:User){
+  setUser(user:User){
     localStorage?.setItem('user', JSON.stringify(user));
   }
-  private setToken(token: string) {
+  setToken(token: string) {
     localStorage.setItem(this.tokenKey, token);
   }
   getUserFromLocalStorage(): any {
@@ -98,6 +93,10 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.getToken() !== null;
+  }
+
+  getUserInformation(email:string):Observable<User>{
+    return this.http.get<User>(`${environment.API}/users/user/${email}`);
   }
 
 }

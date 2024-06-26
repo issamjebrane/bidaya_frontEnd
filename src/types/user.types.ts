@@ -4,6 +4,7 @@ export type User = {
     firstName?:string;
     lastName?:string;
     password?:string;
+    role?:string;
 }
 
 export interface AuthenticationResponse {

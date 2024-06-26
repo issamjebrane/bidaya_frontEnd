@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import { environment } from '../../../environments/environment.development';
 import {catchError} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {Observable, throwError} from "rxjs";
+import {Campaign} from "../../../types/campaign.types";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
   file: any;
-  constructor(private http:HttpClient) { }
+  private imageSrc!: SafeUrl;
+  constructor(private http:HttpClient,private sanitizer: DomSanitizer) { }
 
   handleStepFormSubmit(formData:{},stepName:string) {
     const formDataJsonString = JSON.stringify(formData);
@@ -64,6 +67,8 @@ export class ProjectService {
       }
     })
       .pipe(
+        //get the file path from the server and add it to the file URL
+
         catchError(error => {
           // Handle the error here
           console.error('Error occurred:', error);
@@ -108,8 +113,31 @@ export class ProjectService {
 
   }
 
+
+  private baseUrl = 'http://localhost:8080/api/v1/projects/images';
+
+
+  getImage(filename: string |SafeUrl): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/${filename}`, { responseType: 'blob' }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: any): Observable<never> {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
+  }
+
+
   getProject(id: number) {
-    return this.http.get(`${environment.API}/projects/project/${id}`);
+    return this.http.get<Campaign>(`${environment.API}/projects/project/${id}`);
   }
 
   removeLocalStorageDate() {

@@ -5,6 +5,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {NavMenuComponent} from "./nav-menu/nav-menu.component";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
+import { SkeletonComponent } from './skeleton/skeleton.component';
 
 
 
@@ -12,12 +13,14 @@ import {HttpClientModule} from "@angular/common/http";
   declarations: [
     HeaderComponent,
     FooterComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    SkeletonComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    SkeletonComponent
   ],
   imports: [
     CommonModule,

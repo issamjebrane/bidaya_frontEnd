@@ -1,11 +1,15 @@
-<div>
+
+<div >
   <div class="header">
     <app-header class="lg:text-white"/>
   </div>
-    <main class="flex flex-col items-center justify-center xl:py-20 pb-20 pt-0 2xl:px-56 lg:m-0 lg:px-32 bg-gray-50">
-      <section class="flex items xl:flex-row xl:w-auto w-full  flex-col justify-between gap-11 bg-white rounded-xl xl:p-4 p-0" *ngIf="!isLoading">
+
+    <main  class="flex flex-col items-center justify-center gap-16 xl:py-20 pb-20 pt-0 2xl:px-56 lg:m-0 lg:px-32 bg-gray-50">
+      <app-skeleton *ngIf="isLoading"/>
+      <section *ngIf="!isLoading" class="flex items xl:flex-row xl:w-auto w-full  flex-col justify-between gap-11 bg-white rounded-xl xl:p-4 p-0" >
         <div class="xl:flex-[5] flex-1">
-          <img src="assets/campaign-image-example.svg" alt="campaign" class="object-cover w-full h-full" />
+<!--          <img [src]="project?.basics?.cardImage" alt="campaign" class="object-cover w-full h-full" />-->
+          <img *ngIf="!isLoading" [src]="project.basics.cardImage" alt="campaign" class="object-cover w-full h-full" />
         </div>
         <div class=" xl:flex-[4] flex-1 flex flex-col items-stretch gap-5 justify-center xl:p-0 px-3">
           <div class="flex items-center justify-between">
@@ -15,8 +19,8 @@
               </div>
               <div>
                 <div class="flex items-center justify-start gap-2">
-                  <h6 class="text-base font-medium">
-                    Issam Reda
+                  <h6 class="text-lg font-medium">
+                    {{user.firstName | titlecase}} {{user.lastName | titlecase}}
                   </h6>
                   <div class="flex items-center">
                     <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -36,12 +40,12 @@
                     </svg>
                   </div>
                 </div>
-                <div class="flex items-center justify-center text-base gap-2">
-                  <span class="text-green-500 ">3 campaigns</span>
+                <div class="flex items-center justify-center text-sm gap-2">
+                  <span class="text-green-500  ">3 campaigns</span>
                   <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="2" cy="2.31543" r="2" fill="#717171"/>
                   </svg>
-                  <span class="text-gray-400">Tangier, Morocco</span>
+                  <span class="text-gray-400 ">{{ project.basics.location }}, Morocco</span>
                 </div>
               </div>
             </div>
@@ -52,51 +56,50 @@
             </div>
           </div>
           <div class="flex flex-col items-start justify-center gap-2">
-            <h2 class="xl:text-4xl text-xl font-bold">
-              Louxx JBS59 - Powered VR  Gaming Headset
+            <h2 class="xl:text-3xl text-xl font-bold">
+              {{project.basics.title}}
             </h2>
             <h5 class="font-light xl:text-base text-sm text-gray-500">
-              Join us in revolutionizing the virtual reality experience with VR World, a groundbreaking platform that immerses you in vivid,
-              interactive 3D environments. Back our campaign to help us bring cutting-edge VR adventures to life and redefine how we explore digital spaces!
+              {{project.basics.subtitle}}
             </h5>
           </div>
-            <div class="w-full bg-gray-900 rounded-full h-fit my-3">
-              <div  class="bg-green-500 text-xs font-medium text-blue-100 p-1 text-center h-fit leading-none rounded-full rounded-r-none relative" style="width: 73%">
-                <div class="absolute z-10  inline-block px-3 py-2  text-white bg-green-500 rounded-full right-[-24px] bottom-[12px]">
-                  73%
+            <div class="w-full bg-[#263238] rounded-full h-fit my-3">
+              <div  class="bg-green-500 text-xs font-medium text-blue-100 p-1 text-center h-fit leading-none rounded-full rounded-r-none relative"      [style.width.%]="percentage(project.creationDate, project.basics.duration)">
+              <div class="absolute z-10  inline-block px-3 py-2  text-white bg-green-500 rounded-full right-[-24px] bottom-[12px]">
+                  {{percentage(project.creationDate,project.basics.duration)}}%
                   <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
               </div>
             </div>
           <div class="flex items-center justify-between mb-5">
-            <div class="flex items-center justify-start gap-3">
+            <div class="flex items-center justify-start gap-2">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 8.18463H25V20.6846H16.25L15.75 18.1846H8.75V26.9346H6.25V5.68463H17.5L18 8.18463ZM17.5 18.1846H20V15.6846H22.5V13.1846H20V10.6846H17.5V13.1846L16.25 10.6846V8.18463H13.75V10.6846H11.25V8.18463H8.75V10.6846H11.25V13.1846H8.75V15.6846H11.25V13.1846H13.75V15.6846H16.25V13.1846L17.5 15.6846V18.1846ZM13.75 13.1846V10.6846H16.25V13.1846H13.75ZM17.5 13.1846H20V15.6846H17.5V13.1846Z" fill="#717171"/>
               </svg>
               <div class="flex flex-col justify-center items-start">
-                <p class="text-lg font-bold">
-                  32 000 DH
+                <p class="text-base font-bold">
+                  {{project.basics.goal  | currency:'MAD':'symbol':'1.2-2'}}
                 </p>
-                <p class="text-base text-gray-500">
+                <p class="text-sm text-gray-500">
                   Funding Goal
                 </p>
               </div>
             </div>
-            <div class="flex items-center justify-start gap-3">
+            <div class="flex items-center justify-start gap-2">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.75 14.4346V14.4471M6.46628 11.1571C5.91803 10.7358 5.49696 10.171 5.24961 9.52528C5.00225 8.87957 4.93825 8.17804 5.06467 7.49822C5.1911 6.8184 5.50302 6.18678 5.96597 5.67316C6.42892 5.15953 7.02487 4.78391 7.68795 4.58781C8.35103 4.3917 9.05542 4.38275 9.72327 4.56195C10.3911 4.74114 10.9964 5.1015 11.4723 5.60319C11.9481 6.10489 12.276 6.72838 12.4196 7.40476C12.5633 8.08115 12.5171 8.78408 12.2863 9.43587" stroke="#717171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M20 5.68463V10.4384C21.547 11.3336 22.7248 12.7502 23.3225 14.4346H24.9988C25.3303 14.4346 25.6482 14.5663 25.8827 14.8007C26.1171 15.0352 26.2488 15.3531 26.2488 15.6846V18.1846C26.2488 18.5162 26.1171 18.8341 25.8827 19.0685C25.6482 19.3029 25.3303 19.4346 24.9988 19.4346H23.3213C22.9013 20.6221 22.1875 21.6846 21.2488 22.5259V25.0596C21.2488 25.5569 21.0512 26.0338 20.6996 26.3855C20.348 26.7371 19.871 26.9346 19.3738 26.9346C18.8765 26.9346 18.3996 26.7371 18.0479 26.3855C17.6963 26.0338 17.4988 25.5569 17.4988 25.0596V24.3309C17.0857 24.4003 16.6676 24.435 16.2488 24.4346H11.2488C10.8299 24.435 10.4118 24.4003 9.99877 24.3309V25.0596C9.99877 25.5569 9.80122 26.0338 9.44959 26.3855C9.09796 26.7371 8.62105 26.9346 8.12377 26.9346C7.62649 26.9346 7.14957 26.7371 6.79794 26.3855C6.44631 26.0338 6.24877 25.5569 6.24877 25.0596V22.5259C5.11622 21.5133 4.31786 20.1807 3.95937 18.7045C3.60088 17.2282 3.69916 15.6778 4.24119 14.2587C4.78323 12.8395 5.74347 11.6183 6.99481 10.7569C8.24615 9.89549 9.72959 9.43439 11.2488 9.43463H14.3738L20 5.68463Z" stroke="#717171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <div class="flex flex-col justify-center items-start">
-                <p class="text-lg font-bold">
-                  26 532 DH
+                <p class="text-base font-bold">
+                  {{26532  | currency:'MAD':'symbol':'1.2-2'}}
                 </p>
-                <p class="text-base text-gray-500">
+                <p class="text-sm text-gray-500">
                   Total Raised
                 </p>
               </div>
             </div>
-            <div class="flex items-center justify-start gap-3">
+            <div class="flex items-center justify-start gap-2">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1782_1560)">
                   <path d="M15 3.18463C21.9037 3.18463 27.5 8.78088 27.5 15.6846C27.5 22.5884 21.9037 28.1846 15 28.1846C8.09625 28.1846 2.5 22.5884 2.5 15.6846C2.5 8.78088 8.09625 3.18463 15 3.18463ZM15 5.68463C12.3478 5.68463 9.8043 6.7382 7.92893 8.61356C6.05357 10.4889 5 13.0325 5 15.6846C5 18.3368 6.05357 20.8803 7.92893 22.7557C9.8043 24.6311 12.3478 25.6846 15 25.6846C17.6522 25.6846 20.1957 24.6311 22.0711 22.7557C23.9464 20.8803 25 18.3368 25 15.6846C25 13.0325 23.9464 10.4889 22.0711 8.61356C20.1957 6.7382 17.6522 5.68463 15 5.68463ZM15 8.18463C15.3062 8.18467 15.6017 8.29708 15.8305 8.50053C16.0593 8.70397 16.2054 8.98432 16.2413 9.28838L16.25 9.43463V15.1671L19.6337 18.5509C19.8579 18.7758 19.9881 19.0777 19.9978 19.3951C20.0075 19.7125 19.896 20.0218 19.6859 20.26C19.4759 20.4982 19.1831 20.6475 18.8669 20.6776C18.5508 20.7077 18.235 20.6164 17.9838 20.4221L17.8663 20.3184L14.1163 16.5684C13.922 16.3739 13.7972 16.1209 13.7612 15.8484L13.75 15.6846V9.43463C13.75 9.10311 13.8817 8.78517 14.1161 8.55075C14.3505 8.31633 14.6685 8.18463 15 8.18463Z" fill="#717171"/>
@@ -108,24 +111,24 @@
                 </defs>
               </svg>
               <div class="flex flex-col justify-center items-start">
-                <p class="text-lg font-bold">
-                  36
+                <p class="text-base font-bold">
+                  {{ daysLeft(project.creationDate,project.basics.duration) }}
                 </p>
-                <p class="text-base text-gray-500">
+                <p class="text-sm text-gray-500">
                   days left
                 </p>
               </div>
             </div>
-            <div class="flex items-center justify-start gap-3">
+            <div class="flex items-center justify-start gap-2">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.125 26.9346C13.125 26.9346 11.25 26.9346 11.25 25.0596C11.25 23.1846 13.125 17.5596 20.625 17.5596C28.125 17.5596 30 23.1846 30 25.0596C30 26.9346 28.125 26.9346 28.125 26.9346H13.125ZM20.625 15.6846C22.1168 15.6846 23.5476 15.092 24.6025 14.0371C25.6574 12.9822 26.25 11.5515 26.25 10.0596C26.25 8.56779 25.6574 7.13705 24.6025 6.08216C23.5476 5.02726 22.1168 4.43463 20.625 4.43463C19.1332 4.43463 17.7024 5.02726 16.6475 6.08216C15.5926 7.13705 15 8.56779 15 10.0596C15 11.5515 15.5926 12.9822 16.6475 14.0371C17.7024 15.092 19.1332 15.6846 20.625 15.6846ZM9.78 26.9346C9.50217 26.3492 9.36355 25.7075 9.375 25.0596C9.375 22.519 10.65 19.9034 13.005 18.0846C11.8297 17.7217 10.605 17.5446 9.375 17.5596C1.875 17.5596 0 23.1846 0 25.0596C0 26.9346 1.875 26.9346 1.875 26.9346H9.78ZM8.4375 15.6846C9.6807 15.6846 10.873 15.1908 11.7521 14.3117C12.6311 13.4326 13.125 12.2403 13.125 10.9971C13.125 9.75393 12.6311 8.56165 11.7521 7.68257C10.873 6.80349 9.6807 6.30963 8.4375 6.30963C7.1943 6.30963 6.00201 6.80349 5.12294 7.68257C4.24386 8.56165 3.75 9.75393 3.75 10.9971C3.75 12.2403 4.24386 13.4326 5.12294 14.3117C6.00201 15.1908 7.1943 15.6846 8.4375 15.6846Z" fill="#717171"/>
               </svg>
 
               <div class="flex flex-col justify-center items-start">
-                <p class="text-lg font-bold">
+                <p class="text-base font-bold">
                   29
                 </p>
-                <p class="text-base text-gray-500">
+                <p class="text-sm text-gray-500">
                    Baker
                 </p>
               </div>
@@ -139,28 +142,37 @@
             </button>
           </div>
         </div>
-
-
       </section>
-      <div *ngIf="isLoading" role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center w-[1000px]  items-center justify-center">
-        <div class="flex items-center justify-center  h-72 bg-gray-300 rounded dark:bg-gray-700 flex-1">
-          <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-            <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-          </svg>
-        </div>
-        <div class="flex-1">
-          <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-          <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-          <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-          <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-          <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-          <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
-        </div>
-        <span class="sr-only">Loading...</span>
-      </div>
-      <section>
-        <div>
-
+      <section class="flex flex-col w-full">
+        <div class="bg-white rounded-xl xl:p-4 p-0">
+          <div class="mb-4  border-gray-200 ">
+            <ul class="flex  text-sm font-medium text-center">
+              <li class="me-2">
+                <button [ngClass]="{'border-green-600':selectedTab==='story'}"   class="inline-block m-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" type="button" (click)="selectTab('story')">About the project</button>
+              </li>
+              <li class="me-2">
+                <button class="inline-block m-4 border-b-2  border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 " type="button" [ngClass]="{'border-green-600':selectedTab==='question'}"  (click)="selectTab('question')">FAQ</button>
+              </li>
+              <li class="me-2">
+                <button class="inline-block m-4 border-b-2 border-transparent  rounded-t-lg hover:text-gray-600 hover:border-gray-300 " [ngClass]="{'border-green-600':selectedTab==='updates'}" type="button" (click)="selectTab('updates')">Updates</button>
+              </li>
+              <li>
+                <button class="inline-block m-4 border-b-2 border-transparent  rounded-t-lg hover:text-gray-600 hover:border-gray-300 " [ngClass]="{'border-green-600':selectedTab==='comments'}" type="button" (click)="selectTab('comments')">Comments</button>
+              </li>
+            </ul>
+          </div>
+            <div class="flex p-4 rounded-lg bg-gray-50 " *ngIf="selectedTab==='story'">
+              <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800">  tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+            <div class=" p-4 rounded-lg bg-gray-50 " *ngIf="selectedTab==='question'">
+              <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800">Dashboard tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+            <div class=" p-4 rounded-lg bg-gray-50 " *ngIf="selectedTab=== 'updates'">
+              <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800">Settings tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+            <div class=" p-4 rounded-lg bg-gray-50 " *ngIf="selectedTab=== 'comments'">
+              <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800">Contacts tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
         </div>
         <aside>
 
@@ -170,4 +182,5 @@
     </main>
   <app-footer/>
 </div>
+
 

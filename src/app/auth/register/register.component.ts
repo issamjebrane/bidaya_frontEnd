@@ -39,8 +39,12 @@ export class RegisterComponent {
     this.error = undefined;
     const user :User = this.registerGroupForm.value;
     this.authService.register(user).subscribe({
-      next: value => {
+      next:value => {
         this.error=undefined;
+        if(value.token != undefined){
+          this.authService.setToken(value.token);
+          this.authService.setUser({firstName:value.user.firstName,lastName:value.user.lastName});
+        }
         setTimeout(()=>{
           this.buttonCLicked = false;
           //@ts-ignore
