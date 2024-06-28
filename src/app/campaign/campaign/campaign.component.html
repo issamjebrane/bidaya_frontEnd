@@ -4,7 +4,7 @@
     <app-header class="lg:text-white"/>
   </div>
 
-    <main  class="flex flex-col items-center justify-center gap-16 xl:py-20 pb-20 pt-0 2xl:px-56 lg:m-0 lg:px-32 bg-gray-50">
+    <main  class="flex flex-col items-center justify-center gap-16 xl:py-20 pb-20 pt-0 2xl:px-56 lg:m-0 lg:px-32 bg-gray-100">
       <app-skeleton *ngIf="isLoading"/>
       <section *ngIf="!isLoading" class="flex items xl:flex-row xl:w-auto w-full  flex-col justify-between gap-11 bg-white rounded-xl xl:p-4 p-0" >
         <div class="xl:flex-[5] flex-1">
@@ -20,7 +20,7 @@
               <div>
                 <div class="flex items-center justify-start gap-2">
                   <h6 class="text-lg font-medium">
-                    {{user.firstName | titlecase}} {{user.lastName | titlecase}}
+                    {{user.firstName | titlecase}} {{user.lastName | uppercase}}
                   </h6>
                   <div class="flex items-center">
                     <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -143,39 +143,101 @@
           </div>
         </div>
       </section>
-      <section class="flex flex-col w-full">
-        <div class="bg-white rounded-xl xl:p-4 p-0">
+      <section class="flex gap-10 w-full ">
+        <div class="bg-white rounded-xl xl:p-4 p-0 flex-[2]">
           <div class="mb-4  border-gray-200 ">
-            <ul class="flex  text-sm font-medium text-center">
+            <ul class="flex text-lg font-medium text-center">
               <li class="me-2">
-                <button [ngClass]="{'border-green-600':selectedTab==='story'}"   class="inline-block m-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" type="button" (click)="selectTab('story')">About the project</button>
+                <button [ngClass]="selectedTab === 'story' ? 'border-green-500' : 'border-transparent'" class="inline-block mx-4 py-3 border-b-4  border-b- hover:text-gray-600 hover:border-gray-300" type="button" (click)="selectTab('story')">About the project</button>
               </li>
               <li class="me-2">
-                <button class="inline-block m-4 border-b-2  border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 " type="button" [ngClass]="{'border-green-600':selectedTab==='question'}"  (click)="selectTab('question')">FAQ</button>
+                <button [ngClass]="selectedTab === 'question' ? 'border-green-500' : 'border-transparent'"  class="inline-block mx-4 py-3 border-b-4   rounded-t-lg hover:text-gray-600 hover:border-gray-300 " type="button"  (click)="selectTab('question')">FAQ</button>
               </li>
               <li class="me-2">
-                <button class="inline-block m-4 border-b-2 border-transparent  rounded-t-lg hover:text-gray-600 hover:border-gray-300 " [ngClass]="{'border-green-600':selectedTab==='updates'}" type="button" (click)="selectTab('updates')">Updates</button>
+                <button [ngClass]="selectedTab === 'updates' ? 'border-green-500' : 'border-transparent'"  class="inline-block mx-4 py-3 border-b-4   hover:text-gray-600 hover:border-gray-300 " type="button" (click)="selectTab('updates')">Updates</button>
               </li>
               <li>
-                <button class="inline-block m-4 border-b-2 border-transparent  rounded-t-lg hover:text-gray-600 hover:border-gray-300 " [ngClass]="{'border-green-600':selectedTab==='comments'}" type="button" (click)="selectTab('comments')">Comments</button>
+                <button [ngClass]="selectedTab === 'comments' ? 'border-green-500' : 'border-transparent'"  class="inline-block mx-4 py-3 border-b-4   hover:text-gray-600 hover:border-gray-300 " type="button" (click)="selectTab('comments')">Comments</button>
               </li>
             </ul>
           </div>
-            <div class="flex p-4 rounded-lg bg-gray-50 " *ngIf="selectedTab==='story'">
-              <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800">  tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+          <div role="status" *ngIf="isTabLoading" class="w-full flex items-center justify-center py-36 lg:py-20">
+            <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/></svg>
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div *ngIf="!isTabLoading">
+            <div class="flex p-4 rounded-lg bg-gray-100 " *ngIf="selectedTab==='story'" >
+              <div [innerHTML]="editorContent" class="text-editor editorContent"></div>
             </div>
-            <div class=" p-4 rounded-lg bg-gray-50 " *ngIf="selectedTab==='question'">
-              <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800">Dashboard tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            <div class=" p-4 rounded-lg bg-gray-100 " *ngIf="selectedTab==='question'">
+              <h3 class="text-2xl font-bold">
+                Frequently Asked Questions
+              </h3>
+              <div *ngIf="project.story.question && project.story.question.length > 0; else noQuestions">
+                <div *ngFor="let question of project.story.question" class="p-2">
+                  <h6 class="font-medium text-neutral-700 mb-1">{{ question.question }}</h6>
+                  <p class="text-sm text-neutral-500">{{ question.answer }}</p>
+                </div>
+              </div>
+              <ng-template #noQuestions >
+                <div class="flex items-center m-6 p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50" role="alert">
+                  <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    <span class="font-medium">
+                      No question found
+                    </span>
+                  </div>
+                </div>
+              </ng-template>
             </div>
-            <div class=" p-4 rounded-lg bg-gray-50 " *ngIf="selectedTab=== 'updates'">
+            <div class=" p-4 rounded-lg bg-gray-100 " *ngIf="selectedTab=== 'updates'">
               <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800">Settings tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
             </div>
-            <div class=" p-4 rounded-lg bg-gray-50 " *ngIf="selectedTab=== 'comments'">
+            <div class=" p-4 rounded-lg bg-gray-100 " *ngIf="selectedTab=== 'comments'">
               <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800">Contacts tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
             </div>
+          </div>
         </div>
-        <aside>
-
+        <aside class="flex  flex-col flex-1" *ngIf="project?.rewards">
+            <h5 class="font-medium mx-4 py-3">
+              Choose your Perk
+            </h5>
+            <div class="flex flex-col items-center gap-10 overflow-y-auto h-[800px]">
+              <div *ngFor="let reward of project.rewards" class="border hover-parent rounded-lg bg-white mx-4 cursor-pointer">
+                <div>
+                  <img [src]="reward.fileUrl" class="object-cover w-full h-full">
+                </div>
+                <div class="py-4 px-6 flex flex-col items-start gap-2">
+                  <h6 class="font-bold">
+                    {{ reward.title }}
+                  </h6>
+                  <div class="text-neutral-600">
+                    Contribution:
+                    <span class="text-green-500 font-medium">
+                      {{reward.contributionLevel | currency:'MAD':'symbol':'1.2-2'}}
+                    </span>
+                  </div>
+                  <div class="text-neutral-600">
+                    Estimated Delivery: <br/>
+                    <span class="text-neutral-500 text-sm">
+                      {{reward.estimatedDeliveryDate}}
+                    </span>
+                  </div>
+                  <div class="text-neutral-600">
+                    Perk:
+                    <p class="ml-2 text-sm text-neutral-500 font-normal">
+                      {{ reward.description }}
+                    </p>
+                  </div>
+                  <button type="button" class="bg-green-500 self-center hidden lg:block w-full h-12 rounded-lg transition ease duration-300 text-white text-base hover:bg-green-700">
+                    Get this perk
+                  </button>
+                </div>
+              </div>
+            </div>
         </aside>
 
       </section>

@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, UrlSegment} from "@angular/router";
 import {ProjectService} from "../../services/project/project.service";
 import {Campaign} from "../../../types/campaign.types";
-import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
-import {forkJoin, map, Observable, of} from "rxjs";
+import {DomSanitizer, SafeHtml, SafeUrl} from "@angular/platform-browser";
+import {forkJoin, map, Observable, of, timeout} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {User} from "../../../types/user.types";
 import {AuthService} from "../../services/auth/auth.service";
@@ -22,6 +22,8 @@ export class CampaignComponent implements OnInit {
   project!: Campaign;
   user:User ={};
   selectedTab: string = 'story';
+  isTabLoading: boolean = false;
+  editorContent!:SafeHtml;
   constructor(private route:ActivatedRoute, private projectService: ProjectService, private sanitizer: DomSanitizer,private auth: AuthService) {
   }
 
@@ -30,12 +32,13 @@ export class CampaignComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe((url) => {this.url = url})
     if(this.url[0].path) {
-      this.projectService.getProject(1).subscribe((project: Campaign) => {
+      this.projectService.getProject(28)?.subscribe((project: Campaign) => {
         this.convertProjectImageUrls(project).subscribe({
           next: (project) => {
             this.project = project;
             this.isLoading = false;
-            console.log(project.basics)
+            this.user = this.project.userId
+            this.editorContent = this.sanitizer.bypassSecurityTrustHtml(project.story.editorContent);
           },
           error: (error) => {
             console.error('Error occurred:', error);
@@ -75,7 +78,7 @@ export class CampaignComponent implements OnInit {
       imageObservables[`rewardFileUrl${index}`] = this.generateImageUrl(reward.fileUrl);
     });
 
-    return forkJoin({["user"]:this.auth.getUserInformation(project.userId),...imageObservables}).pipe(
+    return forkJoin(imageObservables).pipe(
       map(results => {
         // @ts-ignore
         project.basics.cardImage = results.cardImage;
@@ -84,7 +87,7 @@ export class CampaignComponent implements OnInit {
         project.rewards.forEach((reward, index) => {
           // @ts-ignore
           reward.fileUrl = results[`rewardFileUrl${index}`];
-          this.user = results.user;
+
         });
         return project;
       })
@@ -93,7 +96,6 @@ export class CampaignComponent implements OnInit {
 
   daysLeft(creationDate: string,duration:number) {
       const dateOfCreation = new Date(creationDate);
-      console.log(dateOfCreation)
       const currentDate = new Date();
 
       //calculates the number of days between the creation date and the current date
@@ -107,13 +109,17 @@ export class CampaignComponent implements OnInit {
 
   percentage(creationDate: string,duration:number){
     const daysLeft = this.daysLeft(creationDate,duration);
-    return (duration-daysLeft)*(100/duration)
+    return Math.floor( (duration-daysLeft)*(100/duration))
   }
   copyLink() {
     this.fullPathUrl = window.location.href;
   }
 
   selectTab(tab: string) {
+    this.isTabLoading = true;
+    setTimeout(()=>{
+      this.isTabLoading = false;
+    },1000)
     this.selectedTab = tab;
   }
 }

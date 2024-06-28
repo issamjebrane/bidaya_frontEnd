@@ -1,4 +1,5 @@
 import {SafeUrl} from "@angular/platform-browser";
+import {User} from "./user.types";
 
 export  type Campaign = {
   basics: {
@@ -31,6 +32,6 @@ export  type Campaign = {
       title: string,
     }
   ],
-  userId: string,
+  userId: User,
   creationDate: string,
 }

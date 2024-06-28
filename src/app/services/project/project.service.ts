@@ -89,14 +89,19 @@ export class ProjectService {
       basics: basicFormObject,
       story: storyObject,
       rewards: rewardsObject.rewards,
-      userId:''
+      userId: {
+        email:'',
+
+      }
     }
     // get the user id from the token then sending it to the server with the form data
     const token = localStorage.getItem('token');
 
     if (token) {
       const id =JSON.parse(atob(token.split('.')[1])).sub;
-      formData = {...formData, "userId": id};
+      formData = {...formData, "userId": {
+        email: id
+        }};
       this.http.post(`${environment.API}/projects/add`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -144,5 +149,9 @@ export class ProjectService {
     localStorage.removeItem('basicForm');
     localStorage.removeItem('story');
     localStorage.removeItem('rewards');
+  }
+
+  getProjects():Observable<Campaign[]> {
+   return this.http.get<Campaign[]>(`${environment.API}/projects`)
   }
 }

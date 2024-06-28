@@ -1,6 +1,7 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Card} from '../../home/home.component';
 import {Router} from "@angular/router";
+import {ProjectService} from "../../services/project/project.service";
 
 @Component({
   selector: 'app-cards-container',
@@ -8,14 +9,25 @@ import {Router} from "@angular/router";
   styleUrl: './cards-container.component.sass',
   encapsulation: ViewEncapsulation.None,
 })
-export class CardsContainerComponent {
-  @Input() cards?:Card[]
+export class CardsContainerComponent implements OnInit {
+  @Input() cards?: Card[]
 
 
-  constructor(private route:Router) {
+  constructor(private route: Router,private projectService:ProjectService) {
   }
 
-  getDaysLeft(createdAt:Date,duration:number){
+
+
+  ngOnInit(): void {
+    this.projectService.getProjects().subscribe({
+      next:(campaigns  )=>{
+        console.log(campaigns)
+      }
+    })
+  }
+
+
+  getDaysLeft(createdAt: Date, duration: number) {
     const today = new Date()
     const differenceInMilliseconds = today.getTime() - createdAt.getTime();
     return Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24))
@@ -23,12 +35,13 @@ export class CardsContainerComponent {
 
   //the percentage of the days left for the project to finish for the progress bar
   //dont forget the date you passsing are outdated you need to change them
-  getPercentage(createdAt:Date,duration:number){
-    const daysLeft = this.getDaysLeft(createdAt,duration);
-    return daysLeft*(100/duration)
+  getPercentage(createdAt: Date, duration: number) {
+    const daysLeft = this.getDaysLeft(createdAt, duration);
+    return daysLeft * (100 / duration)
   }
 
-  goToCampaign(campaignTitle:string) {
-    this.route.navigate(['/campaign',campaignTitle])
+  goToCampaign(campaignTitle: string) {
+    this.route.navigate(['/campaign', campaignTitle])
   }
+
 }

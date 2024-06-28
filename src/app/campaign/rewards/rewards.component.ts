@@ -62,10 +62,10 @@ export class RewardsComponent implements OnInit {
     // create a fom array of rewards using frombuilder
     return this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
       contributionLevel: ['', Validators.required],
       estimatedDeliveryDate: ['', Validators.required],
-      fileUrl: ['', Validators.required]
+      fileUrl: ['']
     });
   }
 
