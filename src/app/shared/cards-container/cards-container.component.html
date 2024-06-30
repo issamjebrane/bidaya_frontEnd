@@ -39,21 +39,21 @@
       space-between="10"
       free-mode="true"
     >
-      <swiper-slide *ngFor="let card of cards"  loading="lazy" class="flex gap-4 flex-col w-60 " (click)="goToCampaign(card.title)" >
+      <swiper-slide *ngFor="let card of campaign"  loading="lazy" class="flex gap-4 flex-col w-60 " (click)="goToCampaign(card.basics.title)" >
         <div class="flex flex-col gap-2 div h-56">
           <div class="h-36 w-60">
-            <img [src]="card.image" alt="" class=" rounded-lg object-cover w-full h-full">
+            <img [src]="card.basics.cardImage" alt="" class=" rounded-lg object-cover w-full h-full">
           </div>
-          <h5 class="text-neutral-500 text-xs font-normal" style="margin:0">{{card.type}}</h5>
-          <span class="text-gray-800 text-base font-semibold">{{card.title}}</span>
+          <h5 class="text-neutral-500 text-xs font-normal" style="margin:0">{{card.basics.category}}</h5>
+          <span class="text-gray-800 text-base font-semibold">{{card.basics.title}}</span>
         </div>
         <div class="flex flex-col gap-2.5">
           <div class=" bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
-            <div class="bg-green-600 h-1.5 rounded-full" [style.width.%]="getPercentage(card.careatedAt,card.durationDays)/4"></div>
+            <div class="bg-green-600 h-1.5 rounded-full" [style.width.%]="percentage(card.creationDate,card.basics.goal)/4"></div>
           </div>
           <div class="flex justify-between items-center">
-            <span class="text-gray-800 text-base font-bold">{{card.raisedFunds | currency:'MAD':'symbol':'1.2-2'}}</span>
-            <span class="text-neutral-500 text-xs font-normal">{{card.durationDays}}</span>
+            <span class="text-gray-800 text-base font-bold">{{54451 | currency:'MAD':'symbol':'1.2-2'}}</span>
+            <span class="text-neutral-500 text-xs font-normal">{{card.basics.duration}}</span>
           </div>
         </div>
       </swiper-slide>
@@ -68,26 +68,20 @@
       <li class="text-neutral-600 hover:text-green-500 pb-3 pr-3 cursor-pointer">Design</li>
     </ul>
   </div>
-   <div class="lg:grid grid-cols-1 lg:grid-cols-3 gap-4 font-outfit gap-y-9 xl:mx-36 2xl:mx-60 hidden">
-     <div *ngFor="let card of cards" class="flex flex-col gap-5 border hover-parent rounded-lg bg-white mx-4 cursor-pointer group hover-parent justify-between" (click)="goToCampaign(card.title)">
-       <div class="flex flex-col gap-4 hover-effect">
-         <div class="h-60 ">
-           <img [src]="card.image" alt="" class="rounded-lg object-cover w-full h-full">
-         </div>
-         <div class="flex flex-col">
-           <h5 class="text-neutral-500 text-sm font-normal" style="margin:0">{{card.type}}</h5>
-           <span class="text-gray-800 w-fit text-lg font-bold border-b-2  border-transparent group-hover:underline">{{card.title.toLocaleUpperCase()}}</span>
-         </div>
+   <div class="lg:grid grid-cols-1 lg:grid-cols-4 gap-4 font-outfit gap-y-9 xl:mx-36 2xl:mx-60 hidden">
+     <div *ngFor="let card of campaign" class="border hover-parent rounded-lg bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.title)">
+       <div class="">
+         <img [src]="card.basics.cardImage" alt="" class="object-cover w-full h-full">
        </div>
-       <div class="flex flex-col gap-2.5 hover-effect">
-         <div class=" bg-gray-200 rounded-full h-1 dark:bg-gray-700">
-           <div class="bg-green-600 h-1 rounded-full" [style.width.%]="getPercentage(card.careatedAt,card.durationDays)/4"></div>
+       <div class="py-4 px-2 flex flex-col items-start gap-2">
+           <div class="flex flex-col">
+             <h5 class=" text-green-500 text-md font-medium" style="margin:0">{{card.basics.category | titlecase}}</h5>
+             <span class="text-gray-800 w-fit text-md font-bold border-b-2  border-transparent group-hover:underline">{{card.basics.title | uppercase}}</span>
+           </div>
+         <div class="w-full bg-[#263238] rounded-full h-fit my-3">
+            <div  class="bg-green-500 text-xs font-medium text-blue-100 p-1 text-center h-fit leading-none rounded-full rounded-r-none relative"   [style.width.%]="percentage(card.creationDate, card.basics.duration)">
          </div>
-         <div class="flex justify-between items-center">
-           <span class="text-gray-800 text-base font-bold">{{card.raisedFunds | currency:'MAD':'symbol':'1.0-0'}}</span>
-           <span class="text-gray-800 text-xs">{{card.durationDays/3 }} days left</span>
          </div>
-       </div>
      </div>
    </div>
     <button class="lg:w-fit w-[90%] flex rounded-lg items-center justify-center font-outfit bg-green-500 mt-5 h-14 px-8 py-4  text-white gap-3 self-center transition ease duration-300 text-base hover:bg-green-700 ">

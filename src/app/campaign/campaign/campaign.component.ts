@@ -32,7 +32,7 @@ export class CampaignComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe((url) => {this.url = url})
     if(this.url[0].path) {
-      this.projectService.getProject(28)?.subscribe((project: Campaign) => {
+      this.projectService.getProject(45)?.subscribe((project: Campaign) => {
         this.convertProjectImageUrls(project).subscribe({
           next: (project) => {
             this.project = project;

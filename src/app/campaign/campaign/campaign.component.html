@@ -68,7 +68,7 @@
               <div class="absolute z-10  inline-block px-3 py-2  text-white bg-green-500 rounded-full right-[-24px] bottom-[12px]">
                   {{percentage(project.creationDate,project.basics.duration)}}%
                   <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
+              </div>
               </div>
             </div>
           <div class="flex items-center justify-between mb-5">
@@ -123,7 +123,6 @@
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.125 26.9346C13.125 26.9346 11.25 26.9346 11.25 25.0596C11.25 23.1846 13.125 17.5596 20.625 17.5596C28.125 17.5596 30 23.1846 30 25.0596C30 26.9346 28.125 26.9346 28.125 26.9346H13.125ZM20.625 15.6846C22.1168 15.6846 23.5476 15.092 24.6025 14.0371C25.6574 12.9822 26.25 11.5515 26.25 10.0596C26.25 8.56779 25.6574 7.13705 24.6025 6.08216C23.5476 5.02726 22.1168 4.43463 20.625 4.43463C19.1332 4.43463 17.7024 5.02726 16.6475 6.08216C15.5926 7.13705 15 8.56779 15 10.0596C15 11.5515 15.5926 12.9822 16.6475 14.0371C17.7024 15.092 19.1332 15.6846 20.625 15.6846ZM9.78 26.9346C9.50217 26.3492 9.36355 25.7075 9.375 25.0596C9.375 22.519 10.65 19.9034 13.005 18.0846C11.8297 17.7217 10.605 17.5446 9.375 17.5596C1.875 17.5596 0 23.1846 0 25.0596C0 26.9346 1.875 26.9346 1.875 26.9346H9.78ZM8.4375 15.6846C9.6807 15.6846 10.873 15.1908 11.7521 14.3117C12.6311 13.4326 13.125 12.2403 13.125 10.9971C13.125 9.75393 12.6311 8.56165 11.7521 7.68257C10.873 6.80349 9.6807 6.30963 8.4375 6.30963C7.1943 6.30963 6.00201 6.80349 5.12294 7.68257C4.24386 8.56165 3.75 9.75393 3.75 10.9971C3.75 12.2403 4.24386 13.4326 5.12294 14.3117C6.00201 15.1908 7.1943 15.6846 8.4375 15.6846Z" fill="#717171"/>
               </svg>
-
               <div class="flex flex-col justify-center items-start">
                 <p class="text-base font-bold">
                   29
@@ -206,7 +205,7 @@
               Choose your Perk
             </h5>
             <div class="flex flex-col items-center gap-10 overflow-y-auto h-[800px]">
-              <div *ngFor="let reward of project.rewards" class="border hover-parent rounded-lg bg-white mx-4 cursor-pointer">
+              <div *ngFor="let reward of project.rewards" class="border hover-parent rounded-lg bg-white mx-4 cursor-pointer overflow-hidden">
                 <div>
                   <img [src]="reward.fileUrl" class="object-cover w-full h-full">
                 </div>
