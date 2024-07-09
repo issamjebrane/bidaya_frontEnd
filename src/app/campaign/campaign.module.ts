@@ -13,6 +13,7 @@ import {NgxTiptapModule} from "ngx-tiptap";
 import { CampaignComponent } from './campaign/campaign.component';
 import { CampaignNotFoundComponent } from './campaign-not-found/campaign-not-found.component';
 import {SharedModule} from "../shared/shared.module";
+import { CampaignsComponent } from './campaigns/campaigns.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {SharedModule} from "../shared/shared.module";
       SafePipe,
       BasicEditorComponent,
       CampaignComponent,
-      CampaignNotFoundComponent
+      CampaignNotFoundComponent,
+      CampaignsComponent
   ],
     imports: [
       ReactiveFormsModule,

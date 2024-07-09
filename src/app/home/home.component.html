@@ -40,39 +40,36 @@
     </div>
   </div>
   <app-cards-container [cards]="cards" />
-  <div class="bg-slate-100 py-20  mb-10">
+  <div class="bg-slate-100 xl:py-20 py-10 mb-5  xl:mb-10">
       <div class=" lg:mx-36 flex lg:flex-row flex-col justify-between items-center gap-10 lg:gap-28 2xl:mx-60 lg:px-0 px-5 ">
-          <div class="items-start gap-8 flex flex-col">
-                <div class=" top-0 justify-center items-center gap-2 flex">
-                  <div class="border border-green-700 w-24"></div>
-                  <div class="text-green-700 text-2xl font-medium font-outfit">About Us</div>
+          <div class="items-start xl:gap-8 gap-4 flex flex-col">
+                <div class=" top-0 justify-center items-center xl:gap-2 gap-4 flex">
+                  <div class="border border-green-700 xl:w-24 w-16"></div>
+                  <div class="text-green-700 xl:text-2xl text-lg font-medium font-outfit">About Us</div>
                 </div>
                 <div class="flex-col justify-start items-start gap-2 inline-flex  lg:text-start">
-                  <div class=" flex-col justify-start items-start gap-2 flex">
-                    <div class="leading-loose">
-                      <span class="text-gray-800 text-2xl lg:text-4xl font-bold font-outfit">BIDAYA</span>
-                      <span class="text-neutral-800 text-2xl lg:text-4xl font-bold font-outfit"> : A Journey into the Crowdfunding Excellence</span></div>
-                    <div class=" text-stone-500 text-base lg:text-xl font-normal font-outfit ">Dive into the World of BIDAYA, Where Creativity Meets Support. Our <br/> Introduction Video Unveils the Magic Behind Crowdfunding.
-                     <br/> Showcasing Diverse Projects, Backer Rewards, and the Unparalleled <br/> Experience Awaiting You!</div>
+                  <div class=" flex-col justify-start items-start gap-4 flex">
+                    <h6 class="xl:text-3xl text-2xl font-bold">BIDAYA : A Journey into the Crowdfunding Excellence</h6>
+                    <p class=" text-stone-500 text-sm xl:text-xl font-light font-outfit ">Dive into the World of BIDAYA, Where Creativity Meets Support. Our  Introduction Video Unveils the Magic Behind Crowdfunding.
+                      Showcasing Diverse Projects, Backer Rewards, and the Unparalleled  Experience Awaiting You!</p>
                   </div>
                 </div>
-            <!-- todo create the logged in version-->
-              <button class="lg:w rounded-lg lg:w-56 w-full h-14 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base hover:bg-green-700 " routerLink="/authentication/register">
+              <button class="lg:w rounded-lg lg:w-56 w-full h-14 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base hover:bg-green-700 ">
                   <span class="text-base">
-                      Create Account
+                      Read more
                   </span>
               </button>
           </div>
           <img class="  shadow-md" ngSrc="./assets/aboutUs.svg" height="347" width="465" alt=""/>
       </div>
   </div>
-  <div class="flex-col justify-center lg:justify-start items-center gap-12 flex lg:px-36 mb-20">
+  <div class="flex-col justify-center lg:justify-start items-center gap-12 flex xl:px-36 mb-20">
       <div class="flex-col justify-start items-center gap-16 flex 2xl:px-36">
         <div class="hidden xl:flex flex-col justify-start items-center gap-2.5">
           <h1 class="h1 header">Here’s how it works</h1>
           <h5 class=" h5 header text-center">Crowdfunding Simplified: Navigate the Journey with Our Step-by-Step Guide</h5>
         </div>
-        <div class="justify-center items-center gap-14 flex lg:flex-row flex-col px-16">
+        <div class="justify-center items-center gap-14 flex lg:flex-row flex-col px-5">
           <div class="pl-1 pr-0.5 justify-center items-center flex flex-col gap-9">
               <div>
                   <img src="./assets/steps1.svg" alt="">
@@ -80,7 +77,7 @@
             <div class="self-stretch flex-col justify-start items-center gap-3 inline-flex">
               <div class="flex-col justify-center items-center gap-2 flex">
                 <h3 class=" header h3">Create Your Project:</h3>
-                <p class=" text-center text-neutral-500 text-lg font-normal font-out leading-7 px-5 lg:px-0">Transform your idea into reality. Start by creating your project, setting goals, and personalizing your campaign page</p>
+                <p class=" text-center text-neutral-500 text-lg font-normal font-out leading-7 xl:px-5 lg:px-0">Transform your idea into reality. Start by creating your project, setting goals, and personalizing your campaign page</p>
               </div>
             </div>
           </div>
@@ -90,7 +87,7 @@
               </div>
             <div class="flex-col justify-center items-center gap-2 flex">
               <h3 class="header h3">Connect with Backers</h3>
-              <p class=" text-center text-neutral-500 text-lg font-normal font-out leading-7 px-5 lg:px-0">"Connect with a global community of like-minded backers. Engage, gather feedback, and forge meaningful connections to boost your project."</p>
+              <p class=" text-center text-neutral-500 text-lg font-normal font-out leading-7 xl:px-5 lg:px-0">"Connect with a global community of like-minded backers. Engage, gather feedback, and forge meaningful connections to boost your project."</p>
             </div>
           </div>
           <div class="pl-1.5 pr-2 flex-col justify-end items-center gap-9 inline-flex">
@@ -99,7 +96,7 @@
               </div>
             <div class="self-stretch flex-col justify-center items-center gap-1.5 inline-flex">
               <h3 class="header h3">Fulfill Your Vision</h3>
-              <p class=" text-center text-neutral-500 text-lg font-normal font-out leading-7 px-5 lg:px-0">"Bring your ideas to life, share updates with backers, and be a key part of a success story that makes a lasting impact."</p>
+              <p class=" text-center text-neutral-500 text-lg font-normal font-out leading-7 xl:px-5 lg:px-0">"Bring your ideas to life, share updates with backers, and be a key part of a success story that makes a lasting impact."</p>
             </div>
           </div>
         </div>
@@ -114,12 +111,12 @@
       <div class="flex justify-between flex-col items-center gap-2 lg:mx-36 2xl:mx-60">
           <div class=" justify-start items-center gap-4 xl:gap-2 flex flex-grow-0 self-start">
               <div class="border border-green-700 w-12 xl:w-24"></div>
-              <div class="text-green-700 text-base xl:text-2xl font-medium font-outfit">Testimonials</div>
+              <div class="text-green-700 text-base xl:text-2xl font-normal font-outfit">Testimonials</div>
           </div>
           <div class="flex gap-2 items-center justify-between  w-full">
-              <span class="header text-xl font-bold flex-grow text-gray-800">
+              <h2 class="header xl:text-3xl text-2xl font-bold flex-grow text-gray-800">
                   What Our Beloved Users <br> Say About Us
-              </span>
+              </h2>
           </div>
       </div>
       <div class="swiper-container-div">
@@ -129,9 +126,9 @@
           slides-per-view="auto"
           space-between="20"
           free-mode="true"
-          class="lg:mx-36 2xl:mx-60"
+          class="lg:ml-36 2xl:ml-60"
         >
-          <swiper-slide *ngFor="let userComment of userComments" class="bg-white w-72 rounded-lg shadow px-4 py-5 ">
+          <swiper-slide *ngFor="let userComment of userComments" class="bg-white xl:w-96 w-72 rounded-lg shadow px-8 py-5 ">
             <div class="flex flex-col gap-7">
               <div class="flex flex-col items-start justify-center gap-5">
                 <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -155,67 +152,88 @@
                     </h6>
                   </div>
                 </div>
-                <div class="star-rating">
-
+                <div class="flex items-center">
+                  <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                  <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                  <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                  <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                  <svg class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
                 </div>
               </div>
             </div>
-
           </swiper-slide>
         </swiper-container>
       </div>
   </div>
 
   <div class="lg:flex flex-col items-stretch justify-center mb-20 2xl:mx-60 lg:mx-36 py-20 gap-12 hidden">
-      <h1 class="header h1">Most Frequently Asked Questions (FAQ)</h1>
+      <h1 class="header h1 text-center">Most Frequently Asked Questions (FAQ)</h1>
       <div class="flex justify-between items-center gap-16 xl:justify-between">
-              <img ngSrc="./assets/qa.svg" alt="" class=" shadow-md" height="420" width="496">
-          <div class="flex flex-col gap-5">
-              <div>
-                  <div class="flex items-center justify-between">
-                      <h5  style="color: #333333; font-size: 20px; font-weight: 600; margin:0;">
-                          How do I promote my campaign?
-                      </h5>
-                      <img ngSrc="./assets/minus.svg" alt="" class="cursor-pointer" height="35" width="34">
-                  </div>
-                  <p class="text-neutral-600 text-base font-normal font-outfit">
-                      Offer tips and guidance on how campaigners can effectively market and promote
-                      their projects to maximize visibility.
-                  </p>
+        <img ngSrc="./assets/qa.svg" alt="" class="flex-1 shadow-md" height="420" width="496" >
+        <div id="accordion-color" class="flex-1" data-accordion="collapse" data-active-classes="bg-green-100 dark:bg-gray-800 text-green-600 dark:text-white">
+           <h2 id="accordion-color-heading-1">
+              <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800 dark:border-gray-700 dark:text-gray-400 hover:bg-green-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-color-body-1" aria-expanded="true" aria-controls="accordion-color-body-1">
+                <span> How do I promote my campaign?</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-color-body-1" class="hidden" aria-labelledby="accordion-color-heading-1">
+              <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="mb-2 text-gray-500 dark:text-gray-400">
+                  Offer tips and guidance on how campaigners can effectively market and promote
+                  their projects to maximize visibility.
+                </p>
               </div>
-              <div>
-                  <div class="flex items-center justify-between">
-                      <h5  style="color: #333333; font-size: 20px; font-weight: 600;margin:0;">
-                          How do I start a campaign?
-                      </h5>
-<!--                      <mat-icon class="cursor-pointer">add</mat-icon>-->
-                  </div>
+            </div>
+            <h2 id="accordion-color-heading-2">
+              <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800 dark:border-gray-700 dark:text-gray-400 hover:bg-green-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-color-body-2" aria-expanded="false" aria-controls="accordion-color-body-2">
+                <span>How do I start a campaign?</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-color-body-2" class="hidden" aria-labelledby="accordion-color-heading-2">
+              <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
+                <p class="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/" class="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the utility classes from Tailwind CSS and components from Flowbite.</p>
               </div>
-              <div>
-                  <div class="flex items-center justify-between">
-                      <h5  style="color: #333333; font-size: 20px; font-weight: 600;margin:0;">
-                          What types of projects are allowed on BIDAYA ?
-                      </h5>
-<!--                      <mat-icon class="cursor-pointer">add</mat-icon>-->
-                  </div>
+            </div>
+            <h2 id="accordion-color-heading-3">
+              <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800 dark:border-gray-700 dark:text-gray-400 hover:bg-green-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-color-body-3" aria-expanded="false" aria-controls="accordion-color-body-3">
+                <span>What types of projects are allowed on BIDAYA ?</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-color-body-3" class="hidden" aria-labelledby="accordion-color-heading-3">
+              <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                <p class="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
+                <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
+                  <li><a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
+                  <li><a href="https://tailwindui.com/" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
+                </ul>
               </div>
-              <div>
-                  <div class="flex items-center justify-between">
-                      <h5  style="color: #333333; font-size: 20px; font-weight: 600;margin:0;">
-                          What payment methods are accepted on BIDAYA ?
-                      </h5>
-                  </div>
-              </div>
-              <div>
-                  <div class="flex items-center justify-between">
-                      <h5  style="color: #333333; font-size: 20px;  font-weight: 600;margin:0;">
-                          Can I contact BIDAYA for help with my campaign?
-                      </h5>
-<!--                      <mat-icon class="cursor-pointer">add</mat-icon>-->
-                  </div>
-              </div>
+            </div>
           </div>
-      </div>
+
+
+        </div>
   </div>
   <div class=" xl:block hidden bg-slate-100">
       <div class="2xl:mx-60 lg:mx-36 py-20 flex justify-between items-center gap-28 px-0 xl:justify-between">

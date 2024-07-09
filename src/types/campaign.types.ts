@@ -3,6 +3,7 @@ import {User} from "./user.types";
 
 export  type Campaign = {
   basics: {
+    id: number,
     cardImage: string |SafeUrl,
     title: string,
     subtitle: string,
@@ -15,7 +16,7 @@ export  type Campaign = {
   story: {
     editorContent: string,
     fileUrl: string | SafeUrl,
-    question:[
+    questions:[
       {
         question: string,
         answer: string

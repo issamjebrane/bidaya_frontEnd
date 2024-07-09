@@ -24,17 +24,21 @@ export class CampaignComponent implements OnInit {
   selectedTab: string = 'story';
   isTabLoading: boolean = false;
   editorContent!:SafeHtml;
-  constructor(private route:ActivatedRoute, private projectService: ProjectService, private sanitizer: DomSanitizer,private auth: AuthService) {
-  }
+
+
+  constructor(private route:ActivatedRoute, private projectService: ProjectService, private sanitizer: DomSanitizer,private auth: AuthService) {}
 
 
 
   ngOnInit(): void {
-    this.route.url.subscribe((url) => {this.url = url})
+    this.route.url.subscribe((url) => {this.url = url
+    })
     if(this.url[0].path) {
-      this.projectService.getProject(45)?.subscribe((project: Campaign) => {
+      this.projectService.getProject(Number(this.url[0].path))?.subscribe((project: Campaign) => {
         this.convertProjectImageUrls(project).subscribe({
+
           next: (project) => {
+            console.log(this.url)
             this.project = project;
             this.isLoading = false;
             this.user = this.project.userId

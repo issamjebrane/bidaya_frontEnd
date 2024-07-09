@@ -1,7 +1,8 @@
 <div class=" bg-gray-800 h-screen flex lg:flex-row flex-col justify-stretch items-stretch gap-1 font-outfit overflow-x-hidden text-[15px]">
-    <div class=" flex flex-1 items-center justify-center py-12 bg-gray-800">
-        <img src="./assets/ILLUSTRATION.svg" alt="" class="">
-    </div>
+  <app-header class="lg:hidden"/>
+  <div class="xl:flex-1   flex items-center justify-center order-1 lg:order-none xl:m-12 m-5">
+    <img src="./assets/ILLUSTRATION.svg" alt="" class="object-fill h-40 xl:h-full" >
+  </div>
     <div class="bg-white flex-1 w-full lg:w-auto flex flex-col items-center justify-center gap-16 lg:px-20 xl:px-44 py-10 order-2">
       <div class="w-full hidden lg:block cursor-pointer" routerLink="/home">
         <svg width="87" height="24" viewBox="0 0 87 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,17 +70,17 @@
                        Log In
                    </a>
               </div>
-              <div class="flex items-center justify-stretch self-stretch gap-6">
-                  <div class="py-[0.7px] bg-zinc-300 w-24 flex-1"></div>
-                  <div class="text-base font-medium ">Or</div>
-                  <div class="py-[0.7px] bg-zinc-300 w-24 flex-1"></div>
-              </div>
-              <div class="border border-transparent bg-[#F5F7FA] font-normal rounded w-full px-3 flex-1 flex items-center py-2 justify-center h-10 gap-3 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
-                  <img src="./assets/google.svg" alt="">
-                  <p  style="margin: 0;flex: 0 0 auto;" >
-                      Sign up with Google
-                  </p>
-              </div>
+<!--              <div class="flex items-center justify-stretch self-stretch gap-6">-->
+<!--                  <div class="py-[0.7px] bg-zinc-300 w-24 flex-1"></div>-->
+<!--                  <div class="text-base font-medium ">Or</div>-->
+<!--                  <div class="py-[0.7px] bg-zinc-300 w-24 flex-1"></div>-->
+<!--              </div>-->
+<!--              <div class="border border-transparent bg-[#F5F7FA] font-normal rounded w-full px-3 flex-1 flex items-center py-2 justify-center h-10 gap-3 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">-->
+<!--                  <img src="./assets/google.svg" alt="">-->
+<!--                  <p  style="margin: 0;flex: 0 0 auto;" >-->
+<!--                      Sign up with Google-->
+<!--                  </p>-->
+<!--              </div>-->
           </form>
       </div>
     </div>

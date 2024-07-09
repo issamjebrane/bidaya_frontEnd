@@ -154,4 +154,12 @@ export class ProjectService {
   getProjects():Observable<Campaign[]> {
    return this.http.get<Campaign[]>(`${environment.API}/projects`)
   }
+
+  filterByCategory(type: string) {
+   return  this.http.get<Campaign[]>(`${environment.API}/projects/category/${type}`)
+  }
+
+  sortByCriteria(criteria: string) {
+   return  this.http.get<Campaign[]>(`${environment.API}/projects/sort/${criteria}`)
+  }
 }

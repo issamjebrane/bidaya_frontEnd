@@ -1,20 +1,17 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {Card} from '../../home/home.component';
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
 import {ProjectService} from "../../services/project/project.service";
-import {Campaign} from "../../../types/campaign.types";
-import {forkJoin, map, Observable, of} from "rxjs";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {forkJoin, map, Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
+import {Campaign} from "../../../types/campaign.types";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-cards-container',
-  templateUrl: './cards-container.component.html',
-  styleUrl: './cards-container.component.sass',
-  encapsulation: ViewEncapsulation.None,
+  selector: 'app-campaigns',
+  templateUrl: './campaigns.component.html',
+  styleUrl: './campaigns.component.sass'
 })
-export class CardsContainerComponent implements OnInit {
-  @Input() cards?: Card[]
+export class CampaignsComponent {
   campaign :Campaign[] = []
   private errorMessage: any;
   filtering: boolean = false;
@@ -37,6 +34,9 @@ export class CardsContainerComponent implements OnInit {
           )
         })
       }
+    })
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     })
   }
 
@@ -63,7 +63,6 @@ export class CardsContainerComponent implements OnInit {
   goToCampaign(id:number) {
     this.route.navigate(['/campaign', id.toString()])
   }
-
 
   generateImageUrs(fileUrl: string | SafeUrl): Observable<SafeUrl> {
     return this.projectService.getImage(fileUrl).pipe(
@@ -104,7 +103,6 @@ export class CardsContainerComponent implements OnInit {
       })
     );
   }
-
   filter(type:string ) {
     this.filterType = type;
     this.projectService.filterByCategory(type).subscribe({
@@ -137,5 +135,21 @@ export class CardsContainerComponent implements OnInit {
         }
       })
     }
+  }
+  sortingByCriteria(criteria:string){
+    this.projectService.sortByCriteria(criteria).subscribe({
+      next:(campaigns : Campaign[] )=>{
+        campaigns.forEach((project) => {
+          this.campaign = []
+          this.convertProjectImageUrl(
+            project
+          ).subscribe((project) => {
+              this.filtering = true;
+              this.campaign.push(project)
+            }
+          )
+        })
+      }
+    })
   }
 }
