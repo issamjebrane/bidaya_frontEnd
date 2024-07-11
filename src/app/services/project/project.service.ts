@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { environment } from '../../../environments/environment.development';
 import {catchError} from "rxjs/operators";
 import {Observable, throwError} from "rxjs";
@@ -161,5 +161,9 @@ export class ProjectService {
 
   sortByCriteria(criteria: string) {
    return  this.http.get<Campaign[]>(`${environment.API}/projects/sort/${criteria}`)
+  }
+
+  searchProjects(query: string) {
+    return this.http.get<Campaign[]>(`${environment.API}/projects/search`,{ params: { query: query } })
   }
 }

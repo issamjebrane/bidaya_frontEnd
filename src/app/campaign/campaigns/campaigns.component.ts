@@ -1,22 +1,57 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {ProjectService} from "../../services/project/project.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
-import {forkJoin, map, Observable, of} from "rxjs";
-import {catchError} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged, forkJoin, map, Observable, of, Subject, switchMap} from "rxjs";
+import {catchError, filter} from "rxjs/operators";
 import {Campaign} from "../../../types/campaign.types";
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-campaigns',
   templateUrl: './campaigns.component.html',
   styleUrl: './campaigns.component.sass'
 })
-export class CampaignsComponent {
+export class CampaignsComponent  {
   campaign :Campaign[] = []
   private errorMessage: any;
   filtering: boolean = false;
   filterType: string = 'all';
-  constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer) {}
+  isLoadingProjects: boolean = false;
+  searchTerm$ = new Subject<string>();
+  matchingProjects: Campaign[] = [];
+  showDropdown: boolean = false;
+  searchTerm?: string ;
+  noResults: boolean = false;
+
+  constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer,) {
+    this.searchTerm$.pipe(
+      debounceTime(300), // Wait 300ms after the last keystroke before triggering the search
+      filter(term => term.length >= 3), // Only trigger if the search term is longer than 3 characters
+      switchMap(term =>
+        this.projectService.searchProjects(term)
+      )
+    ).subscribe({
+      next: (projects: Campaign[]) => {
+        this.showDropdown = true;
+        this.matchingProjects = [];
+        projects.forEach((project) => {
+          this.convertProjectImageUrl(
+            project
+          ).subscribe((project) => {
+              this.matchingProjects.push(project)
+            }
+          )
+        })
+        console.log(this.matchingProjects)
+      },
+      error: (err) => {
+        this.noResults = true;
+        this.matchingProjects = [];
+      }
+    });
+  }
+
 
   toDate(creationDate : string){
     return new Date(creationDate);
@@ -35,6 +70,8 @@ export class CampaignsComponent {
         })
       }
     })
+
+
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     })
@@ -55,6 +92,8 @@ export class CampaignsComponent {
 
   //the percentage of the days left for the project to finish for the progress bar
   //don't forget the date you are passing are outdated you need to change them
+
+
   percentage(creationDate: string,duration:number){
     const daysLeft = this.daysLeft(creationDate,duration);
     return Math.floor( (duration-daysLeft)*(100/duration))
@@ -105,6 +144,10 @@ export class CampaignsComponent {
   }
   filter(type:string ) {
     this.filterType = type;
+    this.isLoadingProjects = true;
+    setTimeout(() => {
+      this.isLoadingProjects = false;
+    },500)
     this.projectService.filterByCategory(type).subscribe({
       next:(campaigns  )=>{
         campaigns.forEach((project) => {
@@ -136,15 +179,19 @@ export class CampaignsComponent {
       })
     }
   }
-  sortingByCriteria(criteria:string){
+  sortingByCriteria(criteria:string) {
+    this.isLoadingProjects = true;
+    setTimeout(() => {
+      this.isLoadingProjects = false;
+    }, 500)
     this.projectService.sortByCriteria(criteria).subscribe({
-      next:(campaigns : Campaign[] )=>{
+      next: (campaigns: Campaign[]) => {
+        this.campaign = []
+        this.filtering = true;
         campaigns.forEach((project) => {
-          this.campaign = []
           this.convertProjectImageUrl(
             project
           ).subscribe((project) => {
-              this.filtering = true;
               this.campaign.push(project)
             }
           )
@@ -152,4 +199,11 @@ export class CampaignsComponent {
       }
     })
   }
+
+  onInputChange() {
+    if (this.searchTerm && this.searchTerm.length > 3) {
+      this.searchTerm$.next(this.searchTerm);
+    }
+  }
+
 }

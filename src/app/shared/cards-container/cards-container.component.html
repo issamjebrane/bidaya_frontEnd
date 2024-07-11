@@ -101,8 +101,8 @@
       <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'comics'}" (click)="filter('comics')">Comics</button>
     </div>
   </div>
-   <div class="lg:grid grid-cols-1 lg:grid-cols-3 gap-4 font-outfit gap-y-9 xl:mx-36 2xl:mx-60 hidden">
-     <div *ngFor="let card of this.campaign.slice(0, 6)" class="max-h-sm border hover-parent rounded-xl bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.id)">
+   <div class="lg:grid grid-cols-1 lg:grid-cols-4 gap-4 font-outfit gap-y-9 xl:mx-36 2xl:mx-60 hidden">
+     <div *ngFor="let card of this.campaign.slice(0, 8)" class="max-h-sm hover-parent rounded-xl bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.id)">
        <div>
          <img [src]="card.basics.cardImage" alt="" class="object-cover w-full h-full">
        </div>
