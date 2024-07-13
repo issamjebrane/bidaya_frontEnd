@@ -5,7 +5,6 @@ import {debounceTime, distinctUntilChanged, forkJoin, map, Observable, of, Subje
 import {catchError, filter} from "rxjs/operators";
 import {Campaign} from "../../../types/campaign.types";
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-campaigns',
@@ -23,11 +22,11 @@ export class CampaignsComponent  {
   showDropdown: boolean = false;
   searchTerm?: string ;
   noResults: boolean = false;
-
+  loadSize: number = 8;
   constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer,) {
     this.searchTerm$.pipe(
       debounceTime(300), // Wait 300ms after the last keystroke before triggering the search
-      filter(term => term.length >= 3), // Only trigger if the search term is longer than 3 characters
+      filter(term => {return term.length >= 3}), // Only trigger if the search term is longer than 3 characters
       switchMap(term =>
         this.projectService.searchProjects(term)
       )
@@ -35,6 +34,7 @@ export class CampaignsComponent  {
       next: (projects: Campaign[]) => {
         this.showDropdown = true;
         this.matchingProjects = [];
+        this.noResults = projects.length === 0;
         projects.forEach((project) => {
           this.convertProjectImageUrl(
             project
@@ -43,11 +43,6 @@ export class CampaignsComponent  {
             }
           )
         })
-        console.log(this.matchingProjects)
-      },
-      error: (err) => {
-        this.noResults = true;
-        this.matchingProjects = [];
       }
     });
   }
@@ -204,6 +199,17 @@ export class CampaignsComponent  {
     if (this.searchTerm && this.searchTerm.length > 3) {
       this.searchTerm$.next(this.searchTerm);
     }
+  }
+
+  onBlur() {
+    setTimeout(() => {
+      this.showDropdown = false;
+      this.matchingProjects = [];
+    }, 200); // Delay to allow click event on dropdown items
+  }
+
+  LoadMore() {
+    this.loadSize += 8;
   }
 
 }

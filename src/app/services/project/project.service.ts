@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { environment } from '../../../environments/environment.development';
 import {catchError} from "rxjs/operators";
-import {Observable, throwError} from "rxjs";
+import {Observable, of, throwError} from "rxjs";
 import {Campaign} from "../../../types/campaign.types";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
@@ -163,7 +163,12 @@ export class ProjectService {
    return  this.http.get<Campaign[]>(`${environment.API}/projects/sort/${criteria}`)
   }
 
-  searchProjects(query: string) {
-    return this.http.get<Campaign[]>(`${environment.API}/projects/search`,{ params: { query: query } })
+  searchProjects(query: string): Observable<Campaign[]>{
+    return this.http.get<Campaign[]>(`${environment.API}/projects/search`,{ params: { query: query } }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error occurred:', error.message);
+        return of([]);
+      })
+    );
   }
 }

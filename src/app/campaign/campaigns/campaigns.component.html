@@ -1,19 +1,21 @@
 <div class="font-outfit">
-  <div class=" relative nav mb-10">
+  <div class=" nav mb-10 px-5">
     <app-header class="lg:text-white"/>
-    <div>
-      <h1 class="text-center text-2xl mb-6 font-bold font-outfit text-white lg:text-4xl">
+    <div class="m-5 xl:m-0 ">
+      <h1 class="text-center text-2xl mb-3 xl:mb-6 font-bold font-outfit text-white lg:text-4xl">
         Find Crowdfunding projects around the world
       </h1>
-      <p class="text-center text-sm lg:text-base font-normal text-white font-outfit">
-        Create enticing rewards to motivate contributions and engage your backers.
+      <p class="text-center text-xs lg:text-base font-normal text-white font-outfit">
+        "Create enticing rewards to motivate contributions and engage your backers."
       </p>
     </div>
 
-    <div  class="absolute w-1/2 mx-auto bottom-[-30px]  " style="left: calc(25.3%);">
-      <div class=" h-[70px] ">
-        <div class="relative w-full ">
-          <input type="search" id="search-dropdown" [(ngModel)]="searchTerm" (ngModelChange)="onInputChange()" class="block h-[70px] shadow-lg p-6 w-full z-20 text-lg font-medium text-gray-900 bg-gray-50 rounded-lg border border-transparent focus:ring-green-500 focus:border-green-500 placeholder-gray-400 placeholder:font-medium placeholder:text-lg" placeholder="Find projects" required />
+  </div>
+  <div class="relative xl:pt-10">
+    <div  class="xl:absolute mx-5 xl:w-1/2 xl:mx-auto bottom-[-50px] xl:top-[-75px] xl:left-[calc(25.3%)] ">
+      <div class=" xl:h-[70px]">
+        <div class="relative ">
+          <input type="search" id="search-dropdown" [(ngModel)]="searchTerm" (blur)="onBlur()" (ngModelChange)="onInputChange()" class="block h-[70px] shadow-lg p-6 w-full z-20 text-lg font-medium text-gray-900 bg-gray-50 rounded-lg border border-transparent focus:ring-green-500 focus:border-green-500 placeholder-gray-400 placeholder:font-medium placeholder:text-lg" placeholder="Find projects" required />
           <button type="submit" class="absolute top-0 end-0 bg-transparent p-6 text-sm font-medium h-full text-white  rounded-e-lg ">
             <svg width="25" height="26" viewBox="0 0 25 26" fill="none" class="bg-gray-50" xmlns="http://www.w3.org/2000/svg">
               <path d="M20.4167 22.375L13.8542 15.8125C13.3333 16.2292 12.7344 16.559 12.0573 16.8021C11.3802 17.0451 10.6597 17.1667 9.89583 17.1667C8.00347 17.1667 6.40208 16.5111 5.09167 15.2C3.78125 13.8889 3.12569 12.2875 3.125 10.3958C3.12431 8.50417 3.77986 6.90278 5.09167 5.59167C6.40347 4.28056 8.00486 3.625 9.89583 3.625C11.7868 3.625 13.3885 4.28056 14.701 5.59167C16.0135 6.90278 16.6688 8.50417 16.6667 10.3958C16.6667 11.1597 16.5451 11.8802 16.3021 12.5573C16.059 13.2344 15.7292 13.8333 15.3125 14.3542L21.875 20.9167L20.4167 22.375ZM9.89583 15.0833C11.1979 15.0833 12.3049 14.6278 13.2167 13.7167C14.1285 12.8056 14.584 11.6986 14.5833 10.3958C14.5826 9.09306 14.1271 7.98646 13.2167 7.07604C12.3063 6.16563 11.1993 5.70972 9.89583 5.70833C8.59236 5.70694 7.48576 6.16285 6.57604 7.07604C5.66632 7.98924 5.21042 9.09583 5.20833 10.3958C5.20625 11.6958 5.66215 12.8028 6.57604 13.7167C7.48993 14.6306 8.59653 15.0861 9.89583 15.0833Z" fill="#43A046"/>
@@ -21,10 +23,22 @@
           </button>
         </div>
       </div>
-      <div *ngIf="showDropdown" class=" w-full">
+      <div *ngIf="showDropdown && searchTerm != undefined && searchTerm.length > 3 " class="mx-5 xl:m-0 w-full z-[1000] bg-white">
         <ul class="dropdown-menu absolute w-full right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-          <li  *ngFor="let project of matchingProjects">
-            <a href="#" class="block px-4 py-5 text-sm text-gray-700 hover:bg-gray-100">{{ project.basics.title }}</a>
+          <li  *ngFor="let project of matchingProjects.slice(0,5)">
+            <div class="flex items-center justify-start gap-5  px-4 py-5 text-sm text-gray-700 hover:bg-gray-100">
+              <div class="w-15 h-10 rounded-lg">
+                <img [src]="project.basics.cardImage" alt="" class="object-cover w-full h-full">
+              </div>
+              <span class="text-lg">
+                {{project.basics.title}}
+              </span>
+            </div>
+          </li>
+          <li *ngIf="matchingProjects.length >= 5" class="flex cursor-pointer items-center justify-center gap-5  px-4 py-5 text-sm text-gray-700 hover:bg-gray-100">
+            <span class="text-lg">
+              See more results
+            </span>
           </li>
           <li *ngIf="noResults">
             <span class="block px-4 py-2 text-sm text-gray-700">No results found.</span>
@@ -32,24 +46,21 @@
         </ul>
       </div>
     </div>
-  </div>
-  <div class="pt-10">
-    <div class="mx-36 2xl:mx-64 hidden my-5 xl:flex items-center justify-between ">
-      <div class="flex items-center text-justify text-lg font-normal justify-start gap-3">
-        <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'all'}" (click)="filter('all')">All projects</button>
+    <div class="xl:mx-36 mx-5 2xl:mx-64 my-5 flex items-center  justify-between ">
+      <div class="flex items-center text-justify text-base xl:text-lg font-normal justify-stretch  gap-3">
+        <button type="button" class="text-green-600 w-32 text-center py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'all'}" (click)="filter('all')">All projects</button>
         <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'film'}" (click)="filter('film')">film</button>
         <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'technology'}" (click)="filter('technology')">Technology</button>
         <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'design'}" (click)="filter('design')">Design</button>
         <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'comics'}" (click)="filter('comics')">Comics</button>
       </div>
       <div>
-        <button id="dropdownHoverButton"   data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="text-green-600 hover:text-white bg-transparent hover:bg-green-800 focus:ring-4 focus:outline-none border border-green-600 focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Newest <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <button id="dropdownHButton"  data-dropdown-toggle="dropdown" class="text-green-600 hover:text-white bg-transparent hover:bg-green-800 focus:ring-4 focus:outline-none border border-green-600 focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Newest <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
         </svg>
         </button>
-
-        <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 border border-green-600 overflow-hidden rounded-lg shadow w-52 dark:bg-gray-700">
-          <ul class="text-base w-full text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 border border-green-600 overflow-hidden rounded-lg shadow w-52 dark:bg-gray-700">
+          <ul class="text-base w-full text-gray-700 dark:text-gray-200" aria-labelledby="dropdownButton">
             <li>
               <button type="button"  class="block text-justify w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" (click)="sortingByCriteria('Newest')">Newest</button>
             </li>
@@ -73,15 +84,16 @@
         <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/></svg>
         <span class="sr-only">Loading...</span>
     </div>
-    <div *ngIf="!isLoadingProjects" class="lg:grid grid-cols-1 lg:grid-cols-4 gap-10 font-outfit gap-y-10 xl:mx-36 2xl:mx-64 hidden">
-      <div *ngFor="let card of this.campaign.slice(0,9)" class="max-h-sm hover-parent rounded-xl bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.id)">
+    <span class="block lg:hidden mx-5 mb-3 font-medium text-neutral-500">{{campaign.length}} Campaigns found</span>
+    <div *ngIf="!isLoadingProjects" class="grid grid-cols-1 lg:grid-cols-3 xl:lg:grid-cols-4 xl:gap-5 font-outfit gap-y-8 xl:mx-36 2xl:mx-64 ">
+      <div *ngFor="let card of this.campaign.slice(0,loadSize)" class=" hover-parent  mx-5 xl:m-0 rounded-xl bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.id)">
         <div>
-          <img [src]="card.basics.cardImage" alt="" class="object-cover w-full h-full">
+          <img [src]="card.basics.cardImage" alt="" class="">
         </div>
         <div class="py-4 px-2 flex flex-col items-start gap-2">
-          <div class="flex flex-col h-20">
-            <h5 class=" text-green-500 text-md font-medium" style="margin:0">{{card.basics.category | titlecase}}</h5>
-            <span class="text-gray-800 w-fit text-md font-bold border-b-2  border-transparent group-hover:underline">{{card.basics.title | uppercase}}</span>
+          <div class="flex flex-col h-16">
+            <h5 class=" text-green-500 text-sm font-medium" style="margin:0">{{card.basics.category | titlecase}}</h5>
+            <span class="text-gray-800 w-fit text-base font-bold border-b-2  border-transparent group-hover:underline">{{card.basics.title | uppercase}}</span>
           </div>
           <div class="w-full bg-[#263238] rounded-full h-fit my-3">
             <div  class="bg-green-500 text-xs font-medium text-blue-100 p-1 text-center h-fit leading-none rounded-full rounded-r-none relative"   [style.width.%]="percentage(card.creationDate, card.basics.duration)">
@@ -153,7 +165,7 @@
       </div>
     </div>
   </div>
-  <button class="rounded-lg m-auto my-5  w-fit lg:h-12 px-8 py-4  flex items-center justify-center font-outfit bg-green-500  border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700 "
+  <button (click)="LoadMore()" class="rounded-lg m-auto my-5  w-fit lg:h-12 px-8 py-4  flex items-center justify-center font-outfit bg-green-500  border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700 "
           type="button">
     Load More
   </button>
