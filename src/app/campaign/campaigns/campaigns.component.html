@@ -85,8 +85,8 @@
         <span class="sr-only">Loading...</span>
     </div>
     <span class="block lg:hidden mx-5 mb-3 font-medium text-neutral-500">{{campaign.length}} Campaigns found</span>
-    <div *ngIf="!isLoadingProjects" class="grid grid-cols-1 lg:grid-cols-3 xl:lg:grid-cols-4 xl:gap-5 font-outfit gap-y-8 xl:mx-36 2xl:mx-64 ">
-      <div *ngFor="let card of this.campaign.slice(0,loadSize)" class=" hover-parent  mx-5 xl:m-0 rounded-xl bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.id)">
+    <div *ngIf="!isLoadingProjects" class="lg:grid grid-cols-1 lg:grid-cols-4 gap-4 font-outfit gap-y-9 xl:mx-36 2xl:mx-60 hidden">
+      <div *ngFor="let card of this.campaign.slice(0, loadSize)" class=" hover-parent rounded-xl bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.id)">
         <div>
           <img [src]="card.basics.cardImage" alt="" class="">
         </div>

@@ -17,13 +17,13 @@
               <div class="flex gap-4 lg:gap-11 lg:flex-row flex-col justify-center items-center">
                   <div class="flex flex-col items-start justify-start w-full gap-3 text-neutral-500 font-medium ">
                       <label for="firstName" class="text-[18px] font-medium text-neutral-500"> First Name <span class="text-red-500">*</span></label>
-                      <div class=" has-[:focus]:border-black has-[:focus]:border-2  self-stretch border border-neutral-500 rounded  py-1">
+                      <div class="  self-stretch border border-neutral-500 rounded  py-1">
                           <input type="text" id="firstName" placeholder="Enter your first name"  class="border-none w-full focus:outline-none placeholder:font-normal focus:ring-0 focus:ring-transparent placeholder:text-gray-400 placeholder:font-outfit " formControlName="firstName">
                       </div>
                   </div>
                   <div class="flex flex-col items-start justify-start w-full gap-3 text-neutral-500 font-medium ">
                       <label for="LastName" class="text-[18px] font-medium text-neutral-500">Last Name <span class="text-red-500">*</span></label>
-                      <div class=" has-[:focus]:border-black has-[:focus]:border-2  self-stretch border border-neutral-500 rounded  py-1">
+                      <div class=" self-stretch border border-neutral-500 rounded  py-1">
                           <input type="text" id="LastName" placeholder="Enter your last name"  class="border-none w-full focus:outline-none placeholder:font-normal focus:ring-0 focus:ring-transparent placeholder:text-gray-400 placeholder:font-outfit" formControlName="lastName">
                       </div>
                   </div>
@@ -31,7 +31,7 @@
               <div class="flex flex-col items-start justify-start w-full gap-3  ">
                   <label for="Email" class="text-[18px] font-medium text-neutral-500">Email <span class="text-red-500">*</span></label>
                   <div class="flex flex-col items-start justify-start w-full">
-                      <div [ngClass]="{'border-red-500 border-2 bg-red-100':error}" class=" has-[:focus]:border-black has-[:focus]:border-2  self-stretch border border-neutral-500 rounded  py-1" >
+                      <div [ngClass]="{'border-red-500 border-2 bg-red-100':error}" class=" self-stretch border border-neutral-500 rounded  py-1" >
                         <input type="Email" id="Email" placeholder="Enter your email" [ngClass]="{' bg-red-100':error}"  class="border-none w-full focus:outline-none focus:ring-0 focus:ring-transparent placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit"  formControlName="email">                      </div>
                       <div *ngIf="error || registerGroupForm.get('email')" class="flex flex-col items-start justify-start gap-1">
                           <span *ngIf="registerGroupForm.get('email')?.errors?.['required'] && registerGroupForm.get('email')?.touched && registerGroupForm.get('email')?.dirty" class="text-red-500">The email field is required</span>
@@ -43,7 +43,7 @@
             <!-- TODO: Add password strength progress when creating a new password -->
             <div class="flex flex-col items-start justify-start w-full gap-3 text-neutral-500 font-medium ">
                   <label for="Password" class="text-[18px] font-medium text-neutral-500">Password <span class="text-red-500">*</span></label>
-                  <div class=" has-[:focus]:border-black has-[:focus]:border-2 flex items-center justify-between self-stretch border border-neutral-500 rounded  py-1">
+                  <div class=" flex items-center justify-between self-stretch border border-neutral-500 rounded  py-1">
                       <input type="Password"  [attr.type]="inputType" id="Password" placeholder="Enter your password (At least 8 characters,an uppercase, a lowercase and a digit)" autocomplete="false" class="border-none w-full focus:ring-0 focus:ring-transparent focus:outline-none placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="password">
                       <img [src]="inputType === 'text' ? './assets/eye.svg':'./assets/eye-off.svg'"  class="hover:bg-slate-200 hover:rounded-full p-1" (click)="toggleType()" alt=""/>
                   </div>
@@ -70,17 +70,6 @@
                        Log In
                    </a>
               </div>
-<!--              <div class="flex items-center justify-stretch self-stretch gap-6">-->
-<!--                  <div class="py-[0.7px] bg-zinc-300 w-24 flex-1"></div>-->
-<!--                  <div class="text-base font-medium ">Or</div>-->
-<!--                  <div class="py-[0.7px] bg-zinc-300 w-24 flex-1"></div>-->
-<!--              </div>-->
-<!--              <div class="border border-transparent bg-[#F5F7FA] font-normal rounded w-full px-3 flex-1 flex items-center py-2 justify-center h-10 gap-3 cursor-pointer transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">-->
-<!--                  <img src="./assets/google.svg" alt="">-->
-<!--                  <p  style="margin: 0;flex: 0 0 auto;" >-->
-<!--                      Sign up with Google-->
-<!--                  </p>-->
-<!--              </div>-->
           </form>
       </div>
     </div>
