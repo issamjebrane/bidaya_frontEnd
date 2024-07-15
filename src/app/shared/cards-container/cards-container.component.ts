@@ -140,6 +140,7 @@ export class CardsContainerComponent implements OnInit {
               }
             )
           })
+          this.loadingCards = false;
         }
       })
     }
