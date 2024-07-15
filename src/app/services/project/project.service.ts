@@ -61,7 +61,7 @@ export class ProjectService {
   uploadImage() {
     const formData = new FormData();
     formData.append('file', this.file);
-    return this.http.post('http://localhost:8080/api/v1/projects/upload', formData, {
+    return this.http.post(`${environment.API}/projects/upload`, formData, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -123,7 +123,7 @@ export class ProjectService {
 
 
   getImage(filename: string |SafeUrl): Observable<Blob> {
-    return this.http.get(`${this.baseUrl}/${filename}`, { responseType: 'blob' }).pipe(
+    return this.http.get(`${environment.API}/projects/images/${filename}`, { responseType: 'blob' }).pipe(
       catchError(this.handleError)
     );
   }
