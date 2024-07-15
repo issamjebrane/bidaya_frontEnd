@@ -5,13 +5,14 @@ import {debounceTime, distinctUntilChanged, forkJoin, map, Observable, of, Subje
 import {catchError, filter} from "rxjs/operators";
 import {Campaign} from "../../../types/campaign.types";
 import {Router} from "@angular/router";
+import {initDrawers, initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-campaigns',
   templateUrl: './campaigns.component.html',
   styleUrl: './campaigns.component.sass'
 })
-export class CampaignsComponent  {
+export class CampaignsComponent  implements AfterViewInit {
   campaign :Campaign[] = []
   private errorMessage: any;
   filtering: boolean = false;
@@ -24,6 +25,9 @@ export class CampaignsComponent  {
   noResults: boolean = false;
   loadSize: number = 8;
 
+  ngAfterViewInit(): void {
+
+  }
 
   constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer,) {
     this.searchTerm$.pipe(

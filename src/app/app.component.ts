@@ -11,6 +11,5 @@ export class AppComponent implements AfterViewInit{
   title = 'bidaya';
 
   ngAfterViewInit(): void {
-      initFlowbite();
   }
 }

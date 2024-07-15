@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from "../../services/auth/auth.service";
 import {User} from "../../../types/user.types";
-import {initFlowbite} from "flowbite";
+import {initDrawers, initFlowbite} from "flowbite";
 
 
 @Component({
@@ -54,5 +54,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.route.navigate(['/home']);
     }
     );
+  }
+
+  navigate(route: string) {
+    this.route.navigate([`/campaign/${route}`])
   }
 }

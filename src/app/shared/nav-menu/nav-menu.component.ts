@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter, AfterViewInit} from '@angular/core';
-import {initFlowbite} from "flowbite";
+import {initDrawers, initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-nav-menu',
@@ -15,7 +15,6 @@ export class NavMenuComponent implements AfterViewInit{
   @Output() toggleMenu = new EventEmitter<boolean>();
 
   ngAfterViewInit() {
-    initFlowbite();
   }
 
   toggle() {

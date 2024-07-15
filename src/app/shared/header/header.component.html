@@ -6,9 +6,9 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M4.20001 7C4.20001 6.6287 4.34751 6.2726 4.61006 6.01005C4.87261 5.7475 5.22871 5.6 5.60001 5.6H22.4C22.7713 5.6 23.1274 5.7475 23.39 6.01005C23.6525 6.2726 23.8 6.6287 23.8 7C23.8 7.3713 23.6525 7.7274 23.39 7.98995C23.1274 8.2525 22.7713 8.4 22.4 8.4H5.60001C5.22871 8.4 4.87261 8.2525 4.61006 7.98995C4.34751 7.7274 4.20001 7.3713 4.20001 7ZM4.20001 14C4.20001 13.6287 4.34751 13.2726 4.61006 13.01C4.87261 12.7475 5.22871 12.6 5.60001 12.6H14C14.3713 12.6 14.7274 12.7475 14.99 13.01C15.2525 13.2726 15.4 13.6287 15.4 14C15.4 14.3713 15.2525 14.7274 14.99 14.9899C14.7274 15.2525 14.3713 15.4 14 15.4H5.60001C5.22871 15.4 4.87261 15.2525 4.61006 14.9899C4.34751 14.7274 4.20001 14.3713 4.20001 14ZM4.20001 21C4.20001 20.6287 4.34751 20.2726 4.61006 20.01C4.87261 19.7475 5.22871 19.6 5.60001 19.6H22.4C22.7713 19.6 23.1274 19.7475 23.39 20.01C23.6525 20.2726 23.8 20.6287 23.8 21C23.8 21.3713 23.6525 21.7274 23.39 21.9899C23.1274 22.2525 22.7713 22.4 22.4 22.4H5.60001C5.22871 22.4 4.87261 22.2525 4.61006 21.9899C4.34751 21.7274 4.20001 21.3713 4.20001 21Z" fill="currentColor"/>
             </svg>
           </button>
-          <div id="drawer-navigation" class="fixed lg:hidden top-0 left-0 z-40 h-screen p-4 py-11 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
+          <div id="drawer-navigation"  class="fixed lg:hidden top-0 left-0 z-40 h-screen p-4 py-11 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
             <h5 id="drawer-navigation-label" class="text-base font-semibold text-green-500 uppercase ">Menu</h5>
-            <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" class="text-green-500 font-medium mt-7 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+            <button type="button" data-drawer-hide="drawer-navigation" data-drawer-show="drawer-disabled-backdrop"  data-drawer-backdrop="false" aria-controls="drawer-navigation" class="text-green-500 font-medium mt-7 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
               <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
               </svg>
@@ -17,7 +17,7 @@
             <div class="py-4 overflow-y-auto">
               <ul class="space-y-2">
                 <li>
-                  <a href=""  routerLink="/campaign/explore" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-green-500 rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <a  (click)="navigate('explore')" data-drawer-toggle="drawer-navigation" class="flex items-center p-2 text-green-500 rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-green-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                       <path fill-rule="evenodd" d="M3 6a2 2 0 0 1 2-2h5.532a2 2 0 0 1 1.536.72l1.9 2.28H3V6Zm0 3v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3Z" clip-rule="evenodd"/>
                     </svg>
@@ -25,7 +25,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href=""  data-drawer-hide="drawer-navigation" routerLink="/campaign/start-a-campaign" class="flex items-center p-2 text-green-500 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <a (click)="navigate('start-a-campaign')"  data-drawer-hide="drawer-navigation" routerLink="/campaign/start-a-campaign" class="flex items-center p-2 text-green-500 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-green-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                       <path fill-rule="evenodd" d="M8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8l8-6a1 1 0 0 0 0-1.6l-8-6Z" clip-rule="evenodd"/>
                     </svg>

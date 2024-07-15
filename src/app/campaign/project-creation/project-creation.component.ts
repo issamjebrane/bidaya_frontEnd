@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {Step} from "../../../types/user.types";
 import {Router} from "@angular/router";
+import {initDrawers, initFlowbite} from "flowbite";
 
 
 @Component({
@@ -8,7 +9,7 @@ import {Router} from "@angular/router";
   templateUrl: './project-creation.component.html',
   styleUrl: './project-creation.component.sass'
 })
-export class ProjectCreationComponent {
+export class ProjectCreationComponent implements AfterViewInit{
   protected steps: Step[] = [
     {
       stepTitle: 'Basics',
@@ -35,6 +36,9 @@ export class ProjectCreationComponent {
   protected currentStep:number = 1;
 
 
+  ngAfterViewInit() {
+
+  }
   constructor(private router: Router) {}
 
   // nextStep() {
