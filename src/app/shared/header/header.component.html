@@ -64,7 +64,7 @@
             <app-nav-menu class="lg:block hidden" [path]="path" (toggleSearch)="onToggleSearch($event)" [searchToggled]="searchToggled"/>
           <div *ngIf="isLoggedIn()">
             <button  id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class=" text-sm p-1.5 font-medium text-white rounded-full hover:text-green-500 hover:ring-green-500 hover:ring-2 md:me-0 focus:ring-2 focus:ring-green-100" type="button">
-              <img class="w-8 h-8 me-2 lg:hidden rounded-full" src="assets/user1.svg" alt="user photo" *ngIf="isLoggedIn()">
+              <img class="w-8 h-8 lg:me-2 lg:hidden rounded-full" src="assets/user1.svg" alt="user photo" *ngIf="isLoggedIn()">
               <div class="lg:flex hidden items-center">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 me-2 rounded-full" src="assets/user1.svg" alt="user photo">
@@ -76,9 +76,23 @@
                 </svg>
               </div>
             </button>
-            <div id="dropdownAvatarName" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 lg:w-fit">
-
+            <div id="dropdownAvatarName" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56"  >
+              <ul class="py-2 text-base text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My campaigns</a>
+                </li>
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My contributions</a>
+                </li>
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                </li>
+              </ul>
+              <div class="py-2">
+                <a (click)="loggOut()" class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+              </div>
             </div>
+
           </div>
           <div class="flex items-center justify-center gap-3" *ngIf="!isLoggedIn()">
             <button routerLink="/authentication/login" *ngIf="!isLoggedIn()" class="text-green-500 px-2 py-1 w-fit h-fit lg:w-32 lg:h-14 border-green-600 rounded-lg transition ease duration-300 hover:border-green-500 border-2 lg:border-transparent text-base">Sign In</button>
