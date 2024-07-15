@@ -53,8 +53,10 @@ export class CampaignsComponent  {
   }
 
   ngOnInit(): void {
+    this.isLoadingProjects = true;
     this.projectService.getProjects().subscribe({
       next:(campaigns  )=>{
+        this.isLoadingProjects = false;
         campaigns.forEach((project) => {
           this.convertProjectImageUrl(
             project
@@ -144,6 +146,7 @@ export class CampaignsComponent  {
       this.isLoadingProjects = false;
     },500)
     this.projectService.filterByCategory(type).subscribe({
+
       next:(campaigns  )=>{
         campaigns.forEach((project) => {
           this.campaign = []
