@@ -59,7 +59,6 @@ export class CampaignsComponent  {
     this.projectService.getProjects().subscribe({
       next:(campaigns  )=>{
         if(campaigns.length > 0){
-        this.isLoadingProjects = false;
         campaigns.forEach((project) => {
           this.convertProjectImageUrl(
             project
@@ -67,6 +66,7 @@ export class CampaignsComponent  {
               this.campaign.push(project)
             }
           )
+        this.isLoadingProjects = false;
         })
       }}
     })
@@ -159,6 +159,8 @@ export class CampaignsComponent  {
               }
             )
           })
+        }else {
+          alert('No projects found')
         }
       }
     })

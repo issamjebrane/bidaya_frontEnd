@@ -30,7 +30,6 @@ export class CardsContainerComponent implements OnInit {
     this.projectService.getProjects().subscribe({
       next:(campaigns  )=>{
         if(campaigns.length > 0){
-        this.loadingCards = false;
         campaigns.forEach((project) => {
           this.convertProjectImageUrl(
             project
@@ -38,6 +37,7 @@ export class CardsContainerComponent implements OnInit {
               this.campaign.push(project)
             }
           )
+          this.loadingCards = false;
         })
       }}
     })

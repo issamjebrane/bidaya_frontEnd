@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../services/project/project.service";
 import {Router} from "@angular/router";
+import {Campaign} from "../../../types/campaign.types";
 
 @Component({
   selector: 'app-rewards',
@@ -22,6 +23,7 @@ export class RewardsComponent implements OnInit {
   fileUrl: string = '';
   isCongratulation: boolean = false;
   isLoadingCongratulation: boolean = false
+  id?: number;
 
   constructor(protected projectService: ProjectService, private formBuilder: FormBuilder, private router: Router) {
 
@@ -128,12 +130,23 @@ export class RewardsComponent implements OnInit {
       this.isLoadingCongratulation = false;
     }, 2000);
     const formData = this.formGroup.value;
-    this.projectService.handleStepFormSubmit(formData, 'rewards');
-    this.isCongratulation = true;
+    this.projectService.handleStepFormSubmit(formData, 'rewards').subscribe({
+      next: (data:Campaign) => {
+        this.id = data.basics.id
+        this.isCongratulation = true;
+      },
+      error: (error: any) => {
+        console.error('Error occurred:', error);
+      }
+    });
   }
 
   goHome() {
     this.projectService.removeLocalStorageDate();
     this.router.navigate(['/home']);
+  }
+
+  viewCampaign() {
+    this.router.navigate([`/campaign${this.id}`])
   }
 }

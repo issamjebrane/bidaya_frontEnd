@@ -13,14 +13,17 @@ export class ProjectService {
   file: any;
   private imageSrc!: SafeUrl;
   constructor(private http:HttpClient,private sanitizer: DomSanitizer) { }
+  campaign!: Campaign;
 
-  handleStepFormSubmit(formData:{},stepName:string) {
+  handleStepFormSubmit(formData:{},stepName:string):Observable<Campaign> {
     const formDataJsonString = JSON.stringify(formData);
     localStorage.setItem(stepName, formDataJsonString);
+
     if(stepName === 'rewards'){
   // uploading all project data to the server
-      this.uploadProjectData();
+      return this.uploadProjectData();
     }
+    return of(this.campaign);
   }
 
   onFileSelected(event: Event): {readFile$:Promise<string>,selectedFilePath:string} {
@@ -101,20 +104,13 @@ export class ProjectService {
       formData = {...formData, "userId": {
         email: id
         }};
-      this.http.post(`${environment.API}/projects/add`, formData, {
+      return  this.http.post<Campaign>(`${environment.API}/projects/add`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
-      }).subscribe({
-        next: (data) => {
-          console.log(data);
-        },
-        error: (error) => {
-          console.error('Error occurred:', error);
-        }
-      });
+      })
     }
-
+    return of(this.campaign);
   }
 
 

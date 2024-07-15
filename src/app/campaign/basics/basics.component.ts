@@ -108,7 +108,6 @@ export class BasicsComponent implements OnInit{
           this.isLoading = false;
           // @ts-ignore
           this.fileUrl = data['filename'];
-          console.log(this.fileUrl);
         },
         error: (error) => {
           console.error('Error occurred:', error);
