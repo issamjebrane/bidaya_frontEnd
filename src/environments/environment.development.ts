@@ -1,3 +1,3 @@
 export const environment = {
-    API : 'http://localhost:8080/api/v1',
+  API : 'https://bidaya-project-57751315b41d.herokuapp.com/api/v1',
 };

@@ -100,9 +100,11 @@ export class BasicsComponent implements OnInit{
   }
 
   uploadImage() {
+    this.isLoading = true;
     this.projectService.uploadImage()     .subscribe(
       {
         next: (data) => {
+          this.isLoading = false;
           // @ts-ignore
           this.fileUrl = data['filename'];
           console.log(this.fileUrl);
@@ -133,7 +135,7 @@ export class BasicsComponent implements OnInit{
       this.isClicked = false;
       this.projectService.handleStepFormSubmit(formData,'basicForm');
       this.stepChange.emit(this.currentStep + 1);
-    }, 1000);
+    }, 500);
   }
 
 }
