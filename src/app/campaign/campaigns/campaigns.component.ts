@@ -23,6 +23,8 @@ export class CampaignsComponent  {
   searchTerm?: string ;
   noResults: boolean = false;
   loadSize: number = 8;
+
+
   constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer,) {
     this.searchTerm$.pipe(
       debounceTime(300), // Wait 300ms after the last keystroke before triggering the search
@@ -56,6 +58,7 @@ export class CampaignsComponent  {
     this.isLoadingProjects = true;
     this.projectService.getProjects().subscribe({
       next:(campaigns  )=>{
+        if(campaigns.length > 0){
         this.isLoadingProjects = false;
         campaigns.forEach((project) => {
           this.convertProjectImageUrl(
@@ -65,7 +68,7 @@ export class CampaignsComponent  {
             }
           )
         })
-      }
+      }}
     })
 
 
@@ -142,22 +145,21 @@ export class CampaignsComponent  {
   filter(type:string ) {
     this.filterType = type;
     this.isLoadingProjects = true;
-    setTimeout(() => {
-      this.isLoadingProjects = false;
-    },500)
     this.projectService.filterByCategory(type).subscribe({
-
-      next:(campaigns  )=>{
-        campaigns.forEach((project) => {
-          this.campaign = []
-          this.convertProjectImageUrl(
-            project
-          ).subscribe((project) => {
-              this.filtering = true;
-              this.campaign.push(project)
-            }
-          )
-        })
+      next:(campaigns  )=> {
+        if (campaigns.length > 0) {
+          campaigns.forEach((project) => {
+            this.isLoadingProjects = false;
+            this.campaign = []
+            this.convertProjectImageUrl(
+              project
+            ).subscribe((project) => {
+                this.filtering = true;
+                this.campaign.push(project)
+              }
+            )
+          })
+        }
       }
     })
     if(type === 'all'){
@@ -179,12 +181,12 @@ export class CampaignsComponent  {
   }
   sortingByCriteria(criteria:string) {
     this.isLoadingProjects = true;
-    setTimeout(() => {
-      this.isLoadingProjects = false;
-    }, 500)
     this.projectService.sortByCriteria(criteria).subscribe({
       next: (campaigns: Campaign[]) => {
-        this.campaign = []
+        if(campaigns.length > 0){
+          this.isLoadingProjects = false;
+
+          this.campaign = []
         this.filtering = true;
         campaigns.forEach((project) => {
           this.convertProjectImageUrl(
@@ -194,7 +196,7 @@ export class CampaignsComponent  {
             }
           )
         })
-      }
+      }}
     })
   }
 

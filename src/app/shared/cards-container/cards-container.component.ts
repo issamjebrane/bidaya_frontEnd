@@ -29,6 +29,7 @@ export class CardsContainerComponent implements OnInit {
     this.loadingCards = true;
     this.projectService.getProjects().subscribe({
       next:(campaigns  )=>{
+        if(campaigns.length > 0){
         this.loadingCards = false;
         campaigns.forEach((project) => {
           this.convertProjectImageUrl(
@@ -38,7 +39,7 @@ export class CardsContainerComponent implements OnInit {
             }
           )
         })
-      }
+      }}
     })
   }
 
@@ -109,8 +110,11 @@ export class CardsContainerComponent implements OnInit {
 
   filter(type:string ) {
     this.filterType = type;
+    this.loadingCards = true;
     this.projectService.filterByCategory(type).subscribe({
       next:(campaigns  )=>{
+        if(campaigns.length > 0){
+          this.loadingCards = false;
         campaigns.forEach((project) => {
           this.campaign = []
           this.convertProjectImageUrl(
@@ -121,7 +125,7 @@ export class CardsContainerComponent implements OnInit {
             }
           )
         })
-      }
+      }}
     })
     if(type === 'all'){
       this.filtering = false;
