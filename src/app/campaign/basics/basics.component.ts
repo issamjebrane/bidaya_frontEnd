@@ -67,6 +67,7 @@ export class BasicsComponent implements OnInit{
     this.selectedFilePath = selectedFilePath;
     readFile$.then((result) => {
       this.backgroundImage = result;
+      console.log(this.formGroup.controls['cardImage'])
       this.formGroup.controls['cardImage'].setValue(this.selectedFilePath);
     });
     (event.target as HTMLInputElement).value = '';

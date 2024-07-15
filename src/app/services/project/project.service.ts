@@ -68,7 +68,6 @@ export class ProjectService {
     })
       .pipe(
         //get the file path from the server and add it to the file URL
-
         catchError(error => {
           // Handle the error here
           console.error('Error occurred:', error);
@@ -119,7 +118,6 @@ export class ProjectService {
   }
 
 
-  private baseUrl = 'http://localhost:8080/api/v1/projects/images';
 
 
   getImage(filename: string |SafeUrl): Observable<Blob> {
