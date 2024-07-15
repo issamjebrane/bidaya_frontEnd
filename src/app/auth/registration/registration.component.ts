@@ -46,18 +46,13 @@ export class RegistrationComponent {
           this.authService.setToken(value.token);
           this.authService.setUser({firstName:value.user.firstName,lastName:value.user.lastName});
         }
-        setTimeout(()=>{
           this.buttonCLicked = false;
-          //@ts-ignore
           this.router.navigate(['/home'])
-        },2000)
       },
       error: error => {
         if(error.error === "Email Already Exists"){
-          setTimeout(()=>{
             this.buttonCLicked = false;
             this.error = error.error
-          },2000)
         }else{
           alert('system error please try again later')
           this.buttonCLicked=false;

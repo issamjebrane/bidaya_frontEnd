@@ -20,14 +20,16 @@ export class CardsContainerComponent implements OnInit {
   filtering: boolean = false;
   filterType: string = 'all';
   constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer) {}
-
+  loadingCards: boolean = false;
   toDate(creationDate : string){
     return new Date(creationDate);
   }
 
   ngOnInit(): void {
+    this.loadingCards = true;
     this.projectService.getProjects().subscribe({
       next:(campaigns  )=>{
+        this.loadingCards = false;
         campaigns.forEach((project) => {
           this.convertProjectImageUrl(
             project

@@ -13,6 +13,7 @@ export class LoginComponent {
   loginGroupForm!:FormGroup
   error?:string;
   inputType:string = 'password';
+  buttonCLicked: boolean = false
   ngOnInit(): void {
     this.loginGroupForm=new FormGroup({
       email: new FormControl("",Validators.compose([
@@ -34,6 +35,7 @@ export class LoginComponent {
   }
 
   submit(){
+    this.buttonCLicked = true;
     const user:User = {
       email:this.loginGroupForm.value.email,
       password:this.loginGroupForm.value.password
@@ -41,6 +43,7 @@ export class LoginComponent {
     this.authservice.login(user).subscribe({
       next: value => {
         this.error=undefined;
+        this.buttonCLicked = false;
         this.router.navigate(['/home'])
       },
       error: error => {
