@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import {catchError} from "rxjs/operators";
 import {Observable, of, throwError} from "rxjs";
 import {Campaign} from "../../../types/campaign.types";

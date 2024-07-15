@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {AuthenticationResponse, User} from '../../../types/user.types';
 import {Observable, tap,of} from 'rxjs';
 import { HttpClient , HttpErrorResponse} from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import {Router} from "@angular/router";
 import { catchError } from 'rxjs/operators';
 
