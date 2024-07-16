@@ -1,5 +1,4 @@
 import {Component, Input, Output, EventEmitter, AfterViewInit} from '@angular/core';
-import {initDrawers, initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-nav-menu',

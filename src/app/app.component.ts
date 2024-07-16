@@ -1,5 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {initFlowbite} from "flowbite";
+import {Component} from '@angular/core';
 import 'flowbite'
 @Component({
   selector: 'app-root',
@@ -7,9 +6,7 @@ import 'flowbite'
   styleUrl: './app.component.sass',
 
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent{
   title = 'bidaya';
 
-  ngAfterViewInit(): void {
-  }
 }

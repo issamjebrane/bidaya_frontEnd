@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     initFlowbite();
+    initDrawers();
   }
    ngOnInit(){
     this.router.url.subscribe(segments=>{

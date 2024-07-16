@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component } from '@angular/core';
 
 
 @Component({
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './pages-layout.component.sass'
 })
 
-export class PagesLayoutComponent {
- 
+export class PagesLayoutComponent  {
+
+
 }

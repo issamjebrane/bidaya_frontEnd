@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {SharedModule} from "./shared/shared.module";
 import localeFr from '@angular/common/locales/fr';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -26,6 +27,7 @@ registerLocaleData(localeFr, 'fr');
     HomeComponent,
     CardsContainerComponent,
     PageNotFoundComponent,
+    AboutUsComponent,
   ],
     imports: [
         HttpClientModule,

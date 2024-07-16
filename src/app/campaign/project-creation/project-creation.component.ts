@@ -1,7 +1,6 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {Step} from "../../../types/user.types";
 import {Router} from "@angular/router";
-import {initDrawers, initFlowbite} from "flowbite";
 
 
 @Component({

@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {register} from "swiper/swiper-element";
+import {initFlowbite} from "flowbite";
+import {Campaign} from "../../types/campaign.types";
+import {debounceTime, forkJoin, map, Observable, of, Subject, switchMap} from "rxjs";
+import {catchError, filter} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {ProjectService} from "../services/project/project.service";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 export interface Card {
   projectId?: number,
@@ -126,6 +132,36 @@ export class HomeComponent implements OnInit{
       comment:'Thanks to BIDAYA, keep up the good work! I would like to say thank you to all your staff and all the bakers behind it.'
     }
   ]
+  searchTerm?: string ;
+  noResults: boolean = false;
+  showDropdown: boolean = false;
+  matchingProjects: Campaign[] = [];
+  searchTerm$ = new Subject<string>();
+  private errorMessage: any;
+
+  constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer,) {
+    this.searchTerm$.pipe(
+      debounceTime(300), // Wait 300ms after the last keystroke before triggering the search
+      filter(term => {return term.length >= 3}), // Only trigger if the search term is longer than 3 characters
+      switchMap(term =>
+        this.projectService.searchProjects(term)
+      )
+    ).subscribe({
+      next: (projects: Campaign[]) => {
+        this.showDropdown = true;
+        this.matchingProjects = [];
+        this.noResults = projects.length === 0;
+        projects.forEach((project) => {
+          this.convertProjectImageUrl(
+            project
+          ).subscribe((project) => {
+              this.matchingProjects.push(project)
+            }
+          )
+        })
+      }
+    });
+  }
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     window.scrollTo({top: 0, behavior: 'smooth'});
@@ -133,5 +169,59 @@ export class HomeComponent implements OnInit{
    stars(rating:number):number[] {
     return Array(Math.floor(rating)).fill(0);
   }
+  convertProjectImageUrl(project: Campaign): Observable<Campaign> {
+    const imageObservables: { [key: string]: Observable<SafeUrl> } = {
+      cardImage: this.generateImageUrs(project.basics.cardImage),
+      storyFileUrl: this.generateImageUrs(project.story.fileUrl),
+    };
 
+    project.rewards.forEach((reward, index) => {
+      imageObservables[`rewardFileUrl${index}`] = this.generateImageUrs(reward.fileUrl);
+    });
+
+    return forkJoin(imageObservables).pipe(
+      map(results => {
+        // @ts-ignore
+        project.basics.cardImage = results.cardImage;
+        // @ts-ignore
+        project.story.fileUrl = results.storyFileUrl;
+        project.rewards.forEach((reward, index) => {
+          // @ts-ignore
+          reward.fileUrl = results[`rewardFileUrl${index}`];
+
+        });
+        return project;
+      })
+    );
+  }
+  generateImageUrs(fileUrl: string | SafeUrl): Observable<SafeUrl> {
+    return this.projectService.getImage(fileUrl).pipe(
+      map(data => {
+        const objectURL = URL.createObjectURL(data);
+        return this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      }),
+      catchError(error => {
+        console.error('Error occurred:', error);
+        this.errorMessage = error;
+        return of(null as any);  // Return a null SafeUrl on error
+      })
+    );
+  }
+  onBlur() {
+    setTimeout(() => {
+      this.showDropdown = false;
+      this.matchingProjects = [];
+    }, 200); // Delay to allow click event on dropdown items
+  }
+  onInputChange() {
+    if (this.searchTerm && this.searchTerm.length >= 3) {
+      //check if searchTerm contains more than one space and delete it
+      this.searchTerm = this.searchTerm.replace(/\s{2,}/g, ' ');
+      this.searchTerm$.next(this.searchTerm);
+    }
+  }
+
+  goToProject(id: number) {
+    this.route.navigate([`/campaign/${id.toString()}`]);
+  }
 }

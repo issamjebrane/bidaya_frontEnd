@@ -36,7 +36,6 @@ export class CampaignComponent implements OnInit {
     if(this.url[0].path) {
       this.projectService.getProject(Number(this.url[0].path))?.subscribe((project: Campaign) => {
         this.convertProjectImageUrls(project).subscribe({
-
           next: (project) => {
             console.log(this.url)
             this.project = project;

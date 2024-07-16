@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesLayoutComponent } from './layouts/pages-layout/pages-layout.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {authGuard} from "./auth.guard";
+import {AboutUsComponent} from "./about-us/about-us.component";
 
 const routes: Routes = [
   {
@@ -18,12 +20,21 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent
       }
     ]
   },
   {
     path: 'campaign',
     loadChildren: () => import('./campaign/campaign.module').then(m => m.CampaignModule)
+  },
+  {
+    path:'authentication',
+    canActivate: [authGuard],
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: '**',

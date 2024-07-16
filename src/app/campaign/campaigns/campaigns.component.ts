@@ -5,7 +5,6 @@ import {debounceTime, distinctUntilChanged, forkJoin, map, Observable, of, Subje
 import {catchError, filter} from "rxjs/operators";
 import {Campaign} from "../../../types/campaign.types";
 import {Router} from "@angular/router";
-import {initDrawers, initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-campaigns',
@@ -31,8 +30,8 @@ export class CampaignsComponent  implements AfterViewInit {
 
   constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer,) {
     this.searchTerm$.pipe(
-      debounceTime(300), // Wait 300ms after the last keystroke before triggering the search
-      filter(term => {return term.length >= 3}), // Only trigger if the search term is longer than 3 characters
+      debounceTime(300),
+      filter(term => {return term.length > 2}),
       switchMap(term =>
         this.projectService.searchProjects(term)
       )
@@ -153,7 +152,6 @@ export class CampaignsComponent  implements AfterViewInit {
       next:(campaigns  )=> {
         if (campaigns.length > 0) {
           campaigns.forEach((project) => {
-            this.isLoadingProjects = false;
             this.campaign = []
             this.convertProjectImageUrl(
               project
@@ -163,10 +161,17 @@ export class CampaignsComponent  implements AfterViewInit {
               }
             )
           })
-        }else {
+          this.isLoadingProjects = false;
+        }else if(campaigns.length === 0){
+          this.isLoadingProjects = false
           alert('No projects found')
         }
-      }
+      },
+    error: (error) => {
+      this.isLoadingProjects = false;
+      this.filterType = 'all';
+      alert('No projects found')
+    }
     })
     if(type === 'all'){
       this.filtering = false;
@@ -181,6 +186,7 @@ export class CampaignsComponent  implements AfterViewInit {
               }
             )
           })
+          this.isLoadingProjects = false;
         }
       })
     }
@@ -207,7 +213,8 @@ export class CampaignsComponent  implements AfterViewInit {
   }
 
   onInputChange() {
-    if (this.searchTerm && this.searchTerm.length > 3) {
+    if (this.searchTerm && this.searchTerm.length > 2) {
+      this.searchTerm = this.searchTerm.replace(/\s{2,}/g, ' ');
       this.searchTerm$.next(this.searchTerm);
     }
   }
@@ -222,5 +229,7 @@ export class CampaignsComponent  implements AfterViewInit {
   LoadMore() {
     this.loadSize += 8;
   }
-
+  goToProject(id: number) {
+    this.route.navigate([`/campaign/${id.toString()}`]);
+  }
 }
