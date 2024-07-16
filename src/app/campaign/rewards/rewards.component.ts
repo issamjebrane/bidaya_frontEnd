@@ -23,7 +23,7 @@ export class RewardsComponent implements OnInit {
   fileUrl: string = '';
   isCongratulation: boolean = false;
   isLoadingCongratulation: boolean = false
-  id?: number;
+  id: number = 0;
 
   constructor(protected projectService: ProjectService, private formBuilder: FormBuilder, private router: Router) {
 
@@ -132,6 +132,7 @@ export class RewardsComponent implements OnInit {
     const formData = this.formGroup.value;
     this.projectService.handleStepFormSubmit(formData, 'rewards').subscribe({
       next: (data:Campaign) => {
+
         this.id = data.basics.id
         this.isCongratulation = true;
       },
