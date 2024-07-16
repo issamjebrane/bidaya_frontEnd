@@ -148,6 +148,6 @@ export class RewardsComponent implements OnInit {
   }
 
   viewCampaign() {
-    this.router.navigate([`/campaign${this.id}`])
+    this.router.navigate([`/campaign/${this.id}`])
   }
 }

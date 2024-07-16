@@ -125,4 +125,5 @@ export class CampaignComponent implements OnInit {
     },1000)
     this.selectedTab = tab;
   }
+
 }

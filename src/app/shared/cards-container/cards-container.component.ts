@@ -109,27 +109,10 @@ export class CardsContainerComponent implements OnInit {
   }
 
   filter(type:string ) {
-    this.filterType = type;
-    this.loadingCards = true;
-    this.projectService.filterByCategory(type).subscribe({
-      next:(campaigns  )=>{
-        if(campaigns.length > 0){
-          this.loadingCards = false;
-        campaigns.forEach((project) => {
-          this.campaign = []
-          this.convertProjectImageUrl(
-            project
-          ).subscribe((project) => {
-              this.filtering = true;
-              this.campaign.push(project)
-            }
-          )
-        })
-      }}
-    })
     if(type === 'all'){
       this.filtering = false;
       this.campaign=[]
+      this.filterType = 'all';
       this.projectService.getProjects().subscribe({
         next:(campaigns  )=>{
           campaigns.forEach((project) => {
@@ -143,6 +126,31 @@ export class CardsContainerComponent implements OnInit {
           this.loadingCards = false;
         }
       })
+    }else{
+      this.filterType = type;
+      this.loadingCards = true;
+      this.projectService.filterByCategory(type).subscribe({
+        next:(campaigns  )=>{
+          if(campaigns.length > 0){
+            this.loadingCards = false;
+            campaigns.forEach((project) => {
+              this.campaign = []
+              this.convertProjectImageUrl(
+                project
+              ).subscribe((project) => {
+                  this.filtering = true;
+                  this.campaign.push(project)
+                }
+              )
+            })
+          }},
+          error: (error) => {
+            this.loadingCards = false;
+            this.filterType = 'all';
+            alert('No projects found')
+          }
+      }
+        )
     }
   }
 }

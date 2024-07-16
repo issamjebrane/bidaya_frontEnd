@@ -146,6 +146,24 @@ export class CampaignsComponent  implements AfterViewInit {
     );
   }
   filter(type:string ) {
+    if(type === 'all'){
+      this.filtering = false;
+      this.filterType = 'all';
+      this.campaign=[]
+      this.projectService.getProjects().subscribe({
+        next:(campaigns  )=>{
+          campaigns.forEach((project) => {
+            this.convertProjectImageUrl(
+              project
+            ).subscribe((project) => {
+                this.campaign.push(project)
+              }
+            )
+          })
+          this.isLoadingProjects = false;
+        }
+      })
+    }else{
     this.filterType = type;
     this.isLoadingProjects = true;
     this.projectService.filterByCategory(type).subscribe({
@@ -173,24 +191,9 @@ export class CampaignsComponent  implements AfterViewInit {
       alert('No projects found')
     }
     })
-    if(type === 'all'){
-      this.filtering = false;
-      this.campaign=[]
-      this.projectService.getProjects().subscribe({
-        next:(campaigns  )=>{
-          campaigns.forEach((project) => {
-            this.convertProjectImageUrl(
-              project
-            ).subscribe((project) => {
-                this.campaign.push(project)
-              }
-            )
-          })
-          this.isLoadingProjects = false;
-        }
-      })
     }
   }
+
   sortingByCriteria(criteria:string) {
     this.isLoadingProjects = true;
     this.projectService.sortByCriteria(criteria).subscribe({
