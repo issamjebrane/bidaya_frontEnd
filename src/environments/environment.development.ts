@@ -1,3 +1,3 @@
 export const environment = {
-  API : 'http://localhost:8080/api/v1',
+  API : 'https://www.bidayabe.software/api/v1',
 };
