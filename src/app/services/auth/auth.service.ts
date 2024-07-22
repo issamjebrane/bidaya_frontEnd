@@ -43,7 +43,7 @@ export class AuthService {
       }
     }).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
+        if (error.status === 403) {
           return of(null);
         }
         const notification = document.createElement('div');

@@ -122,6 +122,17 @@ export class ProjectService {
     );
   }
 
+  convertToByte(imageData:string){
+    const binaryString = window.atob(imageData);
+    const binaryLen = binaryString.length;
+    const bytes = new Uint8Array(binaryLen);
+    for (let i = 0; i < binaryLen; i++) {
+      const ascii = binaryString.charCodeAt(i);
+      bytes[i] = ascii;
+    }
+    return new Blob([bytes], { type: 'image/jpeg' });
+  }
+
   private handleError(error: any): Observable<never> {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
@@ -164,5 +175,16 @@ export class ProjectService {
         return of([]);
       })
     );
+  }
+  convertProjectImageUrl(project: Campaign) {
+    const blob = this.convertToByte(project.basics.imageData);
+    project.basics.cardImage = URL.createObjectURL(blob);
+    const blob2 = this.convertToByte(project.story.imageData);
+    project.story.fileUrl = URL.createObjectURL(blob2);
+    project.rewards.forEach((reward, index) => {
+      const blob = this.convertToByte(reward.imageData);
+      reward.fileUrl = URL.createObjectURL(blob);
+    });
+    return project
   }
 }

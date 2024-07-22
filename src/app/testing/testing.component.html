@@ -1,0 +1,8 @@
+<input type="file" (change)="uploadImage($event)"/>
+<img [src]="imageUrl" *ngIf="imageUrl" />
+<button type="button" (click)="loadImage()">
+  get image
+</button>
+<button type="button" (click)="upload()">
+  upload Image
+</button>

@@ -35,22 +35,23 @@ export class CampaignComponent implements OnInit {
     })
     if(this.url[0].path) {
       this.projectService.getProject(Number(this.url[0].path))?.subscribe((project: Campaign) => {
-        this.convertProjectImageUrls(project).subscribe({
-          next: (project) => {
-            console.log(this.url)
-            this.project = project;
-            this.isLoading = false;
-            this.user = this.project.userId
-            this.editorContent = this.sanitizer.bypassSecurityTrustHtml(project.story.editorContent);
-          },
-          error: (error) => {
-            console.error('Error occurred:', error);
-            this.errorMessage = error;
-          }
-        }
-        )
-      });
+        this.project = project;
+        console.log(typeof this.project.basics.imageData)
+        this.isLoading = false;
+        this.user = this.project.userId
+        const blob = this.projectService.convertToByte(project.basics.imageData);
+        this.project.basics.cardImage = URL.createObjectURL(blob);
+        const blob2 = this.projectService.convertToByte(project.story.imageData);
+        this.project.story.fileUrl = URL.createObjectURL(blob2);
+        project.rewards.forEach((reward, index) => {
+          const blob = this.projectService.convertToByte(reward.imageData);
+          reward.fileUrl = URL.createObjectURL(blob);
+        });
+
+        this.editorContent = this.sanitizer.bypassSecurityTrustHtml(project.story.editorContent);
+    })
     }
+
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 1);
@@ -71,31 +72,6 @@ export class CampaignComponent implements OnInit {
     );
   }
 
-  convertProjectImageUrls(project: Campaign): Observable<Campaign> {
-    const imageObservables: { [key: string]: Observable<SafeUrl> } = {
-      cardImage: this.generateImageUrl(project.basics.cardImage),
-      storyFileUrl: this.generateImageUrl(project.story.fileUrl),
-    };
-
-    project.rewards.forEach((reward, index) => {
-      imageObservables[`rewardFileUrl${index}`] = this.generateImageUrl(reward.fileUrl);
-    });
-
-    return forkJoin(imageObservables).pipe(
-      map(results => {
-        // @ts-ignore
-        project.basics.cardImage = results.cardImage;
-        // @ts-ignore
-        project.story.fileUrl = results.storyFileUrl;
-        project.rewards.forEach((reward, index) => {
-          // @ts-ignore
-          reward.fileUrl = results[`rewardFileUrl${index}`];
-
-        });
-        return project;
-      })
-    );
-  }
 
   daysLeft(creationDate: string,duration:number) {
       const dateOfCreation = new Date(creationDate);

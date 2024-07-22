@@ -23,6 +23,7 @@ export class CampaignsComponent  implements AfterViewInit {
   searchTerm?: string ;
   noResults: boolean = false;
   loadSize: number = 8;
+  imageUrls: { [key: string]: SafeUrl } = {}; // To store image URLs
 
   ngAfterViewInit(): void {
 
@@ -41,12 +42,7 @@ export class CampaignsComponent  implements AfterViewInit {
         this.matchingProjects = [];
         this.noResults = projects.length === 0;
         projects.forEach((project) => {
-          this.convertProjectImageUrl(
-            project
-          ).subscribe((project) => {
-              this.matchingProjects.push(project)
-            }
-          )
+          this.campaign.push(this.projectService.convertProjectImageUrl(project));
         })
       }
     });
@@ -59,24 +55,45 @@ export class CampaignsComponent  implements AfterViewInit {
 
   ngOnInit(): void {
     this.isLoadingProjects = true;
+
     this.projectService.getProjects().subscribe({
-      next:(campaigns  )=>{
-        if(campaigns.length > 0){
-        campaigns.forEach((project) => {
-          this.convertProjectImageUrl(
-            project
-          ).subscribe((project) => {
-              this.campaign.push(project)
-            }
-          )
-        this.isLoadingProjects = false;
+      next:(projects  )=>{
+        projects.forEach((project) => {
+          this.campaign.push(this.projectService.convertProjectImageUrl(project));
+
         })
-      }}
+        this.isLoadingProjects = false
+      }
     })
 
 
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+  }
+
+
+   convertImageData(): void {
+    this.campaign.map((project) => {
+      if (project.basics.imageData) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          this.imageUrls['cardImage'] = reader.result as string; // Base64 encoded string
+        };
+        reader.readAsDataURL(project.basics.imageData); // Convert Blob to Data URL
+      }
+
+      if (project.story.imageData) {
+          const objectURL = URL.createObjectURL(project.story.imageData); // Create a URL for the Blob
+          this.imageUrls['storyImage'] = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      }
+
+      project.rewards.forEach((reward: any) => {
+        if (reward.imageData) {
+            const objectURL = URL.createObjectURL(reward.imageData); // Create a URL for the Blob
+            this.imageUrls[reward.title] = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        }
+      });
     })
   }
 
@@ -106,59 +123,16 @@ export class CampaignsComponent  implements AfterViewInit {
     this.route.navigate(['/campaign', id.toString()])
   }
 
-  generateImageUrs(fileUrl: string | SafeUrl): Observable<SafeUrl> {
-    return this.projectService.getImage(fileUrl).pipe(
-      map(data => {
-        const objectURL = URL.createObjectURL(data);
-        return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      }),
-      catchError(error => {
-        console.error('Error occurred:', error);
-        this.errorMessage = error;
-        return of(null as any);  // Return a null SafeUrl on error
-      })
-    );
-  }
 
-  convertProjectImageUrl(project: Campaign): Observable<Campaign> {
-    const imageObservables: { [key: string]: Observable<SafeUrl> } = {
-      cardImage: this.generateImageUrs(project.basics.cardImage),
-      storyFileUrl: this.generateImageUrs(project.story.fileUrl),
-    };
-
-    project.rewards.forEach((reward, index) => {
-      imageObservables[`rewardFileUrl${index}`] = this.generateImageUrs(reward.fileUrl);
-    });
-
-    return forkJoin(imageObservables).pipe(
-      map(results => {
-        // @ts-ignore
-        project.basics.cardImage = results.cardImage;
-        // @ts-ignore
-        project.story.fileUrl = results.storyFileUrl;
-        project.rewards.forEach((reward, index) => {
-          // @ts-ignore
-          reward.fileUrl = results[`rewardFileUrl${index}`];
-
-        });
-        return project;
-      })
-    );
-  }
   filter(type:string ) {
     if(type === 'all'){
       this.filtering = false;
       this.filterType = 'all';
       this.campaign=[]
       this.projectService.getProjects().subscribe({
-        next:(campaigns  )=>{
-          campaigns.forEach((project) => {
-            this.convertProjectImageUrl(
-              project
-            ).subscribe((project) => {
-                this.campaign.push(project)
-              }
-            )
+        next:(projects  )=>{
+          projects.forEach((project) => {
+            this.campaign.push(this.projectService.convertProjectImageUrl(project));
           })
           this.isLoadingProjects = false;
         }
@@ -167,20 +141,13 @@ export class CampaignsComponent  implements AfterViewInit {
     this.filterType = type;
     this.isLoadingProjects = true;
     this.projectService.filterByCategory(type).subscribe({
-      next:(campaigns  )=> {
-        if (campaigns.length > 0) {
-          campaigns.forEach((project) => {
-            this.campaign = []
-            this.convertProjectImageUrl(
-              project
-            ).subscribe((project) => {
-                this.filtering = true;
-                this.campaign.push(project)
-              }
-            )
+      next:(projects  )=> {
+        if (projects.length > 0) {
+          projects.forEach((project) => {
+            this.campaign.push(this.projectService.convertProjectImageUrl(project));
           })
           this.isLoadingProjects = false;
-        }else if(campaigns.length === 0){
+        }else if(projects.length === 0){
           this.isLoadingProjects = false
           alert('No projects found')
         }
@@ -197,20 +164,14 @@ export class CampaignsComponent  implements AfterViewInit {
   sortingByCriteria(criteria:string) {
     this.isLoadingProjects = true;
     this.projectService.sortByCriteria(criteria).subscribe({
-      next: (campaigns: Campaign[]) => {
-        if(campaigns.length > 0){
+      next: (projects: Campaign[]) => {
+        if(projects.length > 0){
           this.isLoadingProjects = false;
-
           this.campaign = []
         this.filtering = true;
-        campaigns.forEach((project) => {
-          this.convertProjectImageUrl(
-            project
-          ).subscribe((project) => {
-              this.campaign.push(project)
-            }
-          )
-        })
+          projects.forEach((project) => {
+            this.campaign.push(this.projectService.convertProjectImageUrl(project));
+          })
       }}
     })
   }
@@ -235,4 +196,6 @@ export class CampaignsComponent  implements AfterViewInit {
   goToProject(id: number) {
     this.route.navigate([`/campaign/${id.toString()}`]);
   }
+
+
 }

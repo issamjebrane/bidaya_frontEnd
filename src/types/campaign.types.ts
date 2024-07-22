@@ -6,6 +6,7 @@ export  type Campaign = {
     id: number,
     cardImage: string |SafeUrl,
     title: string,
+    imageData:any,
     subtitle: string,
     category: string,
     location: string,
@@ -23,6 +24,7 @@ export  type Campaign = {
       }
     ],
     videoUrl: string,
+    imageData: any
   },
   rewards: [
     {
@@ -31,6 +33,7 @@ export  type Campaign = {
       estimatedDeliveryDate: string,
       fileUrl: string | SafeUrl,
       title: string,
+      imageData: any
     }
   ],
   userId: User,

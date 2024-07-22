@@ -28,17 +28,12 @@ export class CardsContainerComponent implements OnInit {
   ngOnInit(): void {
     this.loadingCards = true;
     this.projectService.getProjects().subscribe({
-      next:(campaigns  )=>{
-        if(campaigns.length > 0){
-        campaigns.forEach((project) => {
-          this.convertProjectImageUrl(
-            project
-          ).subscribe((project) => {
-              this.campaign.push(project)
-            }
-          )
+      next:(projects  )=>{
+        if(projects.length > 0){
+          projects.forEach((project) => {
+            this.campaign.push(this.projectService.convertProjectImageUrl(project));
+          })
           this.loadingCards = false;
-        })
       }}
     })
   }
@@ -68,60 +63,15 @@ export class CardsContainerComponent implements OnInit {
   }
 
 
-  generateImageUrs(fileUrl: string | SafeUrl): Observable<SafeUrl> {
-    return this.projectService.getImage(fileUrl).pipe(
-      map(data => {
-        const objectURL = URL.createObjectURL(data);
-        return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      }),
-      catchError(error => {
-        console.error('Error occurred:', error);
-        this.errorMessage = error;
-        return of(null as any);  // Return a null SafeUrl on error
-      })
-    );
-  }
-
-  convertProjectImageUrl(project: Campaign): Observable<Campaign> {
-    const imageObservables: { [key: string]: Observable<SafeUrl> } = {
-      cardImage: this.generateImageUrs(project.basics.cardImage),
-      storyFileUrl: this.generateImageUrs(project.story.fileUrl),
-    };
-
-    project.rewards.forEach((reward, index) => {
-      imageObservables[`rewardFileUrl${index}`] = this.generateImageUrs(reward.fileUrl);
-    });
-
-    return forkJoin(imageObservables).pipe(
-      map(results => {
-        // @ts-ignore
-        project.basics.cardImage = results.cardImage;
-        // @ts-ignore
-        project.story.fileUrl = results.storyFileUrl;
-        project.rewards.forEach((reward, index) => {
-          // @ts-ignore
-          reward.fileUrl = results[`rewardFileUrl${index}`];
-
-        });
-        return project;
-      })
-    );
-  }
-
   filter(type:string ) {
     if(type === 'all'){
       this.filtering = false;
       this.campaign=[]
       this.filterType = 'all';
       this.projectService.getProjects().subscribe({
-        next:(campaigns  )=>{
-          campaigns.forEach((project) => {
-            this.convertProjectImageUrl(
-              project
-            ).subscribe((project) => {
-                this.campaign.push(project)
-              }
-            )
+        next:(projects  )=>{
+          projects.forEach((project) => {
+            this.campaign.push(this.projectService.convertProjectImageUrl(project));
           })
           this.loadingCards = false;
         }
@@ -130,18 +80,12 @@ export class CardsContainerComponent implements OnInit {
       this.filterType = type;
       this.loadingCards = true;
       this.projectService.filterByCategory(type).subscribe({
-        next:(campaigns  )=>{
-          if(campaigns.length > 0){
+        next:(projects  )=>{
+          if(projects.length > 0){
             this.loadingCards = false;
-            campaigns.forEach((project) => {
-              this.campaign = []
-              this.convertProjectImageUrl(
-                project
-              ).subscribe((project) => {
-                  this.filtering = true;
-                  this.campaign.push(project)
-                }
-              )
+            this.campaign = []
+            projects.forEach((project) => {
+              this.campaign.push(this.projectService.convertProjectImageUrl(project));
             })
           }},
           error: (error) => {

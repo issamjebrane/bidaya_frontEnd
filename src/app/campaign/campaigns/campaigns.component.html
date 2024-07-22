@@ -28,7 +28,7 @@
           <li  *ngFor="let project of matchingProjects.slice(0,5)" (click)="goToProject(project.basics.id)">
             <div class="flex items-center justify-start gap-5  px-4 py-5 text-sm text-gray-700 hover:bg-gray-100">
               <div class="w-15 h-10 rounded-lg">
-                <img [src]="project.basics.cardImage" alt="" class="object-cover w-full h-full">
+                <img [src]="imageUrls['cardImage']" alt="" class="object-cover w-full h-full">
               </div>
               <span class="text-lg">
                 {{project.basics.title}}
