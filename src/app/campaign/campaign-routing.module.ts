@@ -6,12 +6,18 @@ import {authGuard, guestGuard} from '../auth.guard';
 import { CampaignComponent } from './campaign/campaign.component';
 import { CampaignNotFoundComponent } from './campaign-not-found/campaign-not-found.component';
 import {CampaignsComponent} from "./campaigns/campaigns.component";
+import {FundCampaignComponent} from "./fund-campaign/fund-campaign.component";
 
 const routes: Routes = [
   {
     path: 'start-a-campaign',
     component: ProjectCreationComponent,
     canActivate: [guestGuard],
+  },
+  {
+    path:'fund/:campaignTitle',
+    component:FundCampaignComponent,
+
   },
   {
     path:'explore',

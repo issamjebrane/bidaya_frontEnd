@@ -9,7 +9,6 @@
         "Create enticing rewards to motivate contributions and engage your backers."
       </p>
     </div>
-
   </div>
   <div class="relative xl:pt-10 h-fit">
     <div  class="xl:absolute mx-5 xl:w-1/2 xl:mx-auto bottom-[-50px] xl:bottom-auto xl:top-[-75px] xl:left-[calc(25.3%)] ">
@@ -46,20 +45,31 @@
         </ul>
       </div>
     </div>
-    <div class="xl:mx-36 mx-5 2xl:mx-64 my-5 flex items-center  justify-between ">
-      <div class="flex items-center text-justify text-base xl:text-lg font-normal justify-stretch  gap-3">
-        <button type="button" class="text-green-600 w-32 text-center py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'all'}" (click)="filter('all')">All projects</button>
-        <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'film'}" (click)="filter('film')">film</button>
-        <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'technology'}" (click)="filter('technology')">Technology</button>
-        <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'design'}" (click)="filter('design')">Design</button>
-        <button type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'comics'}" (click)="filter('comics')">Comics</button>
+    <div class="lg:mx-20 xl:mx-36 mx-5 2xl:mx-64 my-5 lg:flex items-center  justify-between ">
+      <div class="lg:flex hidden items-center text-justify text-base xl:text-lg font-normal justify-stretch  gap-3">
+        <swiper-slide type="button" class="text-green-600 w-32 text-center py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'all'}" (click)="filter('all')">All projects</swiper-slide>
+        <swiper-slide type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'film'}" (click)="filter('film')">film</swiper-slide>
+        <swiper-slide type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'technology'}" (click)="filter('technology')">Technology</swiper-slide>
+        <swiper-slide type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'design'}" (click)="filter('design')">Design</swiper-slide>
+        <swiper-slide type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'comics'}" (click)="filter('comics')">Comics</swiper-slide>
       </div>
-      <div>
-        <button id="dropdownHButton"  data-dropdown-toggle="dropdown" class="text-green-600 hover:text-white bg-transparent hover:bg-green-800 focus:ring-4 focus:outline-none border border-green-600 focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Newest <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+      <swiper-container
+        slides-per-view="3"
+        space-between="10"
+        class="lg:hidden "
+      >
+        <swiper-slide type="button" class="text-green-600 text-center max-w-28 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'all'}" (click)="filter('all')">All projects</swiper-slide>
+        <swiper-slide type="button" class="text-green-600 text-center max-w-28 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'film'}" (click)="filter('film')">film</swiper-slide>
+        <swiper-slide type="button" class="text-green-600 text-center max-w-28 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'technology'}" (click)="filter('technology')">Technology</swiper-slide>
+        <swiper-slide type="button" class="text-green-600 text-center max-w-28 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'design'}" (click)="filter('design')">Design</swiper-slide>
+        <swiper-slide type="button" class="text-green-600 text-center max-w-28 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'comics'}" (click)="filter('comics')">Comics</swiper-slide>
+      </swiper-container>
+      <div class="hidden lg:block">
+        <div id="dropdownHButton"  data-dropdown-toggle="dropdown" class="text-green-600 hover:text-white bg-transparent hover:bg-green-800 focus:ring-4 focus:outline-none border border-green-600 focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Newest <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
         </svg>
-        </button>
-        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 border border-green-600 overflow-hidden rounded-lg shadow w-52 dark:bg-gray-700">
+        </div>
+        <div id="dropdown" class="z-[100] hidden bg-white divide-y divide-gray-100 border border-green-600 overflow-hidden rounded-lg shadow w-52 dark:bg-gray-700">
           <ul class="text-base w-full text-gray-700 dark:text-gray-200" aria-labelledby="dropdownButton">
             <li>
               <button type="button"  class="block text-justify w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" (click)="sortingByCriteria('Newest')">Newest</button>
@@ -80,89 +90,90 @@
         </div>
       </div>
     </div>
-    <div *ngIf="isLoadingProjects" class="w-full flex items-center justify-center py-36 lg:py-56">
-        <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/></svg>
-        <span class="sr-only">Loading...</span>
-    </div>
+
     <span class="block lg:hidden mx-5 mb-3 font-medium text-neutral-500">{{campaign.length}} Campaigns found</span>
-    <div *ngIf="!isLoadingProjects" class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4 font-outfit gap-y-9 m-4  xl:my-0 xl:mx-36 2xl:mx-60">
-      <div *ngFor="let card of this.campaign.slice(0, loadSize)" class=" hover-parent rounded-xl bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.id)">
-        <div>
-          <img [src]="card.basics.cardImage" alt="" class="">
-        </div>
-        <div class="py-4 px-2 flex flex-col items-start gap-2">
-          <div class="flex flex-col h-16">
-            <h5 class=" text-green-500 text-sm font-medium" style="margin:0">{{card.basics.category | titlecase}}</h5>
-            <span class="text-gray-800 w-fit text-base font-bold border-b-2  border-transparent group-hover:underline">{{card.basics.title | uppercase}}</span>
+    <div *ngIf="isLoadingProjects" class="w-full flex items-center justify-center py-36 lg:py-56">
+      <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/></svg>
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div *ngIf="!isLoadingProjects" class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4 font-outfit gap-y-9 m-4  xl:my-0 lg:mx-20 xl:mx-36 2xl:mx-60">
+      <div *ngFor="let card of this.campaign.slice(0, loadSize)" class="flex flex-col hover-parent rounded-xl bg-white cursor-pointer overflow-hidden" (click)="goToCampaign(card.basics.id)">
+        <img [src]="card.basics.cardImage" alt="" class="w-full object-cover h-72  ">
+        <div class="py-4 px-2 flex flex-col items-start justify-between gap-2 flex-grow">
+          <div class="flex flex-col flex-grow">
+            <h5 class=" text-green-500 text-sm font-medium " style="margin:0">{{card.basics.category | titlecase}}</h5>
+            <span class="text-gray-800  text-base font-bold border-b-2  border-transparent group-hover:underline ">{{card.basics.title | uppercase}}</span>
           </div>
-          <div class="w-full bg-[#263238] rounded-full h-fit my-3">
-            <div  class="bg-green-500 text-xs font-medium text-blue-100 p-1 text-center h-fit leading-none rounded-full rounded-r-none relative"   [style.width.%]="percentage(card.creationDate, card.basics.duration)">
+          <div class="w-full">
+
+            <div class="w-full bg-[#263238] rounded-full h-fit my-3">
+              <div  class="bg-green-500 text-xs font-medium text-blue-100 p-1 text-center h-fit leading-none rounded-full rounded-r-none relative"   [style.width.%]="percentage(card.creationDate, card.basics.duration)">
+              </div>
             </div>
-          </div>
-          <div class="flex flex-col gap-2 items-start justify-start">
-            <div class="flex items-center justify-start text-sm gap-3">
-              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.4304 9.16667V9.175M5.24119 6.98167C4.87569 6.70075 4.59498 6.32425 4.43008 5.89378C4.26517 5.4633 4.22251 4.99561 4.30679 4.5424C4.39107 4.08919 4.59902 3.66811 4.90765 3.32569C5.21629 2.98327 5.61358 2.73286 6.05564 2.60212C6.49769 2.47139 6.96728 2.46542 7.41252 2.58488C7.85775 2.70434 8.26128 2.94458 8.57852 3.27905C8.89575 3.61351 9.11433 4.02917 9.2101 4.48009C9.30587 4.93102 9.2751 5.39964 9.12119 5.83417" stroke="#717171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M14.2637 3.33333V6.5025C15.295 7.09933 16.0802 8.04374 16.4787 9.16667H17.5962C17.8172 9.16667 18.0292 9.25447 18.1854 9.41075C18.3417 9.56703 18.4295 9.77899 18.4295 10V11.6667C18.4295 11.8877 18.3417 12.0996 18.1854 12.2559C18.0292 12.4122 17.8172 12.5 17.5962 12.5H16.4779C16.1979 13.2917 15.722 14 15.0962 14.5608V16.25C15.0962 16.5815 14.9645 16.8995 14.7301 17.1339C14.4956 17.3683 14.1777 17.5 13.8462 17.5C13.5147 17.5 13.1967 17.3683 12.9623 17.1339C12.7279 16.8995 12.5962 16.5815 12.5962 16.25V15.7642C12.3208 15.8105 12.0421 15.8336 11.7629 15.8333H8.42952C8.1503 15.8336 7.87154 15.8105 7.59618 15.7642V16.25C7.59618 16.5815 7.46449 16.8995 7.23007 17.1339C6.99565 17.3683 6.6777 17.5 6.34618 17.5C6.01466 17.5 5.69672 17.3683 5.4623 17.1339C5.22788 16.8995 5.09618 16.5815 5.09618 16.25V14.5608C4.34115 13.8858 3.80891 12.9974 3.56992 12.0132C3.33092 11.029 3.39644 9.99548 3.7578 9.04935C4.11916 8.10323 4.75932 7.28914 5.59355 6.71486C6.42777 6.14058 7.41673 5.83317 8.42952 5.83333H10.5129L14.2637 3.33333Z" stroke="#717171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>
+            <div class="flex flex-col gap-2 items-start justify-start">
+              <div class="flex items-center justify-start text-sm gap-3">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.4304 9.16667V9.175M5.24119 6.98167C4.87569 6.70075 4.59498 6.32425 4.43008 5.89378C4.26517 5.4633 4.22251 4.99561 4.30679 4.5424C4.39107 4.08919 4.59902 3.66811 4.90765 3.32569C5.21629 2.98327 5.61358 2.73286 6.05564 2.60212C6.49769 2.47139 6.96728 2.46542 7.41252 2.58488C7.85775 2.70434 8.26128 2.94458 8.57852 3.27905C8.89575 3.61351 9.11433 4.02917 9.2101 4.48009C9.30587 4.93102 9.2751 5.39964 9.12119 5.83417" stroke="#717171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14.2637 3.33333V6.5025C15.295 7.09933 16.0802 8.04374 16.4787 9.16667H17.5962C17.8172 9.16667 18.0292 9.25447 18.1854 9.41075C18.3417 9.56703 18.4295 9.77899 18.4295 10V11.6667C18.4295 11.8877 18.3417 12.0996 18.1854 12.2559C18.0292 12.4122 17.8172 12.5 17.5962 12.5H16.4779C16.1979 13.2917 15.722 14 15.0962 14.5608V16.25C15.0962 16.5815 14.9645 16.8995 14.7301 17.1339C14.4956 17.3683 14.1777 17.5 13.8462 17.5C13.5147 17.5 13.1967 17.3683 12.9623 17.1339C12.7279 16.8995 12.5962 16.5815 12.5962 16.25V15.7642C12.3208 15.8105 12.0421 15.8336 11.7629 15.8333H8.42952C8.1503 15.8336 7.87154 15.8105 7.59618 15.7642V16.25C7.59618 16.5815 7.46449 16.8995 7.23007 17.1339C6.99565 17.3683 6.6777 17.5 6.34618 17.5C6.01466 17.5 5.69672 17.3683 5.4623 17.1339C5.22788 16.8995 5.09618 16.5815 5.09618 16.25V14.5608C4.34115 13.8858 3.80891 12.9974 3.56992 12.0132C3.33092 11.029 3.39644 9.99548 3.7578 9.04935C4.11916 8.10323 4.75932 7.28914 5.59355 6.71486C6.42777 6.14058 7.41673 5.83317 8.42952 5.83333H10.5129L14.2637 3.33333Z" stroke="#717171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>
               Total Raised : {{25567| currency:'MAD':'symbol':'1.2-2'}}
             </span>
-            </div>
-            <div class="flex items-center justify-start text-sm gap-3">
-              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1778_1153)">
-                  <path d="M10.9303 1.66667C15.5328 1.66667 19.2636 5.3975 19.2636 10C19.2636 14.6025 15.5328 18.3333 10.9303 18.3333C6.32776 18.3333 2.59692 14.6025 2.59692 10C2.59692 5.3975 6.32776 1.66667 10.9303 1.66667ZM10.9303 3.33333C9.16215 3.33333 7.46645 4.03571 6.21621 5.28595C4.96597 6.5362 4.26359 8.23189 4.26359 10C4.26359 11.7681 4.96597 13.4638 6.21621 14.714C7.46645 15.9643 9.16215 16.6667 10.9303 16.6667C12.6984 16.6667 14.3941 15.9643 15.6443 14.714C16.8945 13.4638 17.5969 11.7681 17.5969 10C17.5969 8.23189 16.8945 6.5362 15.6443 5.28595C14.3941 4.03571 12.6984 3.33333 10.9303 3.33333ZM10.9303 5C11.1344 5.00003 11.3314 5.07496 11.4839 5.2106C11.6364 5.34623 11.7339 5.53312 11.7578 5.73583L11.7636 5.83333V9.655L14.0194 11.9108C14.1689 12.0608 14.2557 12.262 14.2621 12.4737C14.2686 12.6853 14.1942 12.8914 14.0542 13.0502C13.9142 13.209 13.719 13.3086 13.5082 13.3287C13.2974 13.3487 13.0869 13.2878 12.9194 13.1583L12.8411 13.0892L10.3411 10.5892C10.2116 10.4595 10.1284 10.2908 10.1044 10.1092L10.0969 10V5.83333C10.0969 5.61232 10.1847 5.40036 10.341 5.24408C10.4973 5.0878 10.7092 5 10.9303 5Z" fill="#717171"/>
-                </g>
-                <defs>
-                  <clipPath id="clip0_1778_1153">
-                    <rect width="20" height="20" fill="white" transform="translate(0.930298)"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              <span>
+              </div>
+              <div class="flex items-center justify-start text-sm gap-3">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1778_1153)">
+                    <path d="M10.9303 1.66667C15.5328 1.66667 19.2636 5.3975 19.2636 10C19.2636 14.6025 15.5328 18.3333 10.9303 18.3333C6.32776 18.3333 2.59692 14.6025 2.59692 10C2.59692 5.3975 6.32776 1.66667 10.9303 1.66667ZM10.9303 3.33333C9.16215 3.33333 7.46645 4.03571 6.21621 5.28595C4.96597 6.5362 4.26359 8.23189 4.26359 10C4.26359 11.7681 4.96597 13.4638 6.21621 14.714C7.46645 15.9643 9.16215 16.6667 10.9303 16.6667C12.6984 16.6667 14.3941 15.9643 15.6443 14.714C16.8945 13.4638 17.5969 11.7681 17.5969 10C17.5969 8.23189 16.8945 6.5362 15.6443 5.28595C14.3941 4.03571 12.6984 3.33333 10.9303 3.33333ZM10.9303 5C11.1344 5.00003 11.3314 5.07496 11.4839 5.2106C11.6364 5.34623 11.7339 5.53312 11.7578 5.73583L11.7636 5.83333V9.655L14.0194 11.9108C14.1689 12.0608 14.2557 12.262 14.2621 12.4737C14.2686 12.6853 14.1942 12.8914 14.0542 13.0502C13.9142 13.209 13.719 13.3086 13.5082 13.3287C13.2974 13.3487 13.0869 13.2878 12.9194 13.1583L12.8411 13.0892L10.3411 10.5892C10.2116 10.4595 10.1284 10.2908 10.1044 10.1092L10.0969 10V5.83333C10.0969 5.61232 10.1847 5.40036 10.341 5.24408C10.4973 5.0878 10.7092 5 10.9303 5Z" fill="#717171"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1778_1153">
+                      <rect width="20" height="20" fill="white" transform="translate(0.930298)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <span>
                 {{ daysLeft(card.creationDate,card.basics.duration) }} days left
               </span>
-            </div>
-          </div>
-          <div class="flex justify-start gap-2 items-center mt-2">
-            <div class="w-10 h-10 rounded-full">
-              <img src="assets/user1.svg" alt="user" class="object-cover w-full h-full" />
-            </div>
-            <div class="flex flex-col items-start gap-1">
-              <div class="flex items-center justify-start gap-1">
-                <h6 class="text-sm font-medium w-fit">
-                  {{card.userId.firstName | titlecase}} {{card.userId.lastName | uppercase}}
-                </h6>
-                <div class="flex items-center">
-                  <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                  <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                  <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                  <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                  <svg class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </div>
               </div>
-              <div class="flex items-center justify-start text-sm gap-2 ">
-                <span class="text-green-500 w-fit ">3 Campaigns</span>
-                <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="2" cy="2.31543" r="2" fill="#717171"/>
-                </svg>
-                <span class="text-gray-400 text-[12px] inline-block">{{ card.basics.location }}, Morocco</span>
+            </div>
+            <div class="flex justify-start gap-2 items-center mt-2">
+              <div class="w-10 h-10 rounded-full">
+                <img src="assets/user1.svg" alt="user" class="object-cover w-full h-full" />
+              </div>
+              <div class="flex flex-col items-start gap-1">
+                <div class="flex items-center justify-start gap-1">
+                  <h6 class="text-sm font-medium w-fit">
+                    {{card.userId.firstName | titlecase}} {{card.userId.lastName | uppercase}}
+                  </h6>
+                  <div class="flex items-center">
+                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <svg class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex items-center justify-start text-sm gap-2 ">
+                  <span class="text-green-500 w-fit ">3 Campaigns</span>
+                  <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="2" cy="2.31543" r="2" fill="#717171"/>
+                  </svg>
+                  <span class="text-gray-400 text-[12px] inline-block">{{ card.basics.location }}, Morocco</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
   <button (click)="LoadMore()" class="rounded-lg m-auto my-5  w-fit lg:h-12 px-8 py-4  flex items-center justify-center font-outfit bg-green-500  border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700 "

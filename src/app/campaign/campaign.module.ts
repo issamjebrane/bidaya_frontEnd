@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { CampaignRoutingModule } from './campaign-routing.module';
 import {ProjectCreationComponent} from "./project-creation/project-creation.component";
@@ -14,10 +14,12 @@ import { CampaignComponent } from './campaign/campaign.component';
 import { CampaignNotFoundComponent } from './campaign-not-found/campaign-not-found.component';
 import {SharedModule} from "../shared/shared.module";
 import { CampaignsComponent } from './campaigns/campaigns.component';
+import {FundCampaignComponent} from "./fund-campaign/fund-campaign.component";
 
 @NgModule({
   declarations: [
       ProjectCreationComponent,
+      FundCampaignComponent,
       StepsComponent,
       StoryComponent,
       BasicsComponent,
@@ -36,6 +38,8 @@ import { CampaignsComponent } from './campaigns/campaigns.component';
       FormsModule,
       NgOptimizedImage,
       NgxTiptapModule,
-    ]
+    ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class CampaignModule { }

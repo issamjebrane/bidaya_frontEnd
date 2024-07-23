@@ -1,7 +1,7 @@
 <main class="flex xl:block flex-col ">
-  <div class="bg-container flex flex-col items-stretch justify-between gap-20 lg:gap-36 lg:justify-start relative 2xl:gap-60 lg:mb-0 pt-5 pb-24">
+  <div class="bg-container flex flex-col items-stretch justify-between gap-20 xl:gap-36 lg:justify-start relative 2xl:gap-60 lg:mb-0 pt-5 pb-24">
     <app-header/>
-    <div class="flex justify-center gap-10 lg:gap-14 items-center flex-col lg:items-start 2xl:mx-60 lg:mx-36">
+    <div class="flex justify-center gap-10 xl:gap-14 items-center flex-col lg:items-start 2xl:mx-60 lg:mx-20 xl:mx-36">
               <div class="flex flex-col gap-4 lg:items-start justify-center items-center">
                   <h2 class=" text-gray-800 font-bold  font-outfit text-[30px] lg:text-5xl text-center lg:text-start" >
                       Join The Revolution<br/> Of Innovation
@@ -63,7 +63,7 @@
   </div>
   <app-cards-container [cards]="cards" />
   <div class="bg-slate-100 xl:py-20 py-10 mb-5  xl:mb-10">
-      <div class=" lg:mx-36 flex lg:flex-row flex-col justify-between items-center gap-10 lg:gap-28 2xl:mx-60 lg:px-0 px-5 ">
+      <div class=" lg:mx-20 xl:mx-36 flex lg:flex-row flex-col justify-between items-center gap-10 lg:gap-28 2xl:mx-60 lg:px-0 px-5 ">
           <div class="items-start xl:gap-8 gap-4 flex flex-col">
                 <div class=" top-0 justify-center items-center xl:gap-2 gap-4 flex">
                   <div class="border border-green-700 xl:w-24 w-16"></div>
@@ -85,7 +85,7 @@
           <img class="  shadow-md" ngSrc="./assets/aboutUs.svg" height="347" width="465" alt=""/>
       </div>
   </div>
-  <div class="flex-col justify-center lg:justify-start items-center gap-12 flex xl:px-36 mb-20">
+  <div class="flex-col justify-center lg:justify-start items-center gap-12 flex lg:mx-20 xl:mx-36 mb-20">
       <div class="flex-col justify-start items-center gap-16 flex 2xl:px-36">
         <div class="hidden xl:flex flex-col justify-start items-center gap-2.5">
           <h1 class="h1 header">Here’s how it works</h1>
@@ -123,14 +123,14 @@
           </div>
         </div>
       </div>
-      <button class="w-[60%] xl:w-56 h-14 rounded-lg flex items-center justify-center font-outfit bg-green-500 px-3 py-2 border border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700">
+      <button routerLink="/campaign/start-a-campaign" class="w-[60%] xl:w-56 h-14 rounded-lg flex items-center justify-center font-outfit bg-green-500 px-3 py-2 border border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700">
           <span class="text-base">
               Start Now
           </span>
       </button>
     </div>
   <div class=" bg-slate-100 flex flex-col gap-6 xl:gap-8 xl:px-0 px-5 py-20">
-      <div class="flex justify-between flex-col items-center gap-2 lg:mx-36 2xl:mx-60">
+      <div class="flex justify-between flex-col items-center gap-2 lg:mx-20 xl:mx-36 2xl:mx-60">
           <div class=" justify-start items-center gap-4 xl:gap-2 flex flex-grow-0 self-start">
               <div class="border border-green-700 w-12 xl:w-24"></div>
               <div class="text-green-700 text-base xl:text-2xl font-normal font-outfit">Testimonials</div>
@@ -198,7 +198,7 @@
       </div>
   </div>
 
-  <div class="lg:flex flex-col items-stretch justify-center mb-20 2xl:mx-60 lg:mx-36 py-20 gap-12 hidden">
+  <div class="lg:flex flex-col items-stretch justify-center mb-20 2xl:mx-60 lg:mx-20 xl:mx-36 py-20 gap-12 hidden">
       <h1 class="header h1 text-center">Most Frequently Asked Questions (FAQ)</h1>
       <div class="flex justify-between items-center gap-16 xl:justify-between">
         <img ngSrc="./assets/qa.svg" alt="" class="flex-1 shadow-md" height="420" width="496" >
@@ -258,7 +258,7 @@
         </div>
   </div>
   <div class=" xl:block hidden bg-slate-100">
-      <div class="2xl:mx-60 lg:mx-36 py-20 flex justify-between items-center gap-28 px-0 xl:justify-between">
+      <div class="2xl:mx-60 lg:mx-20 xl:mx-36 py-20 flex justify-between items-center gap-28 px-0 xl:justify-between">
           <img class=" flex-1 shadow-md" ngSrc="./assets/subscribe.svg" alt="" height="365" width="589"/>
           <div class="justify-center items-start gap-4 flex flex-col flex-1">
                 <div class=" top-0  justify-center items-center gap-2 flex">

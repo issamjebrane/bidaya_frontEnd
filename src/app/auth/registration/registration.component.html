@@ -1,7 +1,7 @@
 <div class=" bg-gray-800 h-screen flex lg:flex-row flex-col justify-stretch items-stretch gap-1 font-outfit overflow-x-hidden text-[15px]">
   <app-header class="lg:hidden"/>
-  <div class="xl:flex-1   flex items-center justify-center order-1 lg:order-none xl:m-12 m-5">
-    <img src="./assets/ILLUSTRATION.svg" alt="" class="object-fill h-40 xl:h-full" >
+  <div class="lg:flex-1   flex items-center justify-center order-1 lg:order-none lg::m-12 m-5">
+    <img src="./assets/ILLUSTRATION.svg" alt="" class="object-fill h-40 lg:h-full" >
   </div>
   <div class="bg-white flex-1 w-full lg:w-auto flex flex-col items-center justify-center gap-16 lg:px-20 xl:px-44 py-10 order-2">
     <div class="w-full hidden lg:block cursor-pointer" routerLink="/home">
@@ -43,11 +43,11 @@
         <!-- TODO: Add password strength progress when creating a new password -->
         <div class="flex flex-col items-start justify-start w-full gap-3 text-neutral-500 font-medium ">
           <label for="Password" class="text-[18px] font-medium text-neutral-500">Password <span class="text-red-500">*</span></label>
-          <div class=" flex items-center justify-between self-stretch border border-neutral-500 rounded  py-1">
-            <input type="Password"  [attr.type]="inputType" id="Password" placeholder="Enter your password (At least 8 characters,an uppercase, a lowercase and a digit)" autocomplete="false" class="border-none w-full focus:ring-0 focus:ring-transparent focus:outline-none placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="password">
+          <div class=" flex items-center justify-between self-stretch border border-neutral-500 rounded pr-1 lg:pr-3 py-1">
+            <input type="Password"  [attr.type]="inputType" id="Password" placeholder="At least 8 characters,an uppercase, a lowercase, a digit and (@/$/#/%)" autocomplete="false" class="border-none w-full focus:ring-0 focus:ring-transparent focus:outline-none placeholder:font-normal placeholder:text-gray-400 placeholder:font-outfit" formControlName="password">
             <img [src]="inputType === 'text' ? './assets/eye.svg':'./assets/eye-off.svg'"  class="hover:bg-slate-200 hover:rounded-full p-1" (click)="toggleType()" alt=""/>
           </div>
-          <span *ngIf="registerGroupForm.get('password')?.errors?.['pattern']" class="text-red-500 text-sm">Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.
+          <span *ngIf="registerGroupForm.get('password')?.errors?.['pattern']" class="text-red-500 text-sm">Password must be at least 8 characters,an uppercase, a lowercase, a digit and (&#64;/$/#/%).
                   </span>
         </div>
         <button  [disabled]="!registerGroupForm.valid" class="self-stretch rounded cursor-pointer py-2 text-center bg-green-500 text-white border-green-500 border   transition ease duration-300 hover:bg-transparent hover:text-green-500 focus:text-green-500 focus:bg-transparent">

@@ -1,16 +1,15 @@
-
-<div >
+<div>
   <div class="navbar">
     <app-header class="lg:text-white"/>
   </div>
-    <main  class="flex flex-col items-center justify-center gap-16 xl:py-20 pb-20 pt-0 2xl:px-56 lg:m-0 lg:px-32 bg-gray-100">
+    <main  class="flex flex-col items-center justify-center gap-16 lg:py-20 pb-20 pt-0 2xl:px-56 lg:m-0 lg:px-20 xl:px-32 bg-gray-100">
       <app-skeleton *ngIf="isLoading"/>
-      <section *ngIf="!isLoading" class="flex items xl:flex-row w-full flex-col justify-between gap-11 bg-white rounded-xl xl:p-4 p-0" >
-        <div class=" xl:flex-1">
-          <img *ngIf="!isLoading" [src]="project.basics.cardImage" alt="campaign" class="object-cover w-full h-full" />
+      <section *ngIf="!isLoading" class="flex items-center lg:flex-row w-full flex-col  lg:justify-between overflow-hidden gap-4 lg:gap-11 bg-white rounded-xl p-5" >
+        <div class="lg:h-[400px] md:h-[350px] h-[300px]  lg:w-1/2 w-full">
+          <img *ngIf="!isLoading" [src]="project.basics.cardImage" alt="campaign" class="h-full w-full object-cover " />
         </div>
-        <div class="xl:flex-1 flex flex-col pb-5 items-stretch  gap-4 xl:gap-8 justify-center xl:p-0 px-4 ">
-          <div class="flex items-center justify-between order-3 xl:order-none">
+        <div class="w-full lg:w-auto flex flex-col pb-5 items-stretch  gap-4 lg:gap-8 justify-center lg:p-0 md:px-10 p-4 flex-grow" >
+          <div class="flex items-center justify-between order-3 lg:order-none">
             <div class="flex justify-start gap-5 items-center ">
               <div class="w-10 h-10 rounded-full">
                   <img src="assets/user1.svg" alt="user" class="object-cover w-full h-full" />
@@ -53,15 +52,15 @@
               </svg>
             </div>
           </div>
-          <div class="flex flex-col items-start justify-center gap-2 order-1 xl:order-none">
+          <div class="flex flex-col items-start justify-center gap-2 order-1 lg:order-none">
             <h2 class="xl:text-3xl text-2xl font-bold">
               {{project.basics.title}}
             </h2>
-            <h5 class="font-light xl:text-base truncate xl:whitespace-normal xl:break-words text-sm text-gray-500">
+            <h5 class="font-light xl:text-base text-sm text-gray-500">
               {{project.basics.subtitle}}
             </h5>
           </div>
-            <div class="w-full bg-[#263238] rounded-full h-fit mt-6 order-2 xl:order-none">
+            <div class="w-full bg-[#263238] rounded-full h-fit mt-6 order-2 lg:order-none">
               <div  class="bg-green-500 text-xs font-medium text-blue-100 p-1 text-center h-fit leading-none rounded-full rounded-r-none relative"      [style.width.%]="percentage(project.creationDate, project.basics.duration)">
               <div class="absolute z-10  inline-block px-3 py-2  text-white bg-green-500 rounded-full right-[-24px] bottom-[12px]">
                   {{percentage(project.creationDate,project.basics.duration)}}%
@@ -69,7 +68,7 @@
               </div>
               </div>
             </div>
-          <div class="flex items-center justify-between xl:mb-5 order-4 xl:order-none">
+          <div class="flex items-center justify-between lg:mb-5 order-4 lg:order-none">
             <div class="flex items-center justify-start gap-2">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 8.18463H25V20.6846H16.25L15.75 18.1846H8.75V26.9346H6.25V5.68463H17.5L18 8.18463ZM17.5 18.1846H20V15.6846H22.5V13.1846H20V10.6846H17.5V13.1846L16.25 10.6846V8.18463H13.75V10.6846H11.25V8.18463H8.75V10.6846H11.25V13.1846H8.75V15.6846H11.25V13.1846H13.75V15.6846H16.25V13.1846L17.5 15.6846V18.1846ZM13.75 13.1846V10.6846H16.25V13.1846H13.75ZM17.5 13.1846H20V15.6846H17.5V13.1846Z" fill="#717171"/>
@@ -117,7 +116,7 @@
                 </p>
               </div>
             </div>
-            <div class="xl:flex items-center justify-start gap-2 hidden">
+            <div class="lg:flex items-center justify-start gap-2 hidden">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.125 26.9346C13.125 26.9346 11.25 26.9346 11.25 25.0596C11.25 23.1846 13.125 17.5596 20.625 17.5596C28.125 17.5596 30 23.1846 30 25.0596C30 26.9346 28.125 26.9346 28.125 26.9346H13.125ZM20.625 15.6846C22.1168 15.6846 23.5476 15.092 24.6025 14.0371C25.6574 12.9822 26.25 11.5515 26.25 10.0596C26.25 8.56779 25.6574 7.13705 24.6025 6.08216C23.5476 5.02726 22.1168 4.43463 20.625 4.43463C19.1332 4.43463 17.7024 5.02726 16.6475 6.08216C15.5926 7.13705 15 8.56779 15 10.0596C15 11.5515 15.5926 12.9822 16.6475 14.0371C17.7024 15.092 19.1332 15.6846 20.625 15.6846ZM9.78 26.9346C9.50217 26.3492 9.36355 25.7075 9.375 25.0596C9.375 22.519 10.65 19.9034 13.005 18.0846C11.8297 17.7217 10.605 17.5446 9.375 17.5596C1.875 17.5596 0 23.1846 0 25.0596C0 26.9346 1.875 26.9346 1.875 26.9346H9.78ZM8.4375 15.6846C9.6807 15.6846 10.873 15.1908 11.7521 14.3117C12.6311 13.4326 13.125 12.2403 13.125 10.9971C13.125 9.75393 12.6311 8.56165 11.7521 7.68257C10.873 6.80349 9.6807 6.30963 8.4375 6.30963C7.1943 6.30963 6.00201 6.80349 5.12294 7.68257C4.24386 8.56165 3.75 9.75393 3.75 10.9971C3.75 12.2403 4.24386 13.4326 5.12294 14.3117C6.00201 15.1908 7.1943 15.6846 8.4375 15.6846Z" fill="#717171"/>
               </svg>
@@ -131,8 +130,8 @@
               </div>
             </div>
             </div>
-          <div class="order-6 xl:order-none">
-            <button class="rounded-lg w-full lg:min-w-56 lg:h-12 px-8 py-4  flex items-center justify-center font-outfit bg-green-500  border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700 ">
+          <div class="order-6 lg:order-none">
+            <button routerLink="/campaign/fund/1" class="rounded-lg w-full lg:min-w-56 lg:h-12 px-8 py-4  flex items-center justify-center font-outfit bg-green-500  border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700 ">
                       <span class="text-base">
                           Fund this project
                       </span>
@@ -140,8 +139,47 @@
           </div>
         </div>
       </section>
-      <section class="flex flex-col xl:flex-row xl:gap-10 w-full px-3">
-        <div class="lg:bg-white w-full rounded-xl xl:p-4 p-0 order-2 xl:order-none xl:flex-[2]">
+      <section class="flex flex-col lg:flex-row lg:gap-10 w-full px-3">
+        <div class=" lg:hidden mb-10 " *ngIf="project?.rewards">
+          <h5 class="font-medium mx-4 py-3">
+            Choose your Perk :
+          </h5>
+          <swiper-container
+                            slides-per-view="2"
+                            space-between="10"
+          >
+            <swiper-slide *ngFor="let reward of project.rewards" class="border min-w-72  rounded-lg bg-white mx-4 cursor-pointer overflow-hidden">
+              <img [src]="reward.fileUrl" class="w-full object-contain h-48" alt="">
+              <div class="py-4 px-6 flex flex-col items-start gap-2">
+                <h6 class="font-bold text-base">
+                  {{ reward.title }}
+                </h6>
+                <div class="text-neutral-800 text-sm">
+                  Contribution:
+                  <span class="text-green-500 font-medium">
+                        {{reward.contributionLevel | currency:'MAD':'symbol':'1.2-2'}}
+                      </span>
+                </div>
+                <div *ngIf="reward.estimatedDeliveryDate" class="text-neutral-800 text-sm">
+                  Estimated Delivery: <br/>
+                  <span class="text-neutral-500 text-sm">
+                        {{reward.estimatedDeliveryDate}}
+                      </span>
+                </div>
+                <div *ngIf="reward.description" class="text-neutral-800 text-sm">
+                  Perk:
+                  <p class="ml-2  text-neutral-500 font-normal text-xs">
+                    {{ reward.description }}
+                  </p>
+                </div>
+                <button type="button" class="bg-green-500 self-center block w-full h-12 rounded-lg transition ease duration-300 text-white text-base hover:bg-green-700">
+                  Get this perk
+                </button>
+              </div>
+            </swiper-slide>
+          </swiper-container>
+        </div>
+        <div class="lg:bg-white w-full rounded-xl lg:p-4 p-0   lg:flex-[2]">
           <div class="mb-4  border-gray-200 ">
             <ul class="flex text-lg items-center justify-between xl:justify-start font-medium text-center">
               <li class="me-2">
@@ -198,15 +236,13 @@
             </div>
           </div>
         </div>
-        <aside class="xl:flex hidden order-1 xl:order-none flex-col xl:flex-1" *ngIf="project?.rewards">
+        <aside class="lg:flex hidden  flex-col lg:flex-1" *ngIf="project?.rewards">
             <h5 class="font-medium mx-4 py-3">
               Choose your Perk
             </h5>
             <div class="flex flex-col items-center gap-10 overflow-y-auto h-[800px] ">
-              <div *ngFor="let reward of project.rewards" class="border hover-parent rounded-lg bg-white mx-4 cursor-pointer ">
-                <div>
-                  <img [src]="reward.fileUrl" class="object-cover w-full h-full">
-                </div>
+              <div *ngFor="let reward of project.rewards" class="border hover-parent rounded-lg bg-white mx-4 cursor-pointer overflow-hidden">
+                  <img [src]="reward.fileUrl" class="w-full object-cover h-56">
                 <div class="py-4 px-6 flex flex-col items-start gap-2">
                   <h6 class="font-bold">
                     {{ reward.title }}
@@ -236,6 +272,7 @@
               </div>
             </div>
         </aside>
+
       </section>
     </main>
   <app-footer/>
