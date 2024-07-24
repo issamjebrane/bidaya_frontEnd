@@ -17,6 +17,9 @@ import {SharedModule} from "./shared/shared.module";
 import localeFr from '@angular/common/locales/fr';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TestingComponent } from './testing/testing.component';
+import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
+import { UserDashboardComponent } from './admin/user-dashboard/user-dashboard.component';
+import { ProjectDashboardComponent } from './admin/project-dashboard/project-dashboard.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -30,6 +33,9 @@ registerLocaleData(localeFr, 'fr');
     PageNotFoundComponent,
     AboutUsComponent,
     TestingComponent,
+    AdminLayoutComponent,
+    UserDashboardComponent,
+    ProjectDashboardComponent,
   ],
     imports: [
         HttpClientModule,

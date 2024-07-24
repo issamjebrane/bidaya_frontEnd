@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component} from '@angular/core';
 import 'flowbite'
 @Component({
   selector: 'app-root',
@@ -7,6 +7,7 @@ import 'flowbite'
 
 })
 export class AppComponent{
+
   title = 'bidaya';
 
 }
