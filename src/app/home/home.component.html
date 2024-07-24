@@ -1,12 +1,12 @@
 <main class="flex xl:block flex-col ">
-  <div class="bg-container flex flex-col items-stretch justify-between gap-20 xl:gap-36 lg:justify-start relative 2xl:gap-60 lg:mb-0 pt-5 pb-24">
+  <div class="bg-container flex flex-col items-stretch gap-20 justify-between lg:justify-start relative lg:gap-60 lg:mb-0 pt-5 pb-24">
     <app-header/>
     <div class="flex justify-center gap-10 xl:gap-14 items-center flex-col lg:items-start 2xl:mx-60 lg:mx-20 xl:mx-36">
               <div class="flex flex-col gap-4 lg:items-start justify-center items-center">
-                  <h2 class=" text-gray-800 font-bold  font-outfit text-[30px] lg:text-5xl text-center lg:text-start" >
+                  <h2 class="text-white lg:text-gray-800 font-bold  font-outfit text-[30px] lg:text-5xl text-center lg:text-start" >
                       Join The Revolution<br/> Of Innovation
                   </h2>
-                  <p class=" text-gray-800 font-normal lg:text-xl text-[14px] font-outfit text-center lg:text-start ">
+                  <p class="text-white lg:text-gray-800 font-normal lg:text-xl text-[14px] font-outfit text-center lg:text-start ">
                       Empower projects, support creators, and be <br class="block lg:hidden"> part of the <br class="hidden lg:block"> Moroccan community that brings <br class="block lg:hidden"> dreams to life.
                   </p>
               </div>
@@ -27,7 +27,7 @@
               </div>
     </div>
   </div>
-  <div  class="lg:hidden w-full flex-col self-center justify-between items-center my-4 flex h-12">
+  <div  class="lg:hidden relative w-full flex-col self-center justify-between items-center my-4 flex h-12">
     <div class="justify-start items-center  flex gap-4  rounded-full px-3 py-2 bg-slate-50">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.8">
@@ -35,13 +35,13 @@
         </g>
       </svg>
       <div class="w-full h-full" >
-        <input type="text" [(ngModel)]="searchTerm" (blur)="onBlur()" (ngModelChange)="onInputChange()" placeholder="Search projects..." class="border-none bg-transparent appearance-none outline-none w-full h-full placeholder:outfit placeholder:text-neutral-600 focus:ring-transparent " id="search">
+        <input type="text" [(ngModel)]="searchTerm"  (ngModelChange)="onInputChange()" placeholder="Search projects..." class="border-none bg-transparent appearance-none outline-none w-full h-full placeholder:outfit placeholder:text-neutral-600 focus:ring-transparent " id="search">
       </div>
     </div>
-    <div *ngIf="showDropdown && searchTerm != undefined && searchTerm.length > 3 " class="mx-5 z-50 bg-white h-fit w-96">
-      <ul class=" rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+    <div *ngIf="showDropdown && searchTerm != undefined && searchTerm.length > 3 " class="mx-5 xl:m-0 w-full z-10 relative bg-white">
+      <ul class="dropdown-menu absolute w-[90%] left-[20px] mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
         <li  *ngFor="let project of matchingProjects.slice(0,5)" (click)="goToProject(project.basics.id)">
-          <div class="flex items-center justify-start gap-5  px-4 py-5 text-sm text-gray-700 hover:bg-gray-100">
+          <div class="flex items-center justify-start gap-5 m-2 px-4 py-5 text-sm text-gray-700 hover:bg-gray-100">
             <div class="w-15 h-10 rounded-lg">
               <img [src]="project.basics.cardImage" alt="" class="object-cover w-full h-full">
             </div>
@@ -55,13 +55,13 @@
               See more results
             </span>
         </li>
-        <li *ngIf="noResults" class="px-4 py-10 shadow rounded-md">
-          <span class="px-4 py-2 text-xl text-gray-700">No results found.</span>
+        <li *ngIf="noResults" class="px-4 py-4 shadow rounded-md">
+          <span class=" px-4 py-2 text-xl text-gray-700">No results found.</span>
         </li>
       </ul>
     </div>
   </div>
-  <app-cards-container [cards]="cards" />
+  <app-cards-container  />
   <div class="bg-slate-100 xl:py-20 py-10 mb-5  xl:mb-10">
       <div class=" lg:mx-20 xl:mx-36 flex lg:flex-row flex-col justify-between items-center gap-10 lg:gap-28 2xl:mx-60 lg:px-0 px-5 ">
           <div class="items-start xl:gap-8 gap-4 flex flex-col">
@@ -76,7 +76,7 @@
                       Showcasing Diverse Projects, Backer Rewards, and the Unparalleled  Experience Awaiting You!</p>
                   </div>
                 </div>
-              <button class="lg:w rounded-lg lg:w-56 w-full h-14 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base hover:bg-green-700 ">
+              <button class="md:w-[60%] self-center rounded-lg lg:w-56 w-full h-14 flex items-center justify-center font-outfit bg-green-500 lg:px-3 lg:py-2  border-green-500  text-white gap-2transition ease duration-300 text-base hover:bg-green-700 ">
                   <span class="text-base">
                       Read more
                   </span>

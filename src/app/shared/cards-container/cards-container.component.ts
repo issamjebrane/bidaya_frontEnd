@@ -1,11 +1,7 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {Card} from '../../home/home.component';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from "@angular/router";
 import {ProjectService} from "../../services/project/project.service";
 import {Campaign} from "../../../types/campaign.types";
-import {forkJoin, map, Observable, of} from "rxjs";
-import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
-import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-cards-container',
@@ -14,16 +10,12 @@ import {catchError} from "rxjs/operators";
   encapsulation: ViewEncapsulation.None,
 })
 export class CardsContainerComponent implements OnInit {
-  @Input() cards?: Card[]
   campaign :Campaign[] = []
-  private errorMessage: any;
   filtering: boolean = false;
   filterType: string = 'all';
-  constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer) {}
+  constructor(private route: Router,private projectService:ProjectService) {}
   loadingCards: boolean = false;
-  toDate(creationDate : string){
-    return new Date(creationDate);
-  }
+
 
   ngOnInit(): void {
     this.loadingCards = true;
@@ -88,7 +80,7 @@ export class CardsContainerComponent implements OnInit {
               this.campaign.push(this.projectService.convertProjectImageUrl(project));
             })
           }},
-          error: (error) => {
+          error: () => {
             this.loadingCards = false;
             this.filterType = 'all';
             alert('No projects found')

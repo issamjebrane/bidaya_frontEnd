@@ -1,8 +1,7 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ProjectService} from "../../services/project/project.service";
-import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
-import {debounceTime, distinctUntilChanged, forkJoin, map, Observable, of, Subject, switchMap} from "rxjs";
-import {catchError, filter} from "rxjs/operators";
+import {debounceTime,  Subject, switchMap} from "rxjs";
+import {filter} from "rxjs/operators";
 import {Campaign} from "../../../types/campaign.types";
 import {Router} from "@angular/router";
 
@@ -11,9 +10,8 @@ import {Router} from "@angular/router";
   templateUrl: './campaigns.component.html',
   styleUrl: './campaigns.component.sass'
 })
-export class CampaignsComponent  implements AfterViewInit {
+export class CampaignsComponent  implements AfterViewInit ,OnInit{
   campaign :Campaign[] = []
-  private errorMessage: any;
   filtering: boolean = false;
   filterType: string = 'all';
   isLoadingProjects: boolean = false;
@@ -23,13 +21,12 @@ export class CampaignsComponent  implements AfterViewInit {
   searchTerm?: string ;
   noResults: boolean = false;
   loadSize: number = 8;
-  imageUrls: { [key: string]: SafeUrl } = {}; // To store image URLs
 
   ngAfterViewInit(): void {
 
   }
 
-  constructor(private route: Router,private projectService:ProjectService,private sanitizer: DomSanitizer,) {
+  constructor(private route: Router,private projectService:ProjectService) {
     this.searchTerm$.pipe(
       debounceTime(300),
       filter(term => {return term.length > 2}),
@@ -42,16 +39,13 @@ export class CampaignsComponent  implements AfterViewInit {
         this.matchingProjects = [];
         this.noResults = projects.length === 0;
         projects.forEach((project) => {
-          this.campaign.push(this.projectService.convertProjectImageUrl(project));
+          this.matchingProjects.push(this.projectService.convertProjectImageUrl(project));
         })
+
       }
     });
   }
 
-
-  toDate(creationDate : string){
-    return new Date(creationDate);
-  }
 
   ngOnInit(): void {
     this.isLoadingProjects = true;
@@ -73,29 +67,6 @@ export class CampaignsComponent  implements AfterViewInit {
   }
 
 
-   convertImageData(): void {
-    this.campaign.map((project) => {
-      if (project.basics.imageData) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          this.imageUrls['cardImage'] = reader.result as string; // Base64 encoded string
-        };
-        reader.readAsDataURL(project.basics.imageData); // Convert Blob to Data URL
-      }
-
-      if (project.story.imageData) {
-          const objectURL = URL.createObjectURL(project.story.imageData); // Create a URL for the Blob
-          this.imageUrls['storyImage'] = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      }
-
-      project.rewards.forEach((reward: any) => {
-        if (reward.imageData) {
-            const objectURL = URL.createObjectURL(reward.imageData); // Create a URL for the Blob
-            this.imageUrls[reward.title] = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-        }
-      });
-    })
-  }
 
 
   daysLeft(creationDate: string,duration:number) {
@@ -152,7 +123,7 @@ export class CampaignsComponent  implements AfterViewInit {
           alert('No projects found')
         }
       },
-    error: (error) => {
+    error: () => {
       this.isLoadingProjects = false;
       this.filterType = 'all';
       alert('No projects found')

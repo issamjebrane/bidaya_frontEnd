@@ -22,12 +22,12 @@
           </button>
         </div>
       </div>
-      <div *ngIf="showDropdown && searchTerm != undefined && searchTerm.length > 3 " class="mx-5 xl:m-0 w-full z-[1000] bg-white">
-        <ul class="dropdown-menu absolute w-full right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+      <div *ngIf="showDropdown && searchTerm != undefined && searchTerm.length > 3 " class="mx-5 xl:m-0 w-full z-10 relative bg-white">
+        <ul class="dropdown-menu absolute w-full right-[20px] mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <li  *ngFor="let project of matchingProjects.slice(0,5)" (click)="goToProject(project.basics.id)">
-            <div class="flex items-center justify-start gap-5  px-4 py-5 text-sm text-gray-700 hover:bg-gray-100">
+            <div class="flex items-center justify-start gap-5 m-2 px-4 py-5 text-sm text-gray-700 hover:bg-gray-100">
               <div class="w-15 h-10 rounded-lg">
-                <img [src]="imageUrls['cardImage']" alt="" class="object-cover w-full h-full">
+                <img [src]="project.basics.cardImage" alt="" class="object-cover w-full h-full">
               </div>
               <span class="text-lg">
                 {{project.basics.title}}
@@ -39,24 +39,24 @@
               See more results
             </span>
           </li>
-          <li *ngIf="noResults" class="px-4 py-10 shadow rounded-md">
+          <li *ngIf="noResults" class="px-4 py-4 shadow rounded-md">
             <span class=" px-4 py-2 text-xl text-gray-700">No results found.</span>
           </li>
         </ul>
       </div>
     </div>
-    <div class="lg:mx-20 xl:mx-36 mx-5 2xl:mx-64 my-5 lg:flex items-center  justify-between ">
+    <div class="lg:mx-20 xl:mx-36 mx-5 2xl:mx-64 my-5 lg:flex items-center  justify-between relative z-0">
       <div class="lg:flex hidden items-center text-justify text-base xl:text-lg font-normal justify-stretch  gap-3">
-        <swiper-slide type="button" class="text-green-600 w-32 text-center py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'all'}" (click)="filter('all')">All projects</swiper-slide>
-        <swiper-slide type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'film'}" (click)="filter('film')">film</swiper-slide>
-        <swiper-slide type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'technology'}" (click)="filter('technology')">Technology</swiper-slide>
-        <swiper-slide type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'design'}" (click)="filter('design')">Design</swiper-slide>
-        <swiper-slide type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'comics'}" (click)="filter('comics')">Comics</swiper-slide>
+        <div type="button" class="text-green-600 w-32 text-center py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'all'}" (click)="filter('all')">All projects</div>
+        <div type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'film'}" (click)="filter('film')">film</div>
+        <div type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'technology'}" (click)="filter('technology')">Technology</div>
+        <div type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'design'}" (click)="filter('design')">Design</div>
+        <div type="button" class="text-green-600 px-5 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'comics'}" (click)="filter('comics')">Comics</div>
       </div>
       <swiper-container
         slides-per-view="3"
         space-between="10"
-        class="lg:hidden "
+        class="lg:hidden z-0"
       >
         <swiper-slide type="button" class="text-green-600 text-center max-w-28 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'all'}" (click)="filter('all')">All projects</swiper-slide>
         <swiper-slide type="button" class="text-green-600 text-center max-w-28 py-2 cursor-pointer border border-transparent bg-gray-100  hover:border-green-500 rounded-lg " [ngClass]="{'bg-green-500 hover:bg-green-800 text-white ':filterType === 'film'}" (click)="filter('film')">film</swiper-slide>
