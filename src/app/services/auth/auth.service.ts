@@ -12,7 +12,8 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthService {
   private api = environment.API;
-  private tokenKey= "token";
+   tokenKey= environment.SECRET_KEY;
+
   constructor(private http: HttpClient,private router:Router) {
 
   }
@@ -95,8 +96,19 @@ export class AuthService {
     return this.getToken() !== null;
   }
 
-  getUserInformation(email:string):Observable<User>{
-    return this.http.get<User>(`${environment.API}/users/user/${email}`);
+  isAdmin(): boolean {
+    const role = this.getUserRole();
+    return role === 'ROLE_Admin' ;
   }
 
+
+  getUserRole(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const payload = atob(token.split('.')[1]);
+      const parsedPayload = JSON.parse(payload);
+      return parsedPayload.role;
+    }
+    return "null";
+  }
 }

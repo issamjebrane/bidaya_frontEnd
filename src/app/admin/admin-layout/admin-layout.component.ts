@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {AuthService} from "../../services/auth/auth.service";
+import {User} from "../../../types/user.types";
 
 @Component({
   selector: 'app-admin-layout',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AdminLayoutComponent {
 
+  constructor(private authService: AuthService) {
+  }
+
+  getUserFromLocalStorage(): User {
+    return this.authService.getUserFromLocalStorage();
+  }
 }

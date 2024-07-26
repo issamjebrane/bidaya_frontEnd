@@ -59,4 +59,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   navigate(route: string) {
     this.route.navigate([`/campaign/${route}`])
   }
+
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
 }

@@ -3,40 +3,38 @@
     <app-header class="lg:text-white"/>
   </div>
     <main  class="flex flex-col items-center justify-center gap-16 lg:py-20 pb-20 pt-0 2xl:px-56 lg:m-0 lg:px-20 xl:px-32 bg-gray-100">
-      <app-skeleton *ngIf="isLoading"/>
-      <section *ngIf="!isLoading" class="flex items-center lg:flex-row w-full flex-col  lg:justify-between overflow-hidden gap-4 lg:gap-11 bg-white rounded-xl p-5" >
+      <section  class="flex items-center lg:flex-row w-full flex-col  lg:justify-between overflow-hidden gap-4 lg:gap-11 bg-white rounded-xl p-5" >
+        <div role="status" *ngIf="isLoading" class="w-full flex items-center justify-center py-36 lg:py-20">
+          <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#43A046"/></svg>
+          <span class="sr-only">Loading...</span>
+        </div>
         <div class="max-h-[500px] ">
           <img *ngIf="!isLoading" [src]="project.basics.cardImage" alt="campaign" class=" w-full object-contain " />
         </div>
         <div class="w-full lg:w-auto flex flex-col pb-5 items-stretch  gap-4 lg:gap-8 justify-center lg:p-0 md:px-10 p-4 flex-grow " >
-          <div class="flex items-center justify-between order-3 lg:order-none">
-            <div class="flex justify-start gap-5 items-center ">
+          <div class="flex items-center justify-between order-3 lg:order-none" >
+            <div class="flex justify-start gap-5 items-start " *ngIf="!isLoading">
               <div class="w-10 h-10 rounded-full">
                   <img src="assets/user1.svg" alt="user" class="object-cover w-full h-full" />
               </div>
-              <div>
-                <div class="flex items-center justify-start gap-2">
-                  <h6 class="text-lg font-medium">
-                    {{user.firstName | titlecase}} {{user.lastName | uppercase}}
-                     </h6>
-                  <div class="flex items-center">
-                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                    <svg class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                  </div>
-                </div>
+              <div >
+                <div class="flex items-start gap-1 ">
+                  <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                  <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                  <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                  <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                  <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+              </div>
                 <div class="flex items-center justify-start text-sm gap-2">
                   <span class="text-green-500">3 campaigns</span>
                   <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,13 +44,21 @@
                 </div>
               </div>
             </div>
-            <div class="hidden xl:block cursor-pointer text-gray-500 transform transition ease hover:text-black" (click)="copyLink()">
+            <input id="project-link" class="hidden" [value]="fullPathUrl" disabled readonly/>
+            <button data-copy-to-clipboard-target="project-link" type="button"  data-popover-target="popover-default"  class="hidden xl:block cursor-pointer text-gray-500 transform transition ease hover:text-black" (click)="copy()">
               <svg width="18" height="21" viewBox="0 0 18 21" fill="currentColor" xmlns="http://www.w3.org/2000/svg" >
                 <path d="M15 20.3154C14.1667 20.3154 13.4583 20.0238 12.875 19.4404C12.2917 18.8571 12 18.1488 12 17.3154C12 17.1988 12.0083 17.0778 12.025 16.9524C12.0417 16.8271 12.0667 16.7148 12.1 16.6154L5.05 12.5154C4.76667 12.7654 4.45 12.9614 4.1 13.1034C3.75 13.2454 3.38333 13.3161 3 13.3154C2.16667 13.3154 1.45833 13.0238 0.875 12.4404C0.291667 11.8571 0 11.1488 0 10.3154C0 9.4821 0.291667 8.77376 0.875 8.19043C1.45833 7.6071 2.16667 7.31543 3 7.31543C3.38333 7.31543 3.75 7.38643 4.1 7.52843C4.45 7.67043 4.76667 7.8661 5.05 8.11543L12.1 4.01543C12.0667 3.91543 12.0417 3.8031 12.025 3.67843C12.0083 3.55376 12 3.43276 12 3.31543C12 2.4821 12.2917 1.77376 12.875 1.19043C13.4583 0.607096 14.1667 0.31543 15 0.31543C15.8333 0.31543 16.5417 0.607096 17.125 1.19043C17.7083 1.77376 18 2.4821 18 3.31543C18 4.14876 17.7083 4.8571 17.125 5.44043C16.5417 6.02376 15.8333 6.31543 15 6.31543C14.6167 6.31543 14.25 6.24476 13.9 6.10343C13.55 5.9621 13.2333 5.7661 12.95 5.51543L5.9 9.61543C5.93333 9.71543 5.95833 9.8281 5.975 9.95343C5.99167 10.0788 6 10.1994 6 10.3154C6 10.4314 5.99167 10.5524 5.975 10.6784C5.95833 10.8044 5.93333 10.9168 5.9 11.0154L12.95 15.1154C13.2333 14.8654 13.55 14.6698 13.9 14.5284C14.25 14.3871 14.6167 14.3161 15 14.3154C15.8333 14.3154 16.5417 14.6071 17.125 15.1904C17.7083 15.7738 18 16.4821 18 17.3154C18 18.1488 17.7083 18.8571 17.125 19.4404C16.5417 20.0238 15.8333 20.3154 15 20.3154ZM15 4.31543C15.2833 4.31543 15.521 4.21976 15.713 4.02843C15.905 3.8371 16.0007 3.59943 16 3.31543C15.9993 3.03143 15.9033 2.7941 15.712 2.60343C15.5207 2.41276 15.2833 2.31676 15 2.31543C14.7167 2.3141 14.4793 2.4101 14.288 2.60343C14.0967 2.79676 14.0007 3.0341 14 3.31543C13.9993 3.59676 14.0953 3.83443 14.288 4.02843C14.4807 4.22243 14.718 4.3181 15 4.31543ZM3 11.3154C3.28333 11.3154 3.521 11.2194 3.713 11.0274C3.905 10.8354 4.00067 10.5981 4 10.3154C3.99933 10.0328 3.90333 9.79543 3.712 9.60343C3.52067 9.41143 3.28333 9.31543 3 9.31543C2.71667 9.31543 2.47933 9.41143 2.288 9.60343C2.09667 9.79543 2.00067 10.0328 2 10.3154C1.99933 10.5981 2.09533 10.8358 2.288 11.0284C2.48067 11.2211 2.718 11.3168 3 11.3154ZM15 18.3154C15.2833 18.3154 15.521 18.2194 15.713 18.0274C15.905 17.8354 16.0007 17.5981 16 17.3154C15.9993 17.0328 15.9033 16.7954 15.712 16.6034C15.5207 16.4114 15.2833 16.3154 15 16.3154C14.7167 16.3154 14.4793 16.4114 14.288 16.6034C14.0967 16.7954 14.0007 17.0328 14 17.3154C13.9993 17.5981 14.0953 17.8358 14.288 18.0284C14.4807 18.2211 14.718 18.3168 15 18.3154Z" fill="currentColor"/>
               </svg>
+            </button>
+            <div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block  text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 ">
+              <div class="px-3 py-2 bg-white border-b border-gray-200 rounded-lg">
+                <h3 class="font-semibold text-gray-900 dark:text-white">copy project link</h3>
+              </div>
+              <div data-popper-arrow></div>
             </div>
+
           </div>
-          <div class="flex flex-col items-start justify-center gap-2 order-1 lg:order-none">
+          <div class="flex flex-col items-start justify-center gap-2 order-1 lg:order-none" *ngIf="!isLoading">
             <h2 class="xl:text-3xl text-xl font-bold">
               {{project.basics.title}}
             </h2>
@@ -60,7 +66,7 @@
               {{project.basics.subtitle}}
             </h5>
           </div>
-            <div class="w-full bg-[#263238] rounded-full h-fit mt-6 order-2 lg:order-none">
+            <div class="w-full bg-[#263238] rounded-full h-fit mt-6 order-2 lg:order-none" *ngIf="!isLoading">
               <div  class="bg-green-500 text-xs font-medium text-blue-100 p-1 text-center h-fit leading-none rounded-full rounded-r-none relative"      [style.width.%]="percentage(project.creationDate, project.basics.duration)">
               <div class="absolute z-10  inline-block px-3 py-2  text-white bg-green-500 rounded-full right-[-24px] bottom-[12px]">
                   {{percentage(project.creationDate,project.basics.duration)}}%
@@ -68,7 +74,7 @@
               </div>
               </div>
             </div>
-          <div class="flex items-center justify-between lg:mb-5 order-4 lg:order-none">
+          <div class="flex items-center justify-between lg:mb-5 order-4 lg:order-none" *ngIf="!isLoading">
             <div class="flex items-center justify-start gap-2">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 8.18463H25V20.6846H16.25L15.75 18.1846H8.75V26.9346H6.25V5.68463H17.5L18 8.18463ZM17.5 18.1846H20V15.6846H22.5V13.1846H20V10.6846H17.5V13.1846L16.25 10.6846V8.18463H13.75V10.6846H11.25V8.18463H8.75V10.6846H11.25V13.1846H8.75V15.6846H11.25V13.1846H13.75V15.6846H16.25V13.1846L17.5 15.6846V18.1846ZM13.75 13.1846V10.6846H16.25V13.1846H13.75ZM17.5 13.1846H20V15.6846H17.5V13.1846Z" fill="#717171"/>
@@ -82,7 +88,7 @@
                 </p>
               </div>
             </div>
-            <div class="flex items-center justify-start gap-2">
+            <div class="flex items-center justify-start gap-2" *ngIf="!isLoading">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.75 14.4346V14.4471M6.46628 11.1571C5.91803 10.7358 5.49696 10.171 5.24961 9.52528C5.00225 8.87957 4.93825 8.17804 5.06467 7.49822C5.1911 6.8184 5.50302 6.18678 5.96597 5.67316C6.42892 5.15953 7.02487 4.78391 7.68795 4.58781C8.35103 4.3917 9.05542 4.38275 9.72327 4.56195C10.3911 4.74114 10.9964 5.1015 11.4723 5.60319C11.9481 6.10489 12.276 6.72838 12.4196 7.40476C12.5633 8.08115 12.5171 8.78408 12.2863 9.43587" stroke="#717171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M20 5.68463V10.4384C21.547 11.3336 22.7248 12.7502 23.3225 14.4346H24.9988C25.3303 14.4346 25.6482 14.5663 25.8827 14.8007C26.1171 15.0352 26.2488 15.3531 26.2488 15.6846V18.1846C26.2488 18.5162 26.1171 18.8341 25.8827 19.0685C25.6482 19.3029 25.3303 19.4346 24.9988 19.4346H23.3213C22.9013 20.6221 22.1875 21.6846 21.2488 22.5259V25.0596C21.2488 25.5569 21.0512 26.0338 20.6996 26.3855C20.348 26.7371 19.871 26.9346 19.3738 26.9346C18.8765 26.9346 18.3996 26.7371 18.0479 26.3855C17.6963 26.0338 17.4988 25.5569 17.4988 25.0596V24.3309C17.0857 24.4003 16.6676 24.435 16.2488 24.4346H11.2488C10.8299 24.435 10.4118 24.4003 9.99877 24.3309V25.0596C9.99877 25.5569 9.80122 26.0338 9.44959 26.3855C9.09796 26.7371 8.62105 26.9346 8.12377 26.9346C7.62649 26.9346 7.14957 26.7371 6.79794 26.3855C6.44631 26.0338 6.24877 25.5569 6.24877 25.0596V22.5259C5.11622 21.5133 4.31786 20.1807 3.95937 18.7045C3.60088 17.2282 3.69916 15.6778 4.24119 14.2587C4.78323 12.8395 5.74347 11.6183 6.99481 10.7569C8.24615 9.89549 9.72959 9.43439 11.2488 9.43463H14.3738L20 5.68463Z" stroke="#717171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -96,7 +102,7 @@
                 </p>
               </div>
             </div>
-            <div class="flex items-center justify-start gap-2">
+            <div class="flex items-center justify-start gap-2" *ngIf="!isLoading">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1782_1560)">
                   <path d="M15 3.18463C21.9037 3.18463 27.5 8.78088 27.5 15.6846C27.5 22.5884 21.9037 28.1846 15 28.1846C8.09625 28.1846 2.5 22.5884 2.5 15.6846C2.5 8.78088 8.09625 3.18463 15 3.18463ZM15 5.68463C12.3478 5.68463 9.8043 6.7382 7.92893 8.61356C6.05357 10.4889 5 13.0325 5 15.6846C5 18.3368 6.05357 20.8803 7.92893 22.7557C9.8043 24.6311 12.3478 25.6846 15 25.6846C17.6522 25.6846 20.1957 24.6311 22.0711 22.7557C23.9464 20.8803 25 18.3368 25 15.6846C25 13.0325 23.9464 10.4889 22.0711 8.61356C20.1957 6.7382 17.6522 5.68463 15 5.68463ZM15 8.18463C15.3062 8.18467 15.6017 8.29708 15.8305 8.50053C16.0593 8.70397 16.2054 8.98432 16.2413 9.28838L16.25 9.43463V15.1671L19.6337 18.5509C19.8579 18.7758 19.9881 19.0777 19.9978 19.3951C20.0075 19.7125 19.896 20.0218 19.6859 20.26C19.4759 20.4982 19.1831 20.6475 18.8669 20.6776C18.5508 20.7077 18.235 20.6164 17.9838 20.4221L17.8663 20.3184L14.1163 16.5684C13.922 16.3739 13.7972 16.1209 13.7612 15.8484L13.75 15.6846V9.43463C13.75 9.10311 13.8817 8.78517 14.1161 8.55075C14.3505 8.31633 14.6685 8.18463 15 8.18463Z" fill="#717171"/>
@@ -116,7 +122,7 @@
                 </p>
               </div>
             </div>
-            <div class="lg:flex items-center justify-start gap-2 hidden">
+            <div class="lg:flex items-center justify-start gap-2 hidden" *ngIf="!isLoading">
               <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.125 26.9346C13.125 26.9346 11.25 26.9346 11.25 25.0596C11.25 23.1846 13.125 17.5596 20.625 17.5596C28.125 17.5596 30 23.1846 30 25.0596C30 26.9346 28.125 26.9346 28.125 26.9346H13.125ZM20.625 15.6846C22.1168 15.6846 23.5476 15.092 24.6025 14.0371C25.6574 12.9822 26.25 11.5515 26.25 10.0596C26.25 8.56779 25.6574 7.13705 24.6025 6.08216C23.5476 5.02726 22.1168 4.43463 20.625 4.43463C19.1332 4.43463 17.7024 5.02726 16.6475 6.08216C15.5926 7.13705 15 8.56779 15 10.0596C15 11.5515 15.5926 12.9822 16.6475 14.0371C17.7024 15.092 19.1332 15.6846 20.625 15.6846ZM9.78 26.9346C9.50217 26.3492 9.36355 25.7075 9.375 25.0596C9.375 22.519 10.65 19.9034 13.005 18.0846C11.8297 17.7217 10.605 17.5446 9.375 17.5596C1.875 17.5596 0 23.1846 0 25.0596C0 26.9346 1.875 26.9346 1.875 26.9346H9.78ZM8.4375 15.6846C9.6807 15.6846 10.873 15.1908 11.7521 14.3117C12.6311 13.4326 13.125 12.2403 13.125 10.9971C13.125 9.75393 12.6311 8.56165 11.7521 7.68257C10.873 6.80349 9.6807 6.30963 8.4375 6.30963C7.1943 6.30963 6.00201 6.80349 5.12294 7.68257C4.24386 8.56165 3.75 9.75393 3.75 10.9971C3.75 12.2403 4.24386 13.4326 5.12294 14.3117C6.00201 15.1908 7.1943 15.6846 8.4375 15.6846Z" fill="#717171"/>
               </svg>
@@ -130,7 +136,7 @@
               </div>
             </div>
             </div>
-          <div class="order-6 lg:order-none">
+          <div class="order-6 lg:order-none" *ngIf="!isLoading">
             <button routerLink="/campaign/fund/1" class="rounded-lg min-w-full lg:min-w-56 lg:h-12 px-8 py-4  flex items-center justify-center font-outfit bg-green-500  border-green-500  text-white gap-2 transition ease duration-300 text-base hover:bg-green-700 ">
                       <span class="text-base">
                           Fund this project
@@ -139,7 +145,7 @@
           </div>
         </div>
       </section>
-      <section class="flex flex-col lg:flex-row lg:gap-10 w-full px-3">
+      <section class="flex flex-col lg:flex-row lg:gap-10  w-full px-3">
         <div class=" lg:hidden mb-10 " *ngIf="project?.rewards">
           <h5 class="font-medium mx-4 py-3">
             Choose your Perk :
@@ -179,7 +185,7 @@
             </swiper-slide>
           </swiper-container>
         </div>
-        <div class="lg:bg-white w-full rounded-xl lg:p-4 p-0   lg:flex-[2]">
+        <div class="lg:bg-white w-full rounded-xl lg:p-4 p-0 lg:flex-[2] 2xl:flex-[3]">
           <div class="mb-4  border-gray-200 ">
             <ul class="flex text-lg items-center justify-between xl:justify-start font-medium text-center">
               <li class="me-2">
@@ -241,8 +247,8 @@
               Choose your Perk
             </h5>
             <div class="flex flex-col items-center gap-10 overflow-y-auto h-[800px] ">
-              <div *ngFor="let reward of project.rewards" class="border hover-parent rounded-lg bg-white mx-4 cursor-pointer overflow-hidden">
-                  <img [src]="reward.fileUrl" class="w-full object-cover h-56">
+              <div *ngFor="let reward of project.rewards" class="flex flex-col border hover-parent rounded-lg bg-white mx-4 cursor-pointer overflow-hidden ">
+                <img [src]="reward.fileUrl" class=" xl:max-h-64 2xl:max-h-44" alt="">
                 <div class="py-4 px-6 flex flex-col items-start gap-2">
                   <h6 class="font-bold">
                     {{ reward.title }}
@@ -272,9 +278,10 @@
               </div>
             </div>
         </aside>
-
       </section>
     </main>
+
+
   <app-footer/>
 </div>
 

@@ -8,7 +8,7 @@ import {CommonModule, NgOptimizedImage, registerLocaleData} from '@angular/commo
 import { CardsContainerComponent } from './shared/cards-container/cards-container.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import {AuthModule} from "./auth/auth.module";
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CampaignRoutingModule} from "./campaign/campaign-routing.module";
 import {CampaignModule} from "./campaign/campaign.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -20,6 +20,9 @@ import { TestingComponent } from './testing/testing.component';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { UserDashboardComponent } from './admin/user-dashboard/user-dashboard.component';
 import { ProjectDashboardComponent } from './admin/project-dashboard/project-dashboard.component';
+import {AdminRoutingModule} from "./admin/admin-routing.module";
+import {AdminModule} from "./admin/admin.module";
+import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 
 registerLocaleData(localeFr, 'fr');
 
@@ -41,18 +44,25 @@ registerLocaleData(localeFr, 'fr');
         HttpClientModule,
         CommonModule,
         SharedModule,
+        AdminModule,
         AuthModule,
+        CampaignRoutingModule,
+        AuthRoutingModule,
+        AdminRoutingModule,
         AppRoutingModule,
         CampaignModule,
-        AuthRoutingModule,
-        CampaignRoutingModule,
         BrowserModule,
         NgOptimizedImage,
         FormsModule,
         ReactiveFormsModule,
     ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr' }
+    { provide: LOCALE_ID, useValue: 'fr' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
     exports: [

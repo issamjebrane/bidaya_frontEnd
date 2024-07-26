@@ -28,10 +28,6 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'campaign',
-    loadChildren: () => import('./campaign/campaign.module').then(m => m.CampaignModule)
-  },
-  {
     path:'authentication',
     canActivate: [authGuard],
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)

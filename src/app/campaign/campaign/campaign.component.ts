@@ -1,10 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, UrlSegment} from "@angular/router";
 import {ProjectService} from "../../services/project/project.service";
 import {Campaign} from "../../../types/campaign.types";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {User} from "../../../types/user.types";
-import {AuthService} from "../../services/auth/auth.service";
+import {initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-campaign',
@@ -30,6 +30,7 @@ export class CampaignComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe((url) => {this.url = url
     })
+    this.fullPathUrl = window.location.href;
     if(this.url[0].path) {
       this.projectService.getProject(Number(this.url[0].path))?.subscribe((project: Campaign) => {
         this.isLoading = false;
@@ -42,6 +43,7 @@ export class CampaignComponent implements OnInit {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 1);
   }
+
 
 
 
@@ -62,9 +64,7 @@ export class CampaignComponent implements OnInit {
     const daysLeft = this.daysLeft(creationDate,duration);
     return Math.floor( (duration-daysLeft)*(100/duration))
   }
-  copyLink() {
-    this.fullPathUrl = window.location.href;
-  }
+
 
   selectTab(tab: string) {
     this.isTabLoading = true;
@@ -74,4 +74,7 @@ export class CampaignComponent implements OnInit {
     this.selectedTab = tab;
   }
 
+  copy() {
+    console.log(this.fullPathUrl)
+  }
 }

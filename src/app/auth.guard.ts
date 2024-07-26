@@ -14,6 +14,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   return true;
 
 };
+
 export const guestGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const auth = inject(AuthService);
@@ -35,4 +36,14 @@ function showNotification(): void {
   setTimeout(() => {
   document.body.removeChild(notification);
 }, 5000);
+}
+
+export const adminGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
+  const auth = inject(AuthService);
+  if(!auth.isAdmin()){
+    router.navigate(['/home']);
+    return false;
+  }
+  return true
 }

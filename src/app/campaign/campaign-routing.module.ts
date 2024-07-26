@@ -10,27 +10,34 @@ import {FundCampaignComponent} from "./fund-campaign/fund-campaign.component";
 
 const routes: Routes = [
   {
-    path: 'start-a-campaign',
-    component: ProjectCreationComponent,
-    canActivate: [guestGuard],
-  },
-  {
-    path:'fund/:campaignTitle',
-    component:FundCampaignComponent,
+    path:'campaign',
+    children: [
 
-  },
-  {
-    path:'explore',
-    component:CampaignsComponent,
-  },
-  {
-    path: ':campaignTitle',
-    component: CampaignComponent,
-  },
-  {
-    path: '**',
-    component: CampaignNotFoundComponent
+      {
+        path: 'start-a-campaign',
+        component: ProjectCreationComponent,
+        canActivate: [guestGuard],
+      },
+      {
+        path:'fund/:campaignTitle',
+        component:FundCampaignComponent,
+
+      },
+      {
+        path:'explore',
+        component:CampaignsComponent,
+      },
+      {
+        path: ':campaignTitle',
+        component: CampaignComponent,
+      },
+      {
+        path: '**',
+        component: CampaignNotFoundComponent
+      }
+      ]
   }
+
 ];
 
 @NgModule({
