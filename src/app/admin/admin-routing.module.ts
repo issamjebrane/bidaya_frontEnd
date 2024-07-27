@@ -6,6 +6,7 @@ import {ProjectDashboardComponent} from "./project-dashboard/project-dashboard.c
 import {adminGuard} from "../auth.guard";
 import {UpdateUserComponent} from "./update-user/update-user.component";
 import {UpdateProjectComponent} from "./update-project/update-project.component";
+import {NewUserComponent} from "./new-user/new-user.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'users',
         component:UserDashboardComponent
+      },
+      {
+        path:'users/add-user',
+        component: NewUserComponent
       },
       {
         path:'users/:id',

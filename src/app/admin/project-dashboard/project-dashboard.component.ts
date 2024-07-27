@@ -21,6 +21,7 @@ export class ProjectDashboardComponent implements OnInit{
   }
   ngOnInit() {
     this.getProjects();
+
   }
 
   getProjects() {
@@ -61,5 +62,9 @@ export class ProjectDashboardComponent implements OnInit{
       error: (err: Error) => console.error(err)
     })
 
+  }
+
+  convertDate(creationDate: string) {
+    return this.datePipe.transform(creationDate, 'yyyy-MM-dd');
   }
 }
