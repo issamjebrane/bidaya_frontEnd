@@ -187,4 +187,19 @@ export class ProjectService {
     });
     return project
   }
+
+  deleteProject(id: number): Observable<any> {
+    return this.http.delete(`${environment.API}/projects/delete/${id}`);
+  }
+
+  getProjectsWithPage(page:number=0,limit:number=10): Observable<Campaign[]>{
+    // add params to the request
+    return this.http.get<Campaign[]>(`${environment.API}/admin/projects`,
+      {
+        params: {
+          page: page,
+          limit: limit
+        }
+      })
+  }
 }

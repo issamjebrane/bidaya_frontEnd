@@ -4,6 +4,8 @@ import {AdminLayoutComponent} from "./admin-layout/admin-layout.component";
 import {UserDashboardComponent} from "./user-dashboard/user-dashboard.component";
 import {ProjectDashboardComponent} from "./project-dashboard/project-dashboard.component";
 import {adminGuard} from "../auth.guard";
+import {UpdateUserComponent} from "./update-user/update-user.component";
+import {UpdateProjectComponent} from "./update-project/update-project.component";
 
 const routes: Routes = [
   {
@@ -21,8 +23,16 @@ const routes: Routes = [
         component:UserDashboardComponent
       },
       {
+        path:'users/:id',
+        component:UpdateUserComponent
+      },
+      {
         path:'projects',
         component : ProjectDashboardComponent
+      },
+      {
+        path:'projects/:id',
+        component:UpdateProjectComponent
       }
     ]
   }

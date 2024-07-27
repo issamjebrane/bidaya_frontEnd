@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {User} from "../../../types/user.types";
 import {UsersService} from "../../services/users.service";
 import {DatePipe} from "@angular/common";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-dashboard',
@@ -16,19 +17,33 @@ export class UserDashboardComponent implements OnInit{
   currentDate: string | null = '';
   isLoading: boolean = true;
   isDeleted: boolean = false;
-  constructor(private userService: UsersService,private datePipe: DatePipe) {
+  isDeleting: boolean = false;
+  isNotFound: boolean = false;
+  constructor(private userService: UsersService,private datePipe: DatePipe,private router:Router,private activatedRoute:ActivatedRoute) {
   }
 
+
   ngOnInit(): void {
-    this.userService.getUsers().subscribe({
-      next: users => {
-        this.users = users
-        this.isLoading = false;
-      },
-      error: err => console.error(err)
-    });
-    this.currentDate = this.datePipe.transform(this.date,'yyyy-MM-dd');
+    this.getUsers();
+    //get the query params from the route
+    this.activatedRoute.queryParams.subscribe({
+      next: (params) => {
+        if(params['error']) {
+          this.isNotFound = true;
+          }
+      }
+    })
   }
+
+  getUsers() {
+      this.userService.getUserWithPage().subscribe({
+        next: (data: User[]) => {
+          this.users = data;
+          this.isLoading = false;
+        },
+        error: (err: Error) => console.error(err)
+      })
+    }
 
   delete(id:number | undefined) {
     if(id !== undefined)
@@ -40,4 +55,25 @@ export class UserDashboardComponent implements OnInit{
       },
       )
   }
+
+  toggleDelete(){
+    this.isDeleting = !this.isDeleting;
+  }
+
+  refresh() {
+    this.isLoading = true;
+    this.getUsers();
+  }
+
+  getUsersOnPage(page:number,limit:number) {
+    this.isLoading = true;
+    this.userService.getUserWithPage(page,limit).subscribe({
+      next: (data: User[]) => {
+        this.users = data;
+        this.isLoading = false;
+      },
+      error: (err: Error) => console.error
+    })
+  }
+
 }
