@@ -15,8 +15,7 @@ import { CampaignNotFoundComponent } from './campaign-not-found/campaign-not-fou
 import {SharedModule} from "../shared/shared.module";
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import {FundCampaignComponent} from "./fund-campaign/fund-campaign.component";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {AuthInterceptorService} from "../auth/auth-interceptor.service";
+
 
 @NgModule({
   declarations: [
@@ -42,11 +41,6 @@ import {AuthInterceptorService} from "../auth/auth-interceptor.service";
       NgxTiptapModule,
     ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
