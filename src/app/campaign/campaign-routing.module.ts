@@ -12,7 +12,6 @@ const routes: Routes = [
   {
     path:'campaign',
     children: [
-
       {
         path: 'start-a-campaign',
         component: ProjectCreationComponent,

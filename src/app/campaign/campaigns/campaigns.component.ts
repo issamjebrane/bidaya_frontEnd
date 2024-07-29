@@ -4,6 +4,7 @@ import {debounceTime,  Subject, switchMap} from "rxjs";
 import {filter} from "rxjs/operators";
 import {Campaign} from "../../../types/campaign.types";
 import {Router} from "@angular/router";
+import {initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-campaigns',
@@ -23,7 +24,7 @@ export class CampaignsComponent  implements AfterViewInit ,OnInit{
   loadSize: number = 8;
 
   ngAfterViewInit(): void {
-
+  initFlowbite()
   }
 
   constructor(private route: Router,private projectService:ProjectService) {
@@ -111,6 +112,7 @@ export class CampaignsComponent  implements AfterViewInit ,OnInit{
     }else{
     this.filterType = type;
     this.isLoadingProjects = true;
+    this.campaign = []
     this.projectService.filterByCategory(type).subscribe({
       next:(projects  )=> {
         if (projects.length > 0) {
