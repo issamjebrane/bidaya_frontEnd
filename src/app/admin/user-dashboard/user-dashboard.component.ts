@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {User} from "../../../types/user.types";
-import {UsersService} from "../../services/users.service";
+import {UsersService} from "../../services/user/users.service";
 import {DatePipe} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 

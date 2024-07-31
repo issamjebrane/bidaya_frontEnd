@@ -7,7 +7,6 @@
     <div class="flex items-start justify-center flex-col gap-2.5 lg:flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Video Url
-        <span class="text-red-600">*</span>
       </h3>
       <p class="text-neutral-500 text-base font-normal hidden lg:block">
         Enter a YouTube or Vimeo URL to appear at the top of your <br/>
@@ -18,7 +17,7 @@
         Make sure your video has closed captioning enabled on Youtube or Vimeo.
       </p>
       <div class="w-full relative">
-        <input type="search" class="block w-full p-4 ps-5 text-sm text-gray-900 border  rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500" placeholder="Http://" formControlName="videoUrl" required />
+        <input type="search" class="block w-full p-4 ps-5 text-sm text-gray-900 border  rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500" placeholder="Http://" formControlName="videoUrl" />
         <button type="button" (click)="submitUrl()" class="text-white absolute end-2.5 bottom-2.5 bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-100 font-medium rounded-lg text-sm px-4 py-2">Submit</button>
       </div>
     </div>
@@ -36,7 +35,6 @@
     <div class="flex items-start justify-center flex-col gap-2.5 flex-1">
       <h3 class="text-gray-800 text-xl font-bold">
         Video Overlay Image
-        <span class="text-red-600">*</span>
       </h3>
       <p class="text-neutral-500 text-base font-normal hidden lg:block">
         Choose an image to represent your video before it plays. <br/>
