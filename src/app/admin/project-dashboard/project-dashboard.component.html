@@ -71,7 +71,7 @@
             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
               <div class="flex items-center">
                 <div class="inline-block w-4 h-4 mr-2 bg-green-700 rounded-full"></div>
-                Active
+                {{project.status}}
               </div>
             </td>
             <td class="px-4 py-2">
@@ -79,7 +79,7 @@
             </td>
             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               <div class="flex items-center">
-                <span class="ml-1 text-gray-500 dark:text-gray-400">¨{{convertDate(project.creationDate)}}</span>
+                <span class="ml-1 text-gray-500 dark:text-gray-400">{{convertDate(project.creationDate)}}</span>
               </div>
             </td>
             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">

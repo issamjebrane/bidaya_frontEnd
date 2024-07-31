@@ -38,4 +38,5 @@ export  type Campaign = {
   ],
   userId: User,
   creationDate: string,
+  status: string,
 }
