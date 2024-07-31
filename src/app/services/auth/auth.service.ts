@@ -61,7 +61,7 @@ export class AuthService {
     localStorage?.setItem('user', JSON.stringify(user));
   }
   setToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
+    localStorage.setItem("token", token);
   }
   getUserFromLocalStorage(): any {
     if (typeof window !== 'undefined') {
@@ -78,7 +78,7 @@ export class AuthService {
     return null;
   }
   private removeToken() {
-    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem("token");
     localStorage.removeItem('user');
     localStorage.removeItem('basicForm');
     localStorage.removeItem('story');
@@ -87,7 +87,7 @@ export class AuthService {
 
   getToken(): string | null {
     if (typeof window !== 'undefined') {
-      return localStorage?.getItem(this.tokenKey)
+      return localStorage?.getItem("token")
     }
     return null;
   }
