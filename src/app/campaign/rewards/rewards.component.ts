@@ -92,9 +92,7 @@ export class RewardsComponent implements OnInit {
     (event.target as HTMLInputElement).value = '';
   }
 
-  readFileAsDataURL(file: File): Promise<string> {
-    return this.projectService.readFileAsDataURL(file);
-  }
+
 
   removeImage(): void {
     this.projectService.removeImage();
@@ -133,7 +131,6 @@ export class RewardsComponent implements OnInit {
     this.projectService.handleStepFormSubmit(formData, 'rewards').subscribe({
       next: (data:Campaign) => {
 
-        this.id = data.basics.id
         this.isCongratulation = true;
       },
       error: (error: any) => {
