@@ -98,9 +98,10 @@ export class ProjectService {
     }
     // get the user id from the token then sending it to the server with the form data
     const token = localStorage.getItem('token');
-
+    console.log("token",token);
     if (token) {
       const id =JSON.parse(atob(token.split('.')[1])).sub;
+      console.log("id",id);
       formData = {...formData, "userId": {
         email: id
         }};
